@@ -11,6 +11,7 @@ import stat
 import shutil
 
 app = Flask(__name__)
+
 CORS(app, resources={
     r"/api/*": {
         "origins": "*",  # Allow all origins temporarily
@@ -32,6 +33,34 @@ for folder in [UPLOAD_FOLDER, TEMP_FOLDER, TRANSCRIPTS_FOLDER]:
     os.makedirs(folder)
     # Give full permissions
     os.chmod(folder, stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)
+
+@app.route('/')
+def index():
+    return jsonify({
+        "status": "running",
+        "message": "Transcription API is running"
+    })
+
+@app.route('/api/debug')
+def debug():
+    return jsonify({
+        "folders": {
+            "upload_folder": {
+                "exists": os.path.exists(UPLOAD_FOLDER),
+                "path": os.path.abspath(UPLOAD_FOLDER)
+            },
+            "temp_folder": {
+                "exists": os.path.exists(TEMP_FOLDER),
+                "path": os.path.abspath(TEMP_FOLDER)
+            },
+            "transcripts_folder": {
+                "exists": os.path.exists(TRANSCRIPTS_FOLDER),
+                "path": os.path.abspath(TRANSCRIPTS_FOLDER)
+            }
+        }
+    })
+
+
 
 # At the start, after the folder definitions
 # Clean up any nested temp_audio folders
