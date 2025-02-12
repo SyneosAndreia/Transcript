@@ -10,6 +10,9 @@ import traceback
 import stat
 import shutil
 
+import firebase_admin
+from firebase_admin import credentials, storage
+
 app = Flask(__name__)
 
 CORS(app, resources={
@@ -115,13 +118,12 @@ def download_audio(url, output_path=TEMP_FOLDER):
             elif d['status'] == 'finished':
                 update_progress("Download complete, processing audio...", 100)
 
-        # Create a timestamp-based filename to avoid special characters
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_template = f"audio_{timestamp}.%(ext)s"  # Remove the path join here
+        output_template = f"audio_{timestamp}.%(ext)s"
 
         ydl_opts = {
             'format': 'bestaudio/best',
-            'outtmpl': os.path.join(output_path, output_template),  # Add the path here instead
+            'outtmpl': os.path.join(output_path, output_template),
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
@@ -129,13 +131,16 @@ def download_audio(url, output_path=TEMP_FOLDER):
             'progress_hooks': [progress_hook],
             'verbose': True,
             'no_warnings': False,
-            #fix the cookie error
-            'cookiesfrombrowser': ('chrome',),  # Uses cookies from Chrome
-            'extractor_args': {'youtube': {
-                'player_client': ['android'],
-                'player_skip': ['webpage', 'config'],
-            }},
-            'nocheckcertificate': True
+            # New options to try bypassing restrictions
+            'extract_flat': False,
+            'ignoreerrors': True,
+            'no_check_certificate': True,
+            'extractor_args': {
+                'youtube': {
+                    'skip': ['dash', 'hls'],
+                    'player_client': ['android', 'web'],
+                }
+            }
         }
         
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -149,7 +154,6 @@ def download_audio(url, output_path=TEMP_FOLDER):
             
             if not os.path.exists(filename):
                 print(f"Looking for file in: {output_path}")
-                # List all files in directory
                 files = os.listdir(output_path)
                 print(f"Files in directory: {files}")
                 raise FileNotFoundError(f"Downloaded file not found: {filename}")
@@ -170,8 +174,6 @@ def download_audio(url, output_path=TEMP_FOLDER):
         print(traceback.format_exc())
         update_progress(f"Error downloading audio: {str(e)}")
         return None, None
-
-
 
 def get_playlist_videos(url):
     """Get all video URLs from a YouTube playlist"""
