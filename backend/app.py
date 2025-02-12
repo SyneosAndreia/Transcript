@@ -128,7 +128,14 @@ def download_audio(url, output_path=TEMP_FOLDER):
             }],
             'progress_hooks': [progress_hook],
             'verbose': True,
-            'no_warnings': False
+            'no_warnings': False,
+            #fix the cookie error
+            'cookiesfrombrowser': ('chrome',),  # Uses cookies from Chrome
+            'extractor_args': {'youtube': {
+                'player_client': ['android'],
+                'player_skip': ['webpage', 'config'],
+            }},
+            'nocheckcertificate': True
         }
         
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -156,7 +163,10 @@ def download_audio(url, output_path=TEMP_FOLDER):
             return filename, title
             
     except Exception as e:
-        print(f"Download error: {str(e)}")
+        error_message = str(e)
+        if "Sign in to confirm you're not a bot" in error_message:
+            error_message = "YouTube is requiring verification. Please try uploading a file directly instead of using a URL, or try a different video."
+        print(f"Download error: {error_message}")
         print(traceback.format_exc())
         update_progress(f"Error downloading audio: {str(e)}")
         return None, None
