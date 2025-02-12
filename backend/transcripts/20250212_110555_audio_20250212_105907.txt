@@ -1,0 +1,1366 @@
+Source: Video: AI is changing ANIMATION Forever with Move AI CEO | Bad Decisions Podcast #63
+URL: https://www.youtube.com/watch?v=pn4-ELJ_Afw
+
+[00:00.000 --> 00:01.880] One of our favorite TV series, Shogun,
+[00:01.880 --> 00:05.520] Movie AI was used to actually animate the digital characters.
+[00:05.520 --> 00:07.800] I didn't actually know we were being used to the VFX supervisor.
+[00:07.800 --> 00:08.880] Remember, he just message me and said,
+[00:08.880 --> 00:10.920] Hey, by the way, I used you for this scene
+[00:10.920 --> 00:12.360] and I used you for a bunch more scenes.
+[00:12.360 --> 00:14.200] When I looked at it, I was even trying to work out
+[00:14.200 --> 00:15.960] who's AI, who's a 3D avatar.
+[00:19.960 --> 00:23.280] Tino, he's the co-founder and CEO of Movie AI,
+[00:23.280 --> 00:25.600] the company using artificial intelligence
+[00:25.600 --> 00:27.800] to capture human motion from video.
+[00:28.640 --> 00:30.440] How did you come up with the idea of Movie AI?
+[00:30.440 --> 00:31.920] When you have your first start, it's kind of crazy.
+[00:31.920 --> 00:32.920] You're not sleeping much.
+[00:32.920 --> 00:34.760] I'll go to the gym, so let's work out from home.
+[00:34.760 --> 00:36.280] I thought, hey, let's make this more fun.
+[00:36.280 --> 00:38.440] Let's try to create a personal coach in my living room,
+[00:38.440 --> 00:41.520] so I started setting up cameras to track my motion in 3D.
+[00:41.520 --> 00:44.200] So that's kind of the seed of what became Movie AI.
+[00:45.960 --> 00:48.480] We started working with games companies, electronic arts.
+[00:48.480 --> 00:49.520] They said they're doing a test
+[00:49.520 --> 00:51.120] and it was like a David versus Goliath moment
+[00:51.120 --> 00:53.840] because they had a big studio, 100 plus cameras,
+[00:53.840 --> 00:55.320] all synchronized.
+[00:55.320 --> 00:56.640] I remember being terrified at this,
+[00:56.640 --> 00:57.640] and it's easy to give up.
+[00:57.680 --> 00:58.800] Sometimes you shouldn't give up.
+[01:00.200 --> 01:02.240] How did you know it's time not to give up?
+[01:02.240 --> 01:04.600] It wouldn't be true to say I definitely knew,
+[01:04.600 --> 01:07.400] but we just had a vision, had a belief that it's possible.
+[01:07.400 --> 01:09.400] You were solving a completely different problem,
+[01:09.400 --> 01:11.960] and it looks like there's this whole industry
+[01:11.960 --> 01:13.560] that could have used your solution.
+[01:13.560 --> 01:17.760] How do you see moves role in the future of digital animation?
+[01:19.160 --> 01:21.320] Tino, welcome to the Mad Distance Podcast.
+[01:21.320 --> 01:22.160] I'm going to shade out.
+[01:23.920 --> 01:25.440] It's great to have you here.
+[01:25.440 --> 01:27.440] Yeah, yeah, yeah, it's better.
+[01:27.600 --> 01:29.840] You know what triggered this conversation
+[01:29.840 --> 01:32.280] was the post that you had on LinkedIn.
+[01:32.280 --> 01:34.840] You mentioned that in one of our favorite TV series,
+[01:34.840 --> 01:36.720] Shogun, in one of the scenes,
+[01:36.720 --> 01:40.560] Movie AI was used to actually animate the digital characters.
+[01:40.560 --> 01:42.120] And we looked at that scene,
+[01:42.120 --> 01:43.880] and when we rewatched it again,
+[01:43.880 --> 01:46.440] you couldn't even think that first of all,
+[01:46.440 --> 01:47.600] they were digital humans,
+[01:47.600 --> 01:49.920] second, they were all animated using AI.
+[01:49.920 --> 01:51.280] So the first thing is,
+[01:51.280 --> 01:54.800] how was the entire experience being in a TV series
+[01:54.800 --> 01:57.080] that is watched by millions of people?
+[01:57.080 --> 02:00.080] Yeah, so I didn't actually know we were being used.
+[02:00.080 --> 02:01.720] So the VFX supervisor,
+[02:01.720 --> 02:03.120] we've done a lot of stories with him recently,
+[02:03.120 --> 02:04.640] but I remember he just message me and said,
+[02:04.640 --> 02:07.040] hey, by the way, I used you for this scene,
+[02:07.040 --> 02:09.800] and I used you for a bunch more scenes in Shogun,
+[02:09.800 --> 02:12.040] which is really good, I think,
+[02:12.040 --> 02:15.840] because we try to create a tool that's so easy for people to use,
+[02:15.840 --> 02:17.640] so it doesn't really need our support.
+[02:17.640 --> 02:19.320] And then we obviously do work closely
+[02:19.320 --> 02:21.760] with certain customers who'd really trying to push the limits
+[02:21.760 --> 02:24.280] of what's possible with Markler's motion capture.
+[02:24.320 --> 02:26.640] And yeah, and that's like a show,
+[02:26.640 --> 02:28.200] won a lot of awards.
+[02:28.200 --> 02:30.400] It's just really visually compelling,
+[02:30.400 --> 02:33.880] like really brings out authentic feudal Japan.
+[02:33.880 --> 02:35.520] And yeah, when I looked at it,
+[02:35.520 --> 02:36.920] I was even trying to work out like,
+[02:36.920 --> 02:37.680] okay, who are the,
+[02:37.680 --> 02:42.400] who's AI, who's a 3D avatar?
+[02:42.400 --> 02:44.120] That's when you know you have good fucking VFX.
+[02:44.120 --> 02:44.960] Yeah, that's it.
+[02:44.960 --> 02:47.160] I know, because if you can notice it,
+[02:47.160 --> 02:48.080] that's when it's good VFX.
+[02:48.080 --> 02:50.600] Yeah, because you get certain shows where it's just like VFX,
+[02:50.600 --> 02:51.600] it's just everywhere, right?
+[02:51.600 --> 02:52.440] Yes.
+[02:52.440 --> 02:53.280] And some people like that,
+[02:53.280 --> 02:54.280] and then you get these shows
+[02:54.280 --> 02:57.160] where they're trying to bring out a very compelling story,
+[02:57.160 --> 02:58.160] very authentic story,
+[02:58.160 --> 03:01.000] and then you want to use VFX to bring to life,
+[03:01.000 --> 03:03.040] that story without being imposing on the user.
+[03:03.040 --> 03:04.640] So yeah, that's a good experience.
+[03:04.640 --> 03:06.400] You know, we were watching it with our parents,
+[03:06.400 --> 03:09.000] and we had to stop the show multiple times and go back.
+[03:09.000 --> 03:09.840] And they were like,
+[03:09.840 --> 03:10.680] why are you guys doing it?
+[03:10.680 --> 03:12.720] We were like, okay, we have to find out exactly
+[03:12.720 --> 03:15.200] who's a digital character, what are they used?
+[03:15.200 --> 03:17.760] Because there was the post that you made on LinkedIn
+[03:17.760 --> 03:20.640] that said around 30% of the characters you see
+[03:20.640 --> 03:22.840] in this shot are not real,
+[03:22.880 --> 03:25.280] and they're using Movie Eye to animate them.
+[03:25.280 --> 03:26.840] And then what we did was we went ahead
+[03:26.840 --> 03:28.200] and started doing more research
+[03:28.200 --> 03:30.920] and then found some of the behind the scenes.
+[03:30.920 --> 03:32.960] Most of the characters are not even there.
+[03:32.960 --> 03:34.160] Like when they're actually shooting,
+[03:34.160 --> 03:35.880] they just have the foreground characters,
+[03:35.880 --> 03:38.000] and everything else is CG,
+[03:38.000 --> 03:39.480] which is what's so fascinating
+[03:39.480 --> 03:41.240] because the show's done it so well.
+[03:41.240 --> 03:43.280] The production quality is just so high
+[03:43.280 --> 03:46.040] that you are so immersed in the storytelling
+[03:46.040 --> 03:49.720] and the cinematography and acting as well as marvelous
+[03:49.720 --> 03:51.480] that you're like, this is beautiful.
+[03:51.520 --> 03:53.160] So thank you for making that post
+[03:53.160 --> 03:55.080] because if it wasn't for the post,
+[03:55.080 --> 03:55.920] we wouldn't be here.
+[03:55.920 --> 03:56.760] It's all good.
+[03:56.760 --> 03:57.760] I think it's also interesting.
+[03:57.760 --> 03:59.120] I'm not from a VFX background,
+[03:59.120 --> 04:00.840] but what's interesting is that,
+[04:00.840 --> 04:02.920] they shot the scenes initially,
+[04:02.920 --> 04:04.560] and then a lot was added post.
+[04:04.560 --> 04:06.280] So maybe you have an idea of what you want to do
+[04:06.280 --> 04:08.880] for the scene, you go on set,
+[04:08.880 --> 04:10.320] you go to the location, you film it,
+[04:10.320 --> 04:13.040] and then the director or whoever's like,
+[04:13.040 --> 04:15.120] hey, I wanna bring to life there,
+[04:15.120 --> 04:16.880] so I want to make the army bigger.
+[04:16.880 --> 04:17.960] And then the cool thing is you can start
+[04:17.960 --> 04:19.680] to add these things afterwards.
+[04:19.680 --> 04:24.320] So you can, this iteration cycle is just
+[04:24.320 --> 04:25.120] much more flexible.
+[04:25.120 --> 04:26.720] Yeah, but there's another director,
+[04:26.720 --> 04:28.440] Gareth Edwards, who does it this way.
+[04:28.440 --> 04:30.120] He likes to shoot everything.
+[04:30.120 --> 04:31.600] That's what he did for the creator.
+[04:31.600 --> 04:32.840] And then after the fact,
+[04:32.840 --> 04:34.680] they go ahead and add to the story.
+[04:34.680 --> 04:36.480] So they go ahead and turn, for instance,
+[04:36.480 --> 04:40.480] this shot in the village of a lady and a child
+[04:40.480 --> 04:42.080] playing with grains.
+[04:42.080 --> 04:44.880] They didn't tell them to act in a robotic way.
+[04:44.880 --> 04:47.600] So they filmed them as they were without any markers.
+[04:47.680 --> 04:50.440] And then after the fact, they turn them into robots.
+[04:50.440 --> 04:53.120] So now you have this human acting,
+[04:53.120 --> 04:55.480] but with a robot body,
+[04:55.480 --> 04:59.160] which made the entire scene a lot more authentic in a way.
+[04:59.160 --> 05:01.720] And if you went ahead and started putting markers on them
+[05:01.720 --> 05:03.360] and started adding clothes to them,
+[05:03.360 --> 05:05.440] then the acting would have been slightly different.
+[05:05.440 --> 05:06.680] It wouldn't be so authentic.
+[05:06.680 --> 05:10.920] So this way of iterative filmmaking is very cool.
+[05:10.920 --> 05:12.080] I actually love it.
+[05:12.080 --> 05:14.440] I didn't know Shogun was doing something similar to that.
+[05:14.440 --> 05:16.720] Yeah, I think also different people
+[05:16.720 --> 05:18.120] like to create content differently.
+[05:18.120 --> 05:20.080] They have different styles or, you know,
+[05:20.080 --> 05:22.920] particular style is better for bringing out a different story.
+[05:22.920 --> 05:23.920] Yeah.
+[05:23.920 --> 05:26.320] And so I think the more flexible you can create these tools,
+[05:26.320 --> 05:28.160] just gives more power to the creator to create
+[05:28.160 --> 05:29.720] whatever they're doing.
+[05:29.720 --> 05:31.560] I mean, have you watched Shogun yourself?
+[05:31.560 --> 05:32.800] I've seen some scenes, yeah.
+[05:32.800 --> 05:35.000] OK, we literally started binge watching it.
+[05:35.000 --> 05:35.840] Yeah, yeah.
+[05:35.840 --> 05:37.040] Not stop, man.
+[05:37.040 --> 05:38.520] It is, I mean, I'm fascinated.
+[05:38.520 --> 05:41.600] I think Farad is too with the Japanese culture.
+[05:41.600 --> 05:43.760] And we have never been to Japan,
+[05:43.760 --> 05:44.880] but we have the freaking goal.
+[05:44.880 --> 05:45.720] Yeah, yeah.
+[05:45.720 --> 05:47.160] So many things that we love about you know,
+[05:47.160 --> 05:48.880] the food is amazing, of course.
+[05:48.880 --> 05:51.000] The culture, the culture, yeah.
+[05:51.000 --> 05:55.800] And the history and the samurai and the way they fought
+[05:55.800 --> 05:58.640] is just so different than what you've seen Western movies.
+[05:58.640 --> 06:00.800] You know, it's a completely different world.
+[06:00.800 --> 06:02.200] And so that's what I'm fascinated by.
+[06:02.200 --> 06:03.400] And we haven't finished it though.
+[06:03.400 --> 06:04.400] We've had a lot of trouble.
+[06:04.400 --> 06:05.400] Two of these are the sources.
+[06:05.400 --> 06:06.400] OK, yeah.
+[06:06.400 --> 06:06.880] Awesome.
+[06:06.880 --> 06:08.200] Speaking of your background,
+[06:08.200 --> 06:10.520] you mentioned that you are not from the VFX background.
+[06:10.520 --> 06:12.760] Let's take it a little bit back before even you
+[06:12.760 --> 06:14.320] start moving AI.
+[06:14.320 --> 06:15.400] What were you studying?
+[06:15.400 --> 06:17.960] How did you come up with the idea of moving AI?
+[06:17.960 --> 06:19.800] Yeah, so my background is, I guess,
+[06:19.800 --> 06:24.240] technologists like engineer, like as a kid, as a teen,
+[06:24.240 --> 06:26.920] I've just always been into tech, engineering, building things,
+[06:26.920 --> 06:28.640] also super into sports.
+[06:28.640 --> 06:30.600] So then the kind of precursor to move was,
+[06:30.600 --> 06:34.080] I was doing my PhD at Imperial College London in engineering.
+[06:34.080 --> 06:35.680] So I was actually doing material science.
+[06:35.680 --> 06:37.920] So I was modeling materials and how they fracture
+[06:37.920 --> 06:39.960] and how they deform.
+[06:39.960 --> 06:44.840] So that was my core thesis was analyzing,
+[06:44.840 --> 06:49.280] particularly in this phenomenon of fracture from blunt cracks.
+[06:49.280 --> 06:50.720] That's what I was feeling.
+[06:50.720 --> 06:53.320] What are the purpose of this?
+[06:53.320 --> 06:54.680] Because it's very specific.
+[06:54.680 --> 06:55.440] Yeah.
+[06:55.440 --> 06:58.880] Well, the purpose is you want to understand material.
+[06:58.880 --> 07:00.280] The better you can understand materials,
+[07:00.280 --> 07:03.160] particularly when they break or when they fail,
+[07:03.160 --> 07:05.560] the better you can push materials to the limit.
+[07:05.560 --> 07:06.840] So take an aircraft, right?
+[07:06.840 --> 07:09.280] So when you design something,
+[07:09.280 --> 07:11.800] often you have to build in redundancy, just in case.
+[07:11.800 --> 07:13.760] And particularly with an aircraft or something like that
+[07:13.760 --> 07:16.920] or building, you want to make sure that if it does get pushed
+[07:16.920 --> 07:19.440] to its limits, it doesn't just collapse and break.
+[07:19.440 --> 07:24.000] And one of the main failure modes of materials is fracture.
+[07:24.000 --> 07:28.080] So materials can fail by just deforming too much.
+[07:28.080 --> 07:29.840] But one of the most catastrophic ways
+[07:29.840 --> 07:32.120] it can fail is the way fractures, where you get a new surface
+[07:32.120 --> 07:32.960] created.
+[07:32.960 --> 07:37.480] So the better you can understand when will a material, a fracture,
+[07:37.480 --> 07:39.480] better you can understand it than the better you can push
+[07:39.480 --> 07:40.680] materials to the limit.
+[07:40.680 --> 07:42.400] And then maybe reduce some safety factors
+[07:42.400 --> 07:44.080] for particular applications, whether it's
+[07:44.080 --> 07:47.040] like a turbine blade in an engine or the hull
+[07:47.040 --> 07:49.080] of an aircraft or a building or whatever.
+[07:49.080 --> 07:49.600] Wow.
+[07:49.600 --> 07:54.520] So your degree would be used for construction, aircraft building.
+[07:54.520 --> 07:56.480] So I was at the very, very low level.
+[07:56.480 --> 07:59.760] So how would we use, like, don't know?
+[07:59.760 --> 08:04.480] So I was actually studying the precise area around a crack tip.
+[08:04.480 --> 08:06.000] And so I was modeling it in 3D.
+[08:06.000 --> 08:08.640] So I was using software like ABACUS,
+[08:08.640 --> 08:09.760] the finite element methods.
+[08:09.760 --> 08:12.760] So numerical methods to try to model the material
+[08:12.760 --> 08:15.600] and when it will fracture or when it will break.
+[08:15.600 --> 08:19.360] Also doing some mathematical modeling, geometric modeling,
+[08:19.360 --> 08:19.840] too.
+[08:19.840 --> 08:23.320] And then I was using computer vision to actually do experiments
+[08:23.320 --> 08:25.640] to analyze what's happening around the crack tip.
+[08:25.640 --> 08:28.120] So that's when I first got into, I guess,
+[08:28.120 --> 08:31.600] AI computer vision kind of image processing.
+[08:31.600 --> 08:33.800] I feel to see the connection of that
+[08:33.800 --> 08:34.640] to moving.
+[08:34.640 --> 08:36.880] That's like, dude, I was like, OK, we're not
+[08:36.880 --> 08:39.920] at fracturing anything when we're using our motion capture.
+[08:39.920 --> 08:41.840] Only part is computer vision probably.
+[08:41.840 --> 08:42.720] But let's see where it goes.
+[08:42.720 --> 08:43.640] I want to see where this goes.
+[08:43.640 --> 08:44.160] It's coming.
+[08:44.160 --> 08:44.680] It's coming.
+[08:44.680 --> 08:47.000] Maybe there's a few twists and turns.
+[08:47.000 --> 08:50.240] OK, so I mentioned that I like playing sports.
+[08:50.240 --> 08:51.440] I love working out.
+[08:51.440 --> 08:54.600] So around, what's in my PhD?
+[08:54.600 --> 08:56.840] My first job was born, who's now seven.
+[08:56.840 --> 08:58.480] So it's around seven years ago.
+[08:58.480 --> 09:01.200] And I think if you have kids, no.
+[09:01.200 --> 09:02.200] No.
+[09:02.200 --> 09:03.760] When you have your first job, it's kind of crazy.
+[09:04.280 --> 09:05.520] They're not sleeping much.
+[09:05.520 --> 09:07.600] Your routine is messed up.
+[09:07.600 --> 09:09.520] And so I didn't have time to go to the gym.
+[09:09.520 --> 09:11.280] And I like to work out.
+[09:11.280 --> 09:13.240] And at this time, you're studying still.
+[09:13.240 --> 09:13.760] Yeah, yeah.
+[09:13.760 --> 09:14.680] I was doing my PhD.
+[09:14.680 --> 09:16.120] Right.
+[09:16.120 --> 09:18.440] So then I'm like, OK, I need to go to the gym,
+[09:18.440 --> 09:19.280] can't go to the gym.
+[09:19.280 --> 09:21.440] So let's work out from home.
+[09:21.440 --> 09:24.480] So I started to download these apps.
+[09:24.480 --> 09:26.320] They just say, they just give you a routine of like,
+[09:26.320 --> 09:28.640] do press ups and like, do squats, do sit ups.
+[09:28.640 --> 09:30.200] I just find it really boring.
+[09:30.200 --> 09:31.800] So I thought, hey, let's make this more fun.
+[09:31.800 --> 09:33.520] Let's try to create a personal coach.
+[09:33.520 --> 09:34.160] In my living room.
+[09:34.160 --> 09:36.920] So I started setting up cameras in my living room
+[09:36.920 --> 09:39.000] to track my motion in 3D.
+[09:39.000 --> 09:40.840] So that's kind of the seed of what
+[09:40.840 --> 09:43.800] became, I guess, with AI, like a few years later.
+[09:43.800 --> 09:46.880] So I was just trying to understand my own motion in 3D,
+[09:46.880 --> 09:49.080] trying to create a coach that can automatically count
+[09:49.080 --> 09:50.920] your sets, your reps.
+[09:50.920 --> 09:54.720] Oh, so you would squat and you would measure the distance.
+[09:54.720 --> 09:57.480] And every time, for example, you hit the distance,
+[09:57.480 --> 10:00.160] you would say, OK, well, first, rep, second, rep, third,
+[10:00.160 --> 10:01.480] rep, is that what you were doing?
+[10:01.480 --> 10:02.000] Yeah, yeah.
+[10:02.000 --> 10:04.160] And I was trying to give real time feedback to.
+[10:04.160 --> 10:07.240] So I was just creating this AI or this model.
+[10:07.240 --> 10:09.120] I can give you, like imagine there's actually
+[10:09.120 --> 10:11.600] a coach in your living room with you
+[10:11.600 --> 10:14.560] and who'll be there every day, like in the morning evening.
+[10:14.560 --> 10:16.240] So I was trying to create this coach that could be with you
+[10:16.240 --> 10:17.480] every time you work out from home.
+[10:17.480 --> 10:19.240] OK, where is this application now?
+[10:19.240 --> 10:20.400] Yeah, I actually need it.
+[10:20.400 --> 10:21.400] Yeah.
+[10:21.400 --> 10:22.520] It didn't happen.
+[10:22.520 --> 10:23.760] Who may I know?
+[10:23.760 --> 10:25.600] So it was a bit too early, I think.
+[10:25.600 --> 10:26.360] Yeah.
+[10:26.360 --> 10:28.320] Because it's expensive to the processing,
+[10:28.320 --> 10:30.480] the quality wasn't quite there to actually
+[10:30.480 --> 10:32.160] give you detailed insights.
+[10:32.160 --> 10:32.760] Right.
+[10:32.760 --> 10:35.360] How many cameras you were using at that time?
+[10:35.360 --> 10:39.080] I was experimenting with one to eight probably.
+[10:39.080 --> 10:40.560] This is in your living room.
+[10:40.560 --> 10:41.080] Yeah.
+[10:41.080 --> 10:42.960] What did your wife think about it?
+[10:42.960 --> 10:44.320] She was also working out.
+[10:44.320 --> 10:45.320] OK.
+[10:45.320 --> 10:46.320] She was a test subject.
+[10:46.320 --> 10:47.320] OK.
+[10:47.320 --> 10:47.840] OK.
+[10:47.840 --> 10:49.240] Test subject number one.
+[10:49.240 --> 10:50.240] Yeah.
+[10:50.240 --> 10:52.040] And then your kid was not big enough at the time
+[10:52.040 --> 10:53.560] to do any test for you.
+[10:53.560 --> 10:55.320] Now he's big enough and he's a test subject.
+[10:55.320 --> 10:56.120] Oh, yeah, test subject.
+[10:56.120 --> 10:56.320] OK.
+[10:56.320 --> 10:58.040] So you've got your own set of test subjects.
+[10:58.040 --> 11:00.400] I can't imagine Tino says, like, cameras everywhere.
+[11:00.400 --> 11:01.400] In the whole world.
+[11:01.400 --> 11:02.400] In the whole world.
+[11:02.400 --> 11:03.400] Yeah.
+[11:03.400 --> 11:05.560] For training and quality purposes.
+[11:05.560 --> 11:06.360] Yeah.
+[11:06.360 --> 11:06.880] Yes.
+[11:06.880 --> 11:07.880] OK.
+[11:07.880 --> 11:09.480] So actually created a business at the time
+[11:09.480 --> 11:11.680] to help use that early technology I built
+[11:11.680 --> 11:13.240] to help sports teams.
+[11:13.240 --> 11:16.320] So study working with the UK boxing team, UK tennis team,
+[11:16.320 --> 11:19.200] another football team, Isochi teams.
+[11:19.200 --> 11:20.640] How did you help them?
+[11:20.640 --> 11:22.680] So there's kind of three things in particular.
+[11:22.680 --> 11:25.480] So one is there'll give you videos of opponents.
+[11:25.480 --> 11:28.080] And I'll use that the AI and the computer vision
+[11:28.080 --> 11:31.120] to get physical performance characteristics.
+[11:31.120 --> 11:33.000] And then automatically create highlights.
+[11:33.000 --> 11:33.200] I see.
+[11:33.200 --> 11:36.640] So they can analyze and create game plans against opponents.
+[11:36.640 --> 11:38.640] Secondly, helping using the technology
+[11:38.640 --> 11:40.680] to help them get performance characteristics
+[11:40.680 --> 11:44.080] or youth players to bring them, help them decide
+[11:44.080 --> 11:46.200] who will be in the professional program.
+[11:46.200 --> 11:47.680] Oh, selection.
+[11:47.680 --> 11:48.200] Oh.
+[11:48.200 --> 11:48.720] Yes, selection.
+[11:48.720 --> 11:48.920] Yeah.
+[11:48.920 --> 11:50.360] And then also just tracking training.
+[11:50.360 --> 11:51.880] The third thing is tracking training
+[11:51.880 --> 11:56.400] to because like when you perform in a match,
+[11:56.400 --> 11:58.720] you can't make you can't put sensors.
+[11:58.720 --> 11:59.560] Yes, of course.
+[11:59.560 --> 12:00.240] Definitely.
+[12:00.240 --> 12:03.480] So the more information you can get on when they're performing
+[12:03.480 --> 12:06.440] and competing and then pairing that with training,
+[12:06.440 --> 12:09.800] so helping training to then benefit them for the matches.
+[12:09.800 --> 12:10.720] That is really cool.
+[12:10.720 --> 12:11.240] You know why?
+[12:11.240 --> 12:13.200] Because I used to play League of Legends.
+[12:13.200 --> 12:14.280] And I used to host.
+[12:14.280 --> 12:14.880] I was not related.
+[12:14.880 --> 12:15.880] I was not.
+[12:15.880 --> 12:17.400] I'll tell you why.
+[12:17.400 --> 12:19.680] So I used to also host esports tournaments.
+[12:19.680 --> 12:21.440] And then I would see after every game,
+[12:21.440 --> 12:22.920] the players would go in with the coach
+[12:22.920 --> 12:24.600] and the coach would have all the stats from the game.
+[12:24.600 --> 12:27.680] Because the game does give you all the stats of the enemies
+[12:27.680 --> 12:28.560] of the opponents.
+[12:28.560 --> 12:31.960] So you have their attack, their defense, everything in numbers.
+[12:31.960 --> 12:33.400] But when you're playing boxing,
+[12:33.400 --> 12:35.880] you don't have any of those stats.
+[12:35.880 --> 12:37.760] Were you sort of giving these kind of stats?
+[12:37.760 --> 12:39.120] I mean, definitely not attacking the defense.
+[12:39.120 --> 12:39.640] Yeah, this is absolutely true.
+[12:39.640 --> 12:42.840] So when you play games, it's a 3D experience.
+[12:42.840 --> 12:44.680] And all the data is available.
+[12:44.680 --> 12:45.120] Right?
+[12:45.120 --> 12:48.280] But when you play sports, it's like the real life, real world.
+[12:48.280 --> 12:49.400] You don't have this data, right?
+[12:49.400 --> 12:52.120] And so the challenge is if you can get that data,
+[12:52.120 --> 12:54.000] then you can start to create game plans and you've
+[12:54.000 --> 12:56.440] strapped strategies tactics more effectively.
+[12:56.440 --> 12:57.040] Right.
+[12:57.040 --> 12:58.280] And then improve training as well.
+[12:58.280 --> 13:00.440] So it's essentially, you could say,
+[13:00.440 --> 13:02.800] I'll try to digitize the real world,
+[13:02.800 --> 13:05.720] just like a 3D world is digital in a game.
+[13:05.720 --> 13:06.640] Yes.
+[13:06.640 --> 13:09.720] And the world is just going more towards that way.
+[13:09.720 --> 13:13.320] We need to start to digitize voices, motion,
+[13:14.360 --> 13:15.800] your body as well.
+[13:15.800 --> 13:17.360] Yeah, no, that's very cool.
+[13:17.360 --> 13:19.280] So this isn't a living room.
+[13:19.280 --> 13:21.280] You're doing these tests and then you're working
+[13:21.280 --> 13:23.720] with some companies now and experimenting.
+[13:23.720 --> 13:25.280] What happened after that?
+[13:25.280 --> 13:27.000] Yeah, so it was a lifestyle business.
+[13:27.000 --> 13:28.240] It was super fun.
+[13:29.280 --> 13:33.040] I just found that the sports industry is quite different
+[13:33.040 --> 13:34.240] to the games industry, for example.
+[13:34.240 --> 13:37.080] So they tend to be later adopters of technology.
+[13:37.080 --> 13:41.000] Also culturally, they just tend to invest less money
+[13:41.000 --> 13:42.800] into sports and tech.
+[13:43.800 --> 13:46.560] So then I raised some funding to then start moving out.
+[13:46.560 --> 13:48.520] I essentially take this core idea
+[13:48.520 --> 13:52.720] and start to look for other opportunities outside of sports.
+[13:52.720 --> 13:54.320] And that's how I moved AI was born.
+[13:54.320 --> 13:55.800] So we raised some funding,
+[13:56.920 --> 13:59.040] spent about three, four years,
+[14:00.200 --> 14:04.360] improving the technology so it could get to a higher standard.
+[14:04.360 --> 14:07.320] So soon we started working with games companies.
+[14:07.320 --> 14:09.040] Actually the standard of quality needed
+[14:09.040 --> 14:10.440] and you guys are from this background,
+[14:10.440 --> 14:12.080] like we effects games,
+[14:12.080 --> 14:13.560] like they need a high quality of data
+[14:13.560 --> 14:15.880] so that you have low cleanup afterwards.
+[14:15.880 --> 14:18.360] And so it can ideally go directly in engine.
+[14:18.360 --> 14:21.640] So we found that we'd had to keep pushing the technology.
+[14:21.640 --> 14:22.760] And it took about three, four years
+[14:22.760 --> 14:26.680] before we reached this threshold where electronic arts,
+[14:26.680 --> 14:30.200] they, so EA, they did a test.
+[14:30.200 --> 14:32.800] I remember being terrified at this because
+[14:32.800 --> 14:35.000] they just kind of did it behind the scenes.
+[14:35.000 --> 14:36.480] They said they're doing a test and I was like,
+[14:36.480 --> 14:38.120] okay, well, let's see how this comes out.
+[14:38.120 --> 14:39.680] And it was like a David versus Goliath moment
+[14:39.680 --> 14:43.320] because they had these optical tracking cameras,
+[14:43.320 --> 14:45.480] you know, you put on the suits and you've got the dots.
+[14:45.480 --> 14:46.960] Was it Vicon?
+[14:46.960 --> 14:48.320] Yeah, I think it was Vicon, yeah.
+[14:48.320 --> 14:51.440] And so they had a big studio, 100 plus cameras
+[14:51.440 --> 14:55.240] or synchronized, you know, typically you need like 50 plus
+[14:55.240 --> 14:58.600] markers on the human body, like particular lighting.
+[14:58.600 --> 15:00.840] That actually dressed up a guy,
+[15:00.840 --> 15:04.040] he kind of looked like a Christmas tree, I guess.
+[15:04.040 --> 15:06.920] He was in like a multi-colored suit.
+[15:06.920 --> 15:08.440] He had an inertial base system,
+[15:08.440 --> 15:10.160] he had the markers for the optical system.
+[15:10.160 --> 15:11.400] So he's got both.
+[15:11.400 --> 15:14.480] So he's wearing both and they're in that kind of studio design
+[15:14.480 --> 15:16.760] to capture optical data.
+[15:16.760 --> 15:19.320] So you know, with the suit and the markers,
+[15:19.320 --> 15:20.200] it's effectively as possible.
+[15:20.200 --> 15:22.120] And then there's just set off some go pros,
+[15:22.120 --> 15:23.560] unsynchronized.
+[15:23.560 --> 15:25.640] And then yeah, the results came out
+[15:25.640 --> 15:28.160] and they were comparable to the optical.
+[15:28.160 --> 15:29.720] So that was a huge moment for us.
+[15:29.720 --> 15:31.800] Yeah. So that's after four years working on them.
+[15:31.800 --> 15:34.840] Yeah, yeah, like grinding for a lot of time.
+[15:34.840 --> 15:36.720] And with this company and other companies,
+[15:36.720 --> 15:39.840] you know, we'll give, you know, we'll maybe show them results
+[15:39.840 --> 15:41.320] after three, six months.
+[15:41.320 --> 15:42.720] And they said, yeah, it's looking good,
+[15:42.720 --> 15:43.640] but like it's not quite there.
+[15:43.640 --> 15:45.200] Yeah, so you kind of get punched in the face.
+[15:45.200 --> 15:46.040] Yeah.
+[15:46.040 --> 15:47.560] And then you just have to come back later
+[15:47.560 --> 15:48.600] and then show them more results.
+[15:48.600 --> 15:49.760] So we just kept working.
+[15:49.760 --> 15:52.240] And we got an excellent research, an engineering team
+[15:52.240 --> 15:53.920] who just kept working on this,
+[15:53.920 --> 15:56.320] using techniques and computer vision
+[15:56.320 --> 15:57.880] by mechanics, physics, statistics.
+[15:57.880 --> 16:00.000] So we've got a multidisciplinary team
+[16:00.000 --> 16:01.720] to just try to solve this problem
+[16:01.720 --> 16:05.080] of capturing and understanding human emotion.
+[16:05.080 --> 16:07.680] And yeah, initially we were,
+[16:07.680 --> 16:10.160] or at least the area where we use the most right now
+[16:10.160 --> 16:14.280] is games, video games, film and TV, VFX.
+[16:14.280 --> 16:17.000] But then increasingly, we'll see other industries as well.
+[16:17.000 --> 16:18.000] Right.
+[16:18.000 --> 16:20.080] I think we need to focus on this three to four years
+[16:20.080 --> 16:22.080] because I feel like these three to four years
+[16:22.080 --> 16:23.960] might have already gone by
+[16:23.960 --> 16:26.520] and you guys are definitely a lot more successful now.
+[16:26.520 --> 16:30.000] But these three to four years is what a lot of people have
+[16:30.000 --> 16:32.160] and they give up within that three to four years.
+[16:32.160 --> 16:34.480] Because it's the critical time where you're building,
+[16:34.480 --> 16:37.520] no one believes in you, no one understands what you're building.
+[16:37.520 --> 16:38.640] You have to prove to everybody
+[16:38.640 --> 16:42.920] that what you're building is actually going to be successful.
+[16:42.920 --> 16:44.880] And I want to go back to the beginning
+[16:44.880 --> 16:46.560] because you said you raised some money.
+[16:46.560 --> 16:48.160] Was this done publicly?
+[16:48.160 --> 16:49.640] Is this something that you've disclosed?
+[16:49.640 --> 16:51.560] Like the amount and how it was done?
+[16:51.560 --> 16:53.280] Because I feel like a lot of people might have the idea
+[16:53.280 --> 16:55.200] they need the funding, they don't know how to do it.
+[16:55.200 --> 16:56.440] Yeah.
+[16:56.440 --> 16:58.960] Yeah, so we raised around 10 million in total.
+[16:58.960 --> 17:01.640] But I think at the time we'd raised maybe
+[17:01.640 --> 17:02.800] one to two million dollars.
+[17:02.800 --> 17:03.640] Okay.
+[17:03.640 --> 17:04.400] So not a crazy amount.
+[17:04.400 --> 17:05.560] Yeah.
+[17:05.560 --> 17:08.440] And we just had a lean research focus team.
+[17:08.440 --> 17:12.080] I tried to hire the best people that we could find.
+[17:12.080 --> 17:14.760] Somebody who was in my research group at Imperial
+[17:14.760 --> 17:17.400] so he joined and we had a few other people.
+[17:17.400 --> 17:18.240] But you're right.
+[17:18.240 --> 17:22.400] It is that kind of pre-product market fit.
+[17:22.400 --> 17:23.840] This is really tough.
+[17:25.120 --> 17:25.960] And it's easy to give up.
+[17:25.960 --> 17:27.520] And sometimes you should give up.
+[17:27.520 --> 17:30.600] Why did you know it's time not to give up at that time?
+[17:30.600 --> 17:33.080] Because I'm sure you brought your product,
+[17:33.080 --> 17:34.640] you went to EA or whatever company
+[17:34.640 --> 17:36.520] and they said not good enough.
+[17:36.520 --> 17:38.280] How did you know that you could go back
+[17:38.280 --> 17:40.760] and actually improve it and come back another time?
+[17:40.760 --> 17:41.760] Yeah.
+[17:41.760 --> 17:44.600] I guess you don't always know, right?
+[17:44.600 --> 17:45.440] Yeah.
+[17:45.440 --> 17:48.320] It wouldn't be true to say I definitely knew
+[17:48.320 --> 17:50.440] with 100% certainty you should keep going.
+[17:50.440 --> 17:54.480] But we just had a vision, had a belief that I think,
+[17:54.480 --> 17:58.800] I'm confident or I'm, let's say, 90, 70% plus percent sure
+[17:58.800 --> 18:00.120] that it's possible.
+[18:00.120 --> 18:05.200] And we just had the vision, had a passion for the industry,
+[18:05.200 --> 18:07.120] had some resilience from other past experiences
+[18:07.120 --> 18:10.960] and just were outfailed and stopped, I think,
+[18:10.960 --> 18:12.080] for the right reason.
+[18:12.080 --> 18:13.640] And then this time, I just said,
+[18:13.640 --> 18:15.280] let's just keep going, let's do it.
+[18:15.280 --> 18:17.600] I think in our last episode,
+[18:17.600 --> 18:19.800] we had the founder of Epidemic Sounds.
+[18:19.800 --> 18:22.640] And he said that we as humans tend to make
+[18:22.640 --> 18:25.400] a lot of logical decisions for small decisions.
+[18:25.400 --> 18:27.800] But when it comes to the big life decisions,
+[18:27.800 --> 18:29.280] we're making it emotional.
+[18:29.280 --> 18:32.840] Something deep inside us in our gut tells us to keep going.
+[18:32.840 --> 18:34.160] Did you have that in you?
+[18:34.880 --> 18:38.400] Even if people were telling you, this is not gonna work.
+[18:38.400 --> 18:39.240] This is not good enough.
+[18:39.240 --> 18:40.680] A big company like EA won, exactly.
+[18:40.680 --> 18:41.760] They have their setup.
+[18:41.760 --> 18:43.880] Why would they come and use another product
+[18:43.880 --> 18:45.760] which nobody heard about?
+[18:45.760 --> 18:48.080] No, I definitely believe that it would be possible.
+[18:48.080 --> 18:52.160] I definitely believe that it would be valuable to people.
+[18:52.160 --> 18:55.240] And then what's crazy is there's other bigger opportunities
+[18:55.240 --> 18:57.160] even that have now come up.
+[18:57.160 --> 18:58.520] And so it's kind of grown.
+[18:58.520 --> 19:01.960] Like I definitely didn't have the idea in the first place.
+[19:01.960 --> 19:03.040] But I get like a hobby to me.
+[19:03.040 --> 19:05.520] Like I work on the business like as a hobby,
+[19:05.520 --> 19:07.760] I could spend way more time working on it
+[19:07.760 --> 19:09.080] if I had the time.
+[19:09.080 --> 19:12.120] And even before there was a company
+[19:12.120 --> 19:13.920] like I was working in the space, it's just a passion.
+[19:13.920 --> 19:15.400] So I think you have to have that passion.
+[19:15.400 --> 19:16.240] Yes.
+[19:16.240 --> 19:18.080] Because a lot of people talk about this.
+[19:18.080 --> 19:21.000] Like unless you have that core passion,
+[19:21.000 --> 19:22.560] you come across these roadblocks
+[19:22.560 --> 19:24.720] and it's very easy to give up.
+[19:24.720 --> 19:28.120] What's your working schedule like in those four years?
+[19:28.120 --> 19:30.760] When there's four years, like you have to be a lot of hours in.
+[19:31.760 --> 19:33.720] You have got like four kids.
+[19:33.720 --> 19:36.480] And so you've got to manage family as well.
+[19:36.480 --> 19:41.760] So just making sure that I play a high priority on family.
+[19:41.760 --> 19:43.920] So I make sure that that's second care of.
+[19:43.920 --> 19:45.760] And then also just a lot of hours.
+[19:45.760 --> 19:47.400] Even before move, you know,
+[19:47.400 --> 19:51.400] I'd easily spend a lot of hours into the late nights.
+[19:51.400 --> 19:56.040] Yeah, just coding and doing all the support and everything myself.
+[19:56.040 --> 19:59.240] Let's talk about the technology a little bit.
+[19:59.400 --> 20:02.120] Because when you guys go back and keep improving it,
+[20:02.120 --> 20:05.560] each side of the technology you guys think you had a breakthrough
+[20:05.560 --> 20:07.440] that you were able to reach the threshold
+[20:07.440 --> 20:10.200] that these big companies are asking.
+[20:10.200 --> 20:14.560] Yeah, I think it's a lot of incremental things that kind of get you there.
+[20:14.560 --> 20:16.040] We definitely had some kind of, I guess,
+[20:16.040 --> 20:18.640] like scientific kind of breakthroughs, engineering breakthroughs,
+[20:18.640 --> 20:22.360] but it's just these incremental things at up over time.
+[20:22.360 --> 20:23.840] And particularly for the industry,
+[20:23.840 --> 20:26.280] VFX video games, there was a certain threshold.
+[20:26.280 --> 20:27.080] You do have to get above.
+[20:27.080 --> 20:28.600] So we got above that.
+[20:28.600 --> 20:30.040] But then as you want to,
+[20:30.040 --> 20:33.480] let's say we get to 95% accuracy to get those incremental ones.
+[20:33.480 --> 20:35.120] You have to do a lot of work.
+[20:35.120 --> 20:37.120] And so in the early days,
+[20:37.120 --> 20:39.120] sometimes you can get rapid progress,
+[20:39.120 --> 20:41.200] but then often to, you know,
+[20:41.200 --> 20:46.080] to keep pushing you have to be an extra work to really push the accuracy level.
+[20:46.080 --> 20:48.560] And so I'll say it's just, it's been like very incremental.
+[20:48.560 --> 20:50.200] And we've explored a lot of areas.
+[20:50.200 --> 20:52.320] So like we tried to model the human body,
+[20:52.320 --> 20:53.760] a particular way.
+[20:53.760 --> 20:58.040] We tried to model the physics to make sure that the motion of base physics,
+[20:58.040 --> 20:59.840] because if you're capturing motion of somebody in real life,
+[20:59.840 --> 21:00.560] it's a being physics.
+[21:00.560 --> 21:04.240] So it should also obey that when you translate it to a 3D model.
+[21:04.240 --> 21:06.240] Yeah.
+[21:06.240 --> 21:09.200] You'll be using techniques from AI to like train data set,
+[21:09.200 --> 21:10.880] to learn from how people move.
+[21:10.880 --> 21:14.640] So capturing motion of people and then training models.
+[21:14.640 --> 21:16.560] Could you do a prediction, for example,
+[21:16.560 --> 21:18.680] on the actual motion capture that you guys are having?
+[21:18.680 --> 21:19.680] It's kind of prediction and cleanup.
+[21:19.680 --> 21:21.400] So for example,
+[21:21.400 --> 21:24.520] I went, you want to capture someone's motion in real life.
+[21:24.520 --> 21:26.760] You could, in some cases,
+[21:26.760 --> 21:31.480] you can like load somebody up with either physical sensors or like hundreds of cameras.
+[21:31.480 --> 21:34.280] But in reality, when you put it into production, you don't have that.
+[21:34.280 --> 21:36.360] You may, you might just have a single camera.
+[21:36.360 --> 21:38.720] You might have three, four, five, whatever cameras.
+[21:38.720 --> 21:42.360] You might be trying to do an entire football pitch, soccer pitch.
+[21:42.360 --> 21:45.440] And you only have, it's just expensive.
+[21:45.440 --> 21:48.600] Therefore, you know, we'll create models that try to help you get to that
+[21:48.600 --> 21:51.080] high-cell of equality with less hardware as well.
+[21:51.080 --> 21:56.720] And so that's why we'll use a lot of AI to essentially create a fundamental model
+[21:56.720 --> 21:59.840] of how people move and then try to help people get that same level of equality
+[21:59.840 --> 22:02.760] with less hardware when you put it into production.
+[22:02.760 --> 22:05.680] I find the product that you guys have created fascinating.
+[22:05.680 --> 22:08.120] So just a little bit of a story on our side.
+[22:08.120 --> 22:10.200] We come from the artist world.
+[22:10.200 --> 22:15.480] So we use it to create content, but also for services, for 3D animation, let's say.
+[22:15.480 --> 22:18.640] And we started with inertia suits.
+[22:18.640 --> 22:21.840] So for anybody that doesn't know, those are the suits that you have to put on.
+[22:21.840 --> 22:25.760] And they cost $78,000.
+[22:25.760 --> 22:27.480] That's usually the price it starts at.
+[22:27.480 --> 22:28.280] Starts at, yeah.
+[22:28.280 --> 22:33.640] Starts at, which is pretty steep if you are just beginning, if you're an indie freelancer.
+[22:33.640 --> 22:35.720] It's very hard to get a suit like that.
+[22:35.720 --> 22:39.120] And then you can go all the way up to optical systems,
+[22:39.120 --> 22:41.960] which you have to set up multiple cameras for.
+[22:41.960 --> 22:47.200] They go way above that $7,020,000, $50,000 price pool.
+[22:47.200 --> 22:48.320] Price range.
+[22:48.320 --> 22:51.600] And that's when you go to the studios, right?
+[22:51.600 --> 22:58.080] That's the studios for AAA title games or video for movies that are using that.
+[22:58.080 --> 23:00.520] When we started, we had the suits.
+[23:00.520 --> 23:04.960] And honestly, when you've heard the suit for the first time, it's a great experience.
+[23:04.960 --> 23:08.320] Because you feel like you're getting into the mood of acting.
+[23:08.320 --> 23:09.520] And it's bad ass.
+[23:09.520 --> 23:13.800] But then when you start actually using the suits, you realize, first of all, it's limiting my motion.
+[23:13.800 --> 23:16.960] I don't really feel like I can act in an authentic way.
+[23:16.960 --> 23:18.480] It feels kind of weird.
+[23:18.480 --> 23:21.920] Then you have to calibrate every single time you want to act.
+[23:21.920 --> 23:26.280] And that makes it even more restricted for you to want to express yourself.
+[23:26.280 --> 23:29.600] Every single time you want to create an animation.
+[23:29.600 --> 23:31.640] And then there's the price point as we discussed.
+[23:31.640 --> 23:33.880] And also sometimes your hand stops working.
+[23:33.880 --> 23:34.400] Yeah.
+[23:34.400 --> 23:36.240] So you'll have to recalibrate that again.
+[23:36.240 --> 23:37.240] Exactly.
+[23:37.240 --> 23:41.200] So for us, when we first heard about Move, just like you said,
+[23:41.200 --> 23:44.720] actually before we started the podcast, we didn't actually believe this was a thing.
+[23:44.720 --> 23:47.520] We thought, OK, it's just some gimmicky thing.
+[23:47.520 --> 23:48.520] Then we tested it.
+[23:48.520 --> 23:49.880] You guys didn't have Move One at the time.
+[23:49.880 --> 23:52.080] You guys had Move with multiple cameras.
+[23:52.080 --> 23:53.160] We were blown away.
+[23:53.160 --> 23:55.320] Because I remember our first animation.
+[23:55.320 --> 23:57.120] We laid on the ground.
+[23:57.120 --> 23:58.200] And then we got back up.
+[23:58.200 --> 23:59.960] And that was something the suits couldn't do.
+[23:59.960 --> 24:02.520] Like the legs would all start flipping around.
+[24:02.520 --> 24:03.800] And you guys did that perfectly.
+[24:03.800 --> 24:06.240] We would lay on the ground and get back up.
+[24:06.240 --> 24:09.680] And that's when we realized there's true potential in this.
+[24:09.680 --> 24:14.000] And now fast forward all the way to today when you guys have Move One, you can set up
+[24:14.080 --> 24:18.880] our iPhone, just one iPhone and shoot yourself within a few seconds.
+[24:18.880 --> 24:23.520] And then you go from your idea to the motion being created.
+[24:23.520 --> 24:25.640] And then boom, you can take that into Unreal Engine.
+[24:25.640 --> 24:31.240] And after about 30 minutes, you've got the animation that you performed in your room.
+[24:31.240 --> 24:36.400] That is revolutionary for me and for Farad and whoever's been working in bad decisions.
+[24:36.400 --> 24:41.760] So for us, we see exactly the potential for you yourself.
+[24:41.760 --> 24:45.000] How do you see the market of motion capture changing?
+[24:45.000 --> 24:46.800] Because of course we had the initial suits.
+[24:46.800 --> 24:49.600] We have the Y-con cameras.
+[24:49.600 --> 24:51.240] And now we have Movie Eye.
+[24:51.240 --> 24:53.240] There's many different markets this can go into.
+[24:53.240 --> 24:57.400] We've got Avatar level movies where they have the craziest technologies.
+[24:57.400 --> 24:58.600] Underwater motion capture.
+[24:58.600 --> 25:00.320] Underwater motion capture.
+[25:00.320 --> 25:04.400] And then we have small studios which create animation.
+[25:04.400 --> 25:08.160] And then we have indie content creators just on their own alone.
+[25:08.160 --> 25:11.040] How do you see the market changing in the next few years?
+[25:11.040 --> 25:14.840] I appreciate the kind words about the product.
+[25:14.840 --> 25:15.760] Yeah, I've got some ideas.
+[25:15.760 --> 25:19.160] But also my mind gets blown every kind of few months.
+[25:19.160 --> 25:22.160] It used to be like quite regularly.
+[25:22.160 --> 25:23.280] And now I've seen a lot.
+[25:23.280 --> 25:26.360] But there's still a few things that I'm really excited by.
+[25:26.360 --> 25:29.000] But just for I guess content creation.
+[25:29.000 --> 25:33.560] So we've got these content creators on YouTube, Tech Talk,
+[25:33.560 --> 25:35.680] where there's somebody who's a big fan of Pokemon.
+[25:35.680 --> 25:38.360] And they create this Pokemon, quite things seems, let's say.
+[25:38.360 --> 25:40.680] Or there's somebody who wants to be a Motown, kind of singer.
+[25:40.680 --> 25:42.640] So they create a virtual version of themselves.
+[25:42.640 --> 25:44.680] They're motion capture themselves.
+[25:44.680 --> 25:46.200] They either use a digital voice or real voice.
+[25:46.200 --> 25:50.000] But these people have thousands, millions of followers.
+[25:50.000 --> 25:55.640] And so I think what's really interesting is when you create a tool for people,
+[25:55.640 --> 25:57.920] they naturally will use it in lots of different ways.
+[25:57.920 --> 26:01.640] And then you see the output and then some of your mind is blown
+[26:01.640 --> 26:05.480] with the type of content, especially when they're combining different tools together.
+[26:05.480 --> 26:10.640] And so I definitely see content creation being democratized in 3D.
+[26:10.640 --> 26:15.280] As you guys know, 3D content creation is difficult, expensive.
+[26:15.280 --> 26:16.360] It's time consuming.
+[26:16.360 --> 26:19.480] It's a high learning curve.
+[26:19.480 --> 26:23.200] But I think even with 2D content creation, that was the case.
+[26:23.200 --> 26:27.320] There's a time when we had, there were not that many photographers
+[26:27.320 --> 26:29.600] and image editors, right?
+[26:29.600 --> 26:33.440] Let's say from the 90s 2000, you have this huge Canon camera.
+[26:33.440 --> 26:34.640] You have to edit it.
+[26:34.640 --> 26:39.160] Whereas now you've got billions of 2D photographers
+[26:39.160 --> 26:40.960] and 2D image editors, right?
+[26:40.960 --> 26:42.640] You've got billion plus people.
+[26:42.640 --> 26:45.320] You can just load up your phone and then edit it, right?
+[26:45.320 --> 26:46.080] Yeah.
+[26:46.080 --> 26:49.200] And then that's because the technology became more accessible.
+[26:49.200 --> 26:50.080] It became more powerful.
+[26:50.080 --> 26:53.640] It's easy to use and it's cheaper, right?
+[26:53.640 --> 26:54.640] Now it's in everyone's pocket.
+[26:54.640 --> 26:57.360] And content creation, I see going that way.
+[26:57.360 --> 27:04.680] And so the more we're creating these tools, whether it's move or creating a clone of yourself,
+[27:04.680 --> 27:07.480] your voice or what you look like, and then altering that.
+[27:08.480 --> 27:10.320] As this tool then becomes easier to use,
+[27:10.320 --> 27:13.360] I see content creation becoming easier.
+[27:13.360 --> 27:15.800] And then we start to see new use cases coming up.
+[27:15.800 --> 27:18.520] And this is just within content creation.
+[27:18.520 --> 27:22.320] But for move also, I see use cases outside of content creation.
+[27:22.320 --> 27:25.920] So we've been using increasingly in industrial use cases,
+[27:25.920 --> 27:33.320] training, training robots, life sciences for rehab and diagnosis of conditions.
+[27:33.320 --> 27:36.680] Again, they're quite nascent areas, but it comes from
+[27:36.680 --> 27:40.680] people who are curious and at the leading edge of tech,
+[27:40.680 --> 27:45.880] like trying things out in their industry as they see these new tools becoming more available
+[27:45.880 --> 27:49.280] and then starting to piece things together.
+[27:49.280 --> 27:54.480] Well, there is also the event side of things that me and Farrar are very much interested in.
+[27:54.480 --> 27:57.480] So one of them would be the Fortnite events.
+[27:57.480 --> 27:58.720] And you guys did a recent one.
+[27:58.720 --> 28:02.520] And this one was with Miles Smith for Fortnite.
+[28:02.640 --> 28:07.000] And to my knowledge, I believe up until this moment,
+[28:07.000 --> 28:11.000] they've been using really high tech technology in terms of hardware
+[28:11.000 --> 28:14.280] to create these motion captures, but now they're using move.
+[28:14.280 --> 28:14.880] Is that right?
+[28:14.880 --> 28:15.800] Yeah, that's right.
+[28:15.800 --> 28:18.400] When was that Fortnite concert?
+[28:18.400 --> 28:20.120] I think it was around October at launch.
+[28:20.120 --> 28:21.760] Oh, this October.
+[28:21.760 --> 28:22.960] Yeah, like 2024.
+[28:22.960 --> 28:25.120] Then we used moving Fortnite much earlier.
+[28:25.120 --> 28:26.440] We used the last April.
+[28:26.440 --> 28:29.120] Yes. So if you look at the avatars up there,
+[28:29.120 --> 28:31.920] so we use that for Abu Dhabi autonomous racing,
+[28:31.920 --> 28:33.720] and we made a fortnight map for them.
+[28:33.720 --> 28:37.320] So the entire trailer was animated using movie eye.
+[28:37.320 --> 28:38.320] Awesome.
+[28:38.320 --> 28:40.520] So we had all these avatars that we were talking about.
+[28:40.520 --> 28:41.520] Talk to you.
+[28:41.520 --> 28:42.920] So we did it in April.
+[28:42.920 --> 28:43.920] Yes.
+[28:43.920 --> 28:45.920] And then we did a recent one for Dubai police.
+[28:45.920 --> 28:48.920] We created downtown Dubai and Dubai Marina.
+[28:48.920 --> 28:51.920] And then we took that into Unreal Engine Fortnite editor.
+[28:51.920 --> 28:54.920] And then we had the SWAT character who was doing the intro.
+[28:54.920 --> 28:57.920] So we all like to do cool cinematic intros like video game.
+[28:57.920 --> 28:59.920] You've been sitting on this information.
+[29:00.720 --> 29:02.720] We wanted to give them a lot of answers.
+[29:02.720 --> 29:03.720] Yes.
+[29:03.720 --> 29:05.720] So we had the SWAT character do an animation.
+[29:05.720 --> 29:07.120] And I'm not joking.
+[29:07.120 --> 29:10.240] It took us 30 minutes literally from the idea.
+[29:10.240 --> 29:11.320] We had it on Figma.
+[29:11.320 --> 29:12.320] And then we wrote down the script.
+[29:12.320 --> 29:14.720] And then we found out that the camera.
+[29:14.720 --> 29:16.520] So the camera was set up right there.
+[29:16.520 --> 29:17.520] Wait, in this room.
+[29:17.520 --> 29:18.520] In this room.
+[29:18.520 --> 29:20.520] I'm working on that chair.
+[29:20.520 --> 29:24.920] Phanos is walking in the room acting like the police squad head.
+[29:24.920 --> 29:26.720] And then he's talking in front of the camera.
+[29:26.720 --> 29:30.520] In 30 minutes, I can see the motions in Unreal Engine 5.
+[29:30.520 --> 29:31.920] Yeah, I'm going to be honest.
+[29:31.920 --> 29:33.920] You guys are doing a fucking fantastic job.
+[29:33.920 --> 29:36.920] Because we have been there when we use the suits.
+[29:36.920 --> 29:39.520] And I do want to give a shout out to the guys who worked on the suits.
+[29:39.520 --> 29:42.920] Because the suits in their own time, they were great.
+[29:42.920 --> 29:45.320] But they were limiting for artists.
+[29:45.320 --> 29:45.920] They were limiting.
+[29:45.920 --> 29:49.120] And I can see that a lot of new and up and common artists
+[29:49.120 --> 29:53.520] will always be limited by the fact that they need to pay a certain amount of money
+[29:53.520 --> 29:54.520] to get into it.
+[29:54.520 --> 29:56.920] So there's that upfront cost to get the suit.
+[29:56.920 --> 30:01.720] And then there's a problem that you cannot really express yourself freely.
+[30:01.720 --> 30:04.320] If you can't afford the suit, you have to go to Miximo
+[30:04.320 --> 30:08.320] and use somebody else's library of animations to create your own story.
+[30:08.320 --> 30:10.320] And that will never be your own story.
+[30:10.320 --> 30:13.720] So for example, for Fortnite, we managed to create our own story
+[30:13.720 --> 30:15.320] because it was my own motion.
+[30:15.320 --> 30:17.120] And the best thing is you don't wear anything.
+[30:17.120 --> 30:18.320] That's the best fucking part.
+[30:18.320 --> 30:21.120] So you guys literally just went in and just started to wear anything.
+[30:21.120 --> 30:22.120] Is that it?
+[30:22.120 --> 30:24.920] No, you know all your videos in the comments.
+[30:24.920 --> 30:28.920] Actually, you guys are fucking accessing.
+[30:28.920 --> 30:29.920] I was wearing something.
+[30:29.920 --> 30:30.920] OK.
+[30:30.920 --> 30:31.920] Just for everybody.
+[30:31.920 --> 30:32.920] No markers.
+[30:32.920 --> 30:33.920] No markers.
+[30:33.920 --> 30:34.920] No markers.
+[30:34.920 --> 30:35.920] No markers.
+[30:35.920 --> 30:37.920] No suits, which made it so much easier.
+[30:37.920 --> 30:39.520] And then the setup is also the thing.
+[30:39.520 --> 30:42.320] So whenever we were using the mocap suits,
+[30:42.320 --> 30:45.520] one of us had to take 10 minutes to get into the suit.
+[30:45.520 --> 30:47.520] Put the cable, put the battery behind it.
+[30:47.520 --> 30:48.720] You can't even be a person.
+[30:48.720 --> 30:49.720] Yeah, you cannot actually.
+[30:49.720 --> 30:52.720] You're kind of weird and cyberpunky because then the battery pack
+[30:52.720 --> 30:53.720] was behind Farhad.
+[30:53.720 --> 30:56.320] And then I had to hook him to the computer and he couldn't move.
+[30:56.320 --> 30:57.920] It was like the weirdest thing.
+[30:57.920 --> 30:59.920] And now we don't have to do any of that.
+[30:59.920 --> 31:04.520] So I don't see a future where Muvia is not part of the picture.
+[31:04.520 --> 31:09.520] I see that future where Muvia is just taking over in terms of motion capture technology.
+[31:09.520 --> 31:14.320] Of course, for us, it has to do a lot with the animation world.
+[31:14.320 --> 31:17.320] But as you mentioned, there's so many other use cases
+[31:17.320 --> 31:20.720] that you yourself are surprised by when you hear about it.
+[31:20.720 --> 31:22.520] I'm not sure people are reaching out day by day.
+[31:22.520 --> 31:24.720] They're on LinkedIn or other platforms just showing you,
+[31:24.720 --> 31:26.520] hey, we use Muvia for this.
+[31:26.520 --> 31:29.320] Which one was the most surprising to you?
+[31:29.320 --> 31:30.120] Most surprising.
+[31:30.120 --> 31:30.720] Most surprising.
+[31:30.720 --> 31:33.720] You was KSF Muvia.
+[31:33.720 --> 31:37.720] Please not only fans or maybe only fans.
+[31:37.720 --> 31:38.520] Never know.
+[31:38.520 --> 31:39.520] I'll have to think about it.
+[31:39.520 --> 31:43.720] Like one interesting one was like digital invitations.
+[31:43.720 --> 31:45.520] So what do you mean by that?
+[31:45.720 --> 31:47.720] So you want to invite somebody to your wedding.
+[31:47.720 --> 31:49.320] He want to invite someone to your birthday party.
+[31:49.320 --> 31:53.720] You get these websites where you can put in their email address
+[31:53.720 --> 31:54.920] and they get an animated card.
+[31:54.920 --> 31:55.520] Right.
+[31:55.520 --> 31:59.920] But they're looking at having a 3D avatar invite you.
+[31:59.920 --> 32:05.520] So imagine it's like Elsa from Frozen inviting your friends to your sick birthday party.
+[32:05.520 --> 32:06.120] Or something like that.
+[32:06.120 --> 32:06.720] I see.
+[32:06.720 --> 32:13.320] So I found that mind blowing because these products have hundreds of millions of users.
+[32:13.320 --> 32:14.320] Active users.
+[32:14.320 --> 32:15.520] You know, there's events happening.
+[32:15.520 --> 32:23.520] I think like bridal showers, kids birthday parties were like the really popular news cases.
+[32:23.520 --> 32:29.920] And yeah, I wanted to bring 3D and more personalized invites and more creative in invite.
+[32:29.920 --> 32:30.920] Like that.
+[32:30.920 --> 32:34.920] I found that really interesting because of the scale and then also just the use case that I.
+[32:34.920 --> 32:35.920] Yes.
+[32:35.920 --> 32:43.520] And what about the future use cases that you think Muvia would be extremely suitable for the application of it?
+[32:43.520 --> 32:46.120] And you think it has not been used yet.
+[32:46.120 --> 32:47.320] Is there any that you haven't?
+[32:47.320 --> 32:49.320] So just before I answer that so you're talking about the suits.
+[32:49.320 --> 32:51.720] I don't see suits becoming obsolete.
+[32:51.720 --> 32:53.320] I definitely you don't.
+[32:53.320 --> 32:54.320] Yeah.
+[32:54.320 --> 32:58.520] Well, I'm excited by the tooling getting better for everyone,
+[32:58.520 --> 33:04.720] whether it's suit suit based or non suit based and motion capture and creating 3D animation.
+[33:04.720 --> 33:06.920] Like that market expanding.
+[33:06.920 --> 33:13.120] I think it's going to expand significantly as it's cheaper and easier to create this 3D content.
+[33:13.120 --> 33:17.120] Of course, you know, if on the consumption side like with headsets, you know,
+[33:17.120 --> 33:20.920] that can also increase the market further because that natively doesn't need 3D.
+[33:20.920 --> 33:25.720] But even without that, there's there's a lot of growth as the tool in becomes more effective.
+[33:25.720 --> 33:30.720] I mean, the suits are useful for like situations where you can't put a camera.
+[33:30.720 --> 33:42.520] And so like that I don't see the suits going away forever, but it might even increase, you know, in the long run because the market expands as 3D content creation is easier as motion captures easier.
+[33:42.520 --> 33:46.720] But yeah, I definitely see move being used in more and more more workers.
+[33:46.720 --> 33:47.720] I see.
+[33:47.720 --> 33:56.520] And then the use cases that you think movie, I would be perfect for again market or an application that you haven't seen yet.
+[33:56.520 --> 33:58.920] But you think movie, I will go in that market.
+[33:58.920 --> 34:01.920] Yeah. So one interesting area is so we launched this real time system.
+[34:01.920 --> 34:03.120] So we move live.
+[34:03.120 --> 34:05.920] So this gives you a good quality motion.
+[34:05.920 --> 34:08.120] It's optimized for speed and low latency.
+[34:08.120 --> 34:14.120] So the quality is still good, but it's not the post processing multi camera level quality.
+[34:14.120 --> 34:17.720] And so that will give you data back within around 100 milliseconds.
+[34:17.720 --> 34:18.720] Wow.
+[34:18.720 --> 34:19.720] That's interesting.
+[34:19.720 --> 34:22.120] And you can put into Unreal or Unity.
+[34:22.120 --> 34:25.520] How many cameras do you use for that?
+[34:25.520 --> 34:27.320] Like we recommend for the minimum.
+[34:27.320 --> 34:28.320] Okay.
+[34:28.320 --> 34:31.520] But it can be they're not like expensive cameras like a few hundred bucks camera.
+[34:31.520 --> 34:33.720] But these are specific cameras.
+[34:33.720 --> 34:34.920] Yeah, like a floor camera.
+[34:34.920 --> 34:37.920] Like you just order and it comes within within the week.
+[34:37.920 --> 34:39.920] This would be good for live entertainment.
+[34:39.920 --> 34:40.920] Yes.
+[34:40.920 --> 34:44.320] Imagine we had a Yoris in I think the last three episodes.
+[34:44.320 --> 34:46.520] They are handling all the production for tomorrow.
+[34:46.520 --> 34:47.520] I'm just a music festival.
+[34:47.520 --> 34:48.520] Yeah.
+[34:48.520 --> 34:50.520] And they use Unreal Engine for all the LEDs.
+[34:50.520 --> 34:54.720] I can imagine they can put four cameras around the DJ and capture their motion.
+[34:54.720 --> 34:59.920] Because what they have done with tomorrow is that everything that is in the physical environments
+[34:59.920 --> 35:01.920] reflects in the Unreal Engine board.
+[35:01.920 --> 35:02.920] Time of the day.
+[35:02.920 --> 35:03.920] It's real time.
+[35:03.920 --> 35:04.920] It's raining.
+[35:04.920 --> 35:05.920] It's all real time.
+[35:05.920 --> 35:10.720] So I can imagine if the DJ turns into a character and it's within the LEDs, they can use that.
+[35:10.720 --> 35:14.320] So has it been used for the music festivals or anywhere yet?
+[35:14.320 --> 35:15.920] Yeah, it's a relatively new product.
+[35:15.920 --> 35:18.520] So the people are still building the integrations.
+[35:18.520 --> 35:23.920] But we've been used by like last year, three Nike stores.
+[35:23.920 --> 35:29.120] That's part of an activation for the Yoris, the football competition.
+[35:29.120 --> 35:38.320] They set up these kind of units near the entrance of Nike stores, London, Berlin, Paris.
+[35:38.320 --> 35:42.920] And you can consume it or like somebody walks in and can just jump in the space and then
+[35:42.920 --> 35:44.320] your motion was captured.
+[35:44.320 --> 35:48.520] And then it was transferred in real time to an avatar and you can see yourself move.
+[35:48.520 --> 35:54.320] And they did a particular activation around the fabric going from hot to cold.
+[35:54.320 --> 35:55.320] Right.
+[35:55.520 --> 36:03.120] The interesting thing was what in general is that when you're being captured in real time
+[36:03.120 --> 36:08.720] and then either you see yourself how you look or like as a different type of avatar, it's really,
+[36:08.720 --> 36:09.720] it's really engaging.
+[36:09.720 --> 36:12.320] So for example, in the store, you had different music coming on.
+[36:12.320 --> 36:16.520] So there'll be like like Bollywood music or something and then people will like dance like that style
+[36:16.520 --> 36:20.320] and then different type of music comes on and people dance that and they'll just spend time
+[36:20.320 --> 36:23.120] in the section.
+[36:23.120 --> 36:28.520] We've even gone to a few parties or a few events and we've just set up the system just
+[36:28.520 --> 36:31.120] for networking and somebody requested it.
+[36:31.120 --> 36:32.520] And then people will hog the system.
+[36:32.520 --> 36:39.120] Like people will just spend like a line of people and then there's one guy.
+[36:39.120 --> 36:44.120] And I think one case is like a mocap actor and you could do flips and all these gymnastics.
+[36:44.120 --> 36:45.520] And he was just like doing all this crazy stuff.
+[36:45.520 --> 36:49.320] The system was working and then people were just watching it on the screen and then everyone's like,
+[36:49.320 --> 36:51.320] Hey, I want to jump in now.
+[36:51.320 --> 36:53.320] And then they don't want to they don't want to let it go.
+[36:53.320 --> 36:57.520] Yeah, we've had some of some use cases where people have set up the system and their live streaming
+[36:57.520 --> 36:59.520] like a DJ performance on Twitch.
+[36:59.520 --> 37:05.120] And so as, yeah, like as people start integrating into their workflows, I definitely will definitely
+[37:05.120 --> 37:07.320] see more and more interesting use cases coming up.
+[37:07.320 --> 37:11.920] This is like a human psychology, humans like mirrors and this is mirror on steroids.
+[37:11.920 --> 37:14.920] You can you can even change your outfit, change your size, change everything.
+[37:14.920 --> 37:20.520] And I believe it definitely could increase the time spent in the shop in the store.
+[37:20.520 --> 37:22.220] Probably they bought more stuff as well.
+[37:22.220 --> 37:24.120] So it's a great marketing campaign.
+[37:24.120 --> 37:26.120] So when you guys are looking at different.
+[37:26.120 --> 37:28.120] So just on this point, though.
+[37:28.120 --> 37:29.620] So yeah, people love mirrors.
+[37:29.620 --> 37:34.120] And then so I mentioned like how I test out the product on me, my wife and the kids.
+[37:34.120 --> 37:36.120] So I remember one test.
+[37:36.120 --> 37:40.120] So in that three to four year, I guess like will in this period or what, what even I call it.
+[37:40.120 --> 37:41.120] What you said.
+[37:41.120 --> 37:45.920] So I remember we were like, okay, it's now working pretty well on like adults.
+[37:45.920 --> 37:46.920] Like let's try it on kids.
+[37:46.920 --> 37:48.720] So then I went to one of our investors.
+[37:48.720 --> 37:49.620] He's got a tennis court.
+[37:49.620 --> 37:51.320] So we went to his tennis court outdoors.
+[37:51.320 --> 37:52.320] We just sell up some cameras.
+[37:52.320 --> 37:54.320] I think it's I think it's GoPro's.
+[37:54.320 --> 37:57.020] And then and then we've got my son to just like run around.
+[37:57.020 --> 37:57.520] Yeah.
+[37:57.520 --> 37:59.320] And then we so we motion captured it.
+[37:59.320 --> 38:00.320] The results came out really good.
+[38:00.320 --> 38:04.820] And we put him on a like a bipedal robot like just to re target.
+[38:04.820 --> 38:08.220] And then we were super impressed because like now it's working on kids.
+[38:08.220 --> 38:11.220] And I was really excited to show it to Jacob who I think was five years old at the time.
+[38:11.220 --> 38:12.920] So like pretty I'm on that talk.
+[38:12.920 --> 38:13.920] Yes.
+[38:13.920 --> 38:16.420] And I showed it to him and he was like, okay, like.
+[38:18.420 --> 38:19.420] Not in there.
+[38:19.420 --> 38:20.920] Not off the matter of passion.
+[38:20.920 --> 38:22.920] But then at the time he's really into dinosaurs.
+[38:22.920 --> 38:23.420] Right.
+[38:23.420 --> 38:24.920] He's like, I want to be a dinosaur.
+[38:24.920 --> 38:30.720] And then we retargeted it and we created a pipeline to retarget to I think it's like a mini to your ex or something.
+[38:30.720 --> 38:31.220] Yeah.
+[38:31.220 --> 38:36.920] And he looked at that and that blue is mine because now he could like mirror himself and see himself.
+[38:37.120 --> 38:40.420] As a dinosaur like he's really into dinosaurs.
+[38:40.420 --> 38:46.120] He wishes he could like he probably imagines he could be a dinosaur like in his dreams or during the day.
+[38:46.120 --> 38:49.120] And now he can kind of bring that to life and have fun.
+[38:49.120 --> 38:52.520] Yeah, I feel like for kids that would be very, very interesting.
+[38:52.520 --> 38:54.620] If you can turn them into what they want to be turned into.
+[38:54.620 --> 38:54.920] Yeah.
+[38:54.920 --> 38:57.120] So the robot was not impressive enough for.
+[38:57.120 --> 38:57.620] Yeah.
+[38:57.620 --> 39:00.120] I don't want to be a robot like like dinosaurs are cool.
+[39:00.620 --> 39:01.220] That's insane.
+[39:01.220 --> 39:05.620] So you had an idea that he would work on kids at the time or no.
+[39:05.820 --> 39:11.320] We just never tested it and we thought, okay, we've optimized it for adults because that's kind of the main use case.
+[39:11.320 --> 39:12.820] And then it works for kids.
+[39:12.820 --> 39:16.320] And right now we discuss this briefly before the podcast.
+[39:16.320 --> 39:18.820] How's the user base growing for move?
+[39:18.820 --> 39:20.620] Yeah, it's growing significantly.
+[39:20.620 --> 39:24.120] So we've been using more and more high end project as well as on a YouTube creator.
+[39:24.120 --> 39:26.120] So you get like tens of millions of views per day.
+[39:26.120 --> 39:29.320] We just kind of simple 3D explainers, for example.
+[39:29.320 --> 39:35.020] And so yeah, we've been used in, you know, high end kind of AAA projects for film and games.
+[39:35.020 --> 39:38.020] So for example, EA used us for games.
+[39:38.020 --> 39:39.420] Ubisoft for just dance.
+[39:39.420 --> 39:41.020] Which games in EA?
+[39:41.020 --> 39:42.020] Is it?
+[39:42.020 --> 39:44.020] Yeah, I can't mention exactly.
+[39:44.020 --> 39:46.520] It should be FIFA.
+[39:46.520 --> 39:48.020] Well, it's not called FIFA anymore school.
+[39:48.020 --> 39:49.020] FC.
+[39:49.020 --> 39:52.520] Yeah, I kind of deep down still call it FIFA.
+[39:52.520 --> 39:54.520] Yeah, it should be FIFA.
+[39:54.520 --> 39:55.520] For so many years.
+[39:55.520 --> 39:56.520] For so many years.
+[39:56.520 --> 39:57.020] Yeah.
+[39:57.020 --> 40:00.520] So yeah, just dance.
+[40:00.520 --> 40:02.020] Yeah, games.
+[40:02.020 --> 40:03.020] What else is there?
+[40:03.020 --> 40:07.020] So like music videos like MGM team music video grimes.
+[40:07.020 --> 40:09.020] Coachella concerts.
+[40:09.020 --> 40:10.020] Yeah.
+[40:10.020 --> 40:11.020] Boys show gone.
+[40:11.020 --> 40:15.520] So like a lot of, yeah, a lot of a lot of high profile projects you could say.
+[40:15.520 --> 40:23.020] So for this project, for example, grimes for Coachella, does the team come to you guys and get help or get support?
+[40:23.020 --> 40:27.520] Or they're using a movie eye on their own and you just find out later on that they use move?
+[40:27.520 --> 40:32.020] In a lot of cases, we try to design the tool to be self service possible.
+[40:32.020 --> 40:35.020] We're of course provide support for anyone who needs support.
+[40:35.020 --> 40:41.020] I think in that case, we did provide some support because they were using our newly developed real time system.
+[40:41.020 --> 40:49.020] But then there was also another partner agency or studio in LA who helped kind of with the logistics of a studio and everything.
+[40:49.020 --> 40:54.020] So yeah, we'll partner with different people to help kind of bring these use cases to life.
+[40:54.020 --> 41:00.020] One of the coolest things I saw was a post from you with the Rayban meta glasses.
+[41:00.020 --> 41:08.020] And you're recording somebody else and then you took that footage, manage to get the digital motion, essentially out of the person.
+[41:08.020 --> 41:12.020] I didn't know, I mean, it makes a lot of sense because there's a camera on the Rayban meta glasses.
+[41:12.020 --> 41:15.020] And naturally you should be able to get it.
+[41:15.020 --> 41:19.020] But when you did it and I saw that video with fire, I was like, Holy shit, that's insane.
+[41:19.020 --> 41:23.020] So I can just be walking without my phone and I can see a cool motion.
+[41:23.020 --> 41:28.020] Of course, get permission from the person and then record them and then be able to get any motion that I want.
+[41:28.020 --> 41:32.020] That is for me the accessibility that you guys offer.
+[41:32.020 --> 41:34.020] How do you see the future of this?
+[41:34.020 --> 41:38.020] So not the future of move on its own, but the future of spatial computing.
+[41:38.020 --> 41:40.020] You had a post about this on LinkedIn.
+[41:40.020 --> 41:44.020] We now do see Apple moving into the VR world.
+[41:44.020 --> 41:48.020] Of course, the form factor of these VR heads is going to get smaller and smaller.
+[41:48.020 --> 41:56.020] How do you see moves role in the future of digital animation and these glasses, spatial computing?
+[41:56.020 --> 42:00.020] Yeah, so as you said, the Raybounds, they've got a camera on them.
+[42:00.020 --> 42:04.020] So we're getting a proliferation of cameras in the world.
+[42:04.020 --> 42:06.020] You know, a Tesla has a lot of cameras.
+[42:06.020 --> 42:09.020] There's a time where cars didn't have that many cameras on them.
+[42:09.020 --> 42:10.020] Yes.
+[42:10.020 --> 42:13.020] I think vacuum cleaners have cameras on them.
+[42:13.020 --> 42:16.020] I'm sure lawn mowers, if they don't already, will have cameras on them.
+[42:16.020 --> 42:22.020] You start to get more, because they need to perceive what's happening in the real world to make the product better.
+[42:22.020 --> 42:28.020] We're fundamentally working on trying to understand the digitized how living systems in general work.
+[42:28.020 --> 42:34.020] We're now really focused on how humans work, because that's a pretty chunky challenge in itself.
+[42:34.020 --> 42:43.020] The more analytics understanding we can bring to, like we can create, whether it's running for 3D experience,
+[42:43.020 --> 42:46.020] or whether it's helping perceive the real world, that's what we focused on.
+[42:46.020 --> 42:52.020] As cameras proliferate, you get more sensors available in the real world.
+[42:52.020 --> 42:58.020] Maybe in 5-10 years time or next year, everyone will be walking around with a camera,
+[42:58.020 --> 43:03.020] like facing forward every machine or most machines.
+[43:03.020 --> 43:06.020] A lot of machines in warehouses already have cameras on them.
+[43:06.020 --> 43:10.020] So imagine every car has multiple cameras.
+[43:10.020 --> 43:15.020] You have multiple cameras that are online or not online.
+[43:16.020 --> 43:22.020] So there are more sensors available, and the more you can perceive the real world, the better you can make a lot of products.
+[43:22.020 --> 43:31.020] So I definitely see move helping with that perception, helping to understand what's going on in terms of the 3D motion animation.
+[43:31.020 --> 43:35.020] So yeah, I don't know which areas will take off the most.
+[43:35.020 --> 43:43.020] You absolutely can see in a few years to 5-10 years how everything around the world will be perceived.
+[43:43.020 --> 43:47.020] You know, satellites are being put up at a faster rate than ever before.
+[43:47.020 --> 43:50.020] So there are cameras looking down, I guess not at all.
+[43:50.020 --> 43:53.020] Because yeah, the curtains are drawn, I guess.
+[43:53.020 --> 43:55.020] We're good for now, we're safe.
+[43:55.020 --> 44:06.020] Yeah, but you step outside and there's so many satellites that can kind of see you, whether it's an RGB image, it's an infrared image.
+[44:06.020 --> 44:13.020] Like this is the world just seems to be going this way and we just want to help to perceive what's happening in the real world to build an important application.
+[44:13.020 --> 44:14.020] Sounds scary, man.
+[44:14.020 --> 44:16.020] Being watched everywhere.
+[44:16.020 --> 44:20.020] But your guys focus on human motion capture.
+[44:20.020 --> 44:24.020] Correct me if I'm wrong. Initially you guys didn't have the finger tracking when you guys started.
+[44:24.020 --> 44:27.020] And then I think you added the finger and hand tracking.
+[44:27.020 --> 44:30.020] Is there any plan to add facial motion capture as well?
+[44:30.020 --> 44:31.020] Yeah, potentially.
+[44:31.020 --> 44:34.020] I think there's a lot of other good solutions already out there for face.
+[44:34.020 --> 44:37.020] So there's no point reinventing the wheel.
+[44:37.020 --> 44:41.020] So we may integrate or we may build in our own solution.
+[44:41.020 --> 44:47.020] But yeah, it's an important part of yeah of like perceiving the real world for performance capture.
+[44:47.020 --> 44:49.020] What about object tracking?
+[44:49.020 --> 44:51.020] Yeah, we already do some of that.
+[44:51.020 --> 44:59.020] So one of the most common objects we see that our customers have is tracking, tracking balls like soccer balls and guns maybe.
+[44:59.020 --> 45:00.020] Yeah, that's pretty.
+[45:00.020 --> 45:01.020] We got a new show.
+[45:01.020 --> 45:02.020] Star Wars show.
+[45:02.020 --> 45:05.020] Yeah, I'm very curious.
+[45:05.020 --> 45:10.020] You guys are already doing that internally like doing these tests for us to focus.
+[45:10.020 --> 45:11.020] Yeah, yeah.
+[45:11.020 --> 45:14.020] So yeah, we already we do a lot of we have a lot of sports use cases.
+[45:14.020 --> 45:19.020] So we do track like balls and they're all kind of the same shape.
+[45:19.020 --> 45:20.020] Yeah.
+[45:20.020 --> 45:22.020] And they're quite like there's the same kind of degrees of freedom.
+[45:22.020 --> 45:27.020] Yeah, in the roadmap, we do have the ability to track more complex objects.
+[45:27.020 --> 45:29.020] So yeah, that is coming.
+[45:29.020 --> 45:31.020] But yeah, it's it's not something we have.
+[45:31.020 --> 45:33.020] It's swords and all considered complex objects.
+[45:33.020 --> 45:35.020] I'm just curious about the roadmap.
+[45:35.020 --> 45:36.020] Yeah, it's good questions.
+[45:36.020 --> 45:41.020] So swords, I guess they're not that complex, but you know, swords have different lengths.
+[45:41.020 --> 45:42.020] Yes, different.
+[45:42.020 --> 45:45.020] Yeah, yeah, it's just like different attributes.
+[45:45.020 --> 45:47.020] And so.
+[45:47.020 --> 45:52.020] Because in many cases, if we used in like a in a film shoot or video game shoot.
+[45:52.020 --> 45:56.020] Somebody might just decide to bring on a totally new object.
+[45:56.020 --> 45:57.020] Yes.
+[45:57.020 --> 46:01.020] And so we want to make sure that the product can handle those situations.
+[46:01.020 --> 46:05.020] So whether it's like putting a sticker on the object so that you can just it can just run like immediately.
+[46:05.020 --> 46:08.020] And you can start tracking just like a few, a few objects.
+[46:08.020 --> 46:14.020] Or it's creating an AI model that can do it totally reckless like we're experimenting with the best kind of user experience.
+[46:14.020 --> 46:20.020] Well, that's definitely a very tough task for your engineering team to handle.
+[46:20.020 --> 46:25.020] And so I can see because there's so many possibilities and you have to choose.
+[46:25.020 --> 46:29.020] And create a roadmap that will be best suitable for the mass market.
+[46:29.020 --> 46:34.020] So of course, swords is interesting to us, but maybe the majority of the market doesn't actually want to use swords.
+[46:34.020 --> 46:36.020] Like we know we want to use it.
+[46:36.020 --> 46:38.020] What about API integrations?
+[46:38.020 --> 46:40.020] I know you guys are working on that as well.
+[46:40.020 --> 46:42.020] What are the most famous ones that you guys are doing?
+[46:42.020 --> 46:45.020] And is there anything that you can share about the roadmap of?
+[46:45.020 --> 46:47.020] Yeah, so we've got a few really interesting things.
+[46:47.020 --> 46:49.020] So we launched our API last year.
+[46:49.020 --> 46:55.020] And so we've got a few interesting people building on the API anywhere from consumer apps to industrial applications.
+[46:55.020 --> 47:01.020] So I guess one interesting use case is there's a company called winning edge winning edge.
+[47:01.020 --> 47:05.020] So it's a really interesting company working on really interesting use case.
+[47:05.020 --> 47:07.020] So it's a sports use case.
+[47:07.020 --> 47:11.020] So it's it's former Olympians who really want to help their.
+[47:11.020 --> 47:14.020] You know, people like them achieve elite performance.
+[47:14.020 --> 47:21.020] And being able to have an easy to use tool that can capture motion to help with the analytics help with the training for the athlete.
+[47:21.020 --> 47:24.020] So that's a really interesting use case whereby elite.
+[47:24.020 --> 47:28.020] Elite performers can now start to have analytics to improve their performance.
+[47:28.020 --> 47:32.020] We've got people also integrating it for consumer kind of fitness as well.
+[47:32.020 --> 47:34.020] So you know original I do original.
+[47:34.020 --> 47:36.020] Yeah, the original idea.
+[47:36.020 --> 47:39.020] So they're using it on app now like a mobile app or.
+[47:39.020 --> 47:40.020] Yeah, so we've got a Swift SDK.
+[47:40.020 --> 47:41.020] We've got a Python SDK.
+[47:41.020 --> 47:42.020] Right.
+[47:42.020 --> 47:45.020] So it's really easy to integrate all you need to do is just give it video.
+[47:45.020 --> 47:49.020] And you can also if you also give it other information like the orientation of the camera, then our.
+[47:49.020 --> 47:53.020] Our core model can then use that to get even high quality data.
+[47:53.020 --> 47:54.020] OK.
+[47:54.020 --> 48:00.020] But then also we've got industrial applications where people need to understand how people are moving in warehouses for safety reasons.
+[48:00.020 --> 48:04.020] There's a lot of warehouses that have people doing very repetitive tasks.
+[48:04.020 --> 48:05.020] Yeah.
+[48:05.020 --> 48:08.020] And you know, lifting heavy things or.
+[48:08.020 --> 48:09.020] And you can get emotions.
+[48:09.020 --> 48:10.020] You can get injuries.
+[48:10.020 --> 48:12.020] Like very serious injuries.
+[48:12.020 --> 48:17.020] So being able to assess like or predict when somebody particular motion.
+[48:17.020 --> 48:22.020] Like could injure somebody or then be able to monitor if it's like they already injured or hurt or something.
+[48:22.020 --> 48:23.020] So.
+[48:23.020 --> 48:26.020] So putting the sensing into warehouses is also an important case.
+[48:26.020 --> 48:29.020] This is very interesting for example for the safety of a factory.
+[48:29.020 --> 48:32.020] When they upload the video, is it a real time video that's.
+[48:32.020 --> 48:39.020] Keeps being fed to your server and then this signal will come out that for example person A or this person is doing the wrong move.
+[48:39.020 --> 48:40.020] Is it a real time interface?
+[48:40.020 --> 48:44.020] So experimenting with there's a lot of different warehouses are quite complex.
+[48:44.020 --> 48:45.020] Yeah.
+[48:45.020 --> 48:48.020] And so in some cases, maybe it's moving rig.
+[48:48.020 --> 48:50.020] In some cases, it's a real time feed.
+[48:50.020 --> 48:53.020] We experimenting with the best ways to.
+[48:53.020 --> 48:54.020] To deploy.
+[48:54.020 --> 48:55.020] OK.
+[48:55.020 --> 48:58.020] So like it could be real time, but then also.
+[48:58.020 --> 49:00.020] It is relatively expensive.
+[49:00.020 --> 49:06.020] I say relatively, but then if you process it on edge with local hardware, then it's you know, it's.
+[49:06.020 --> 49:09.020] So we're different customers experimenting with different use cases.
+[49:09.020 --> 49:14.020] So those are still emerging and hopefully next time we catch up and tell you more about those.
+[49:14.020 --> 49:18.020] How big is the company at the moment in terms of number of employees.
+[49:18.020 --> 49:19.020] About 20, 25 people.
+[49:19.020 --> 49:20.020] 20, 25.
+[49:20.020 --> 49:22.020] All the East in the UK.
+[49:22.020 --> 49:23.020] UK in Europe.
+[49:23.020 --> 49:24.020] OK.
+[49:24.020 --> 49:31.020] So when you started this in your living room, just trying to create a sports utility application for yourself,
+[49:31.020 --> 49:37.020] you were not thinking of becoming an entrepreneur because when you become an entrepreneur, now you have to lead people.
+[49:37.020 --> 49:41.020] You have to unite people around a mission.
+[49:41.020 --> 49:49.020] Did you have any idea when you were in university that you want to actually create teams and guide people towards a mission or were you like a lone wolf?
+[49:49.020 --> 49:55.020] When I was at university, I experimented with different entrepreneurial things like I, like I was consulting in finance.
+[49:55.020 --> 49:56.020] Right.
+[49:56.020 --> 49:57.020] Which is totally different.
+[49:57.020 --> 49:59.020] Yeah, that's why it's quite interesting.
+[49:59.020 --> 50:00.020] Why were you doing that at the site?
+[50:00.020 --> 50:03.020] This is just a passion for you.
+[50:03.020 --> 50:05.020] Fractures and finance.
+[50:05.020 --> 50:08.020] I thought it might be a passion and I was definitely interested.
+[50:08.020 --> 50:13.020] So for example, yeah, during university, I was consulting in, yeah, in finance.
+[50:13.020 --> 50:14.020] I was part of a small team.
+[50:14.020 --> 50:24.020] We managed liquid ass support for earlier for a big UK retail bank, like a 50 billion pound liquid ass support for the use of like bonds, mostly government bonds.
+[50:24.020 --> 50:25.020] Right.
+[50:25.020 --> 50:29.020] And then we did all the all the interest rate risk hedging.
+[50:29.020 --> 50:39.020] You guys are looking to be like, yeah, I'm going to do it because we started with material science, fractures, then we went to motion capture and video games and now we're going in the middle.
+[50:39.020 --> 50:45.020] And then wow, I'm glad I can talk about something you don't know because you guys know way more than me than VFX.
+[50:45.020 --> 50:49.020] But yeah, yeah, it's finance liquid ass support for you.
+[50:49.020 --> 50:50.020] Right.
+[50:50.020 --> 50:51.020] Interest rate risk.
+[50:51.020 --> 50:55.020] This is what's effects risk hedging and then restructuring.
+[50:55.020 --> 50:57.020] So I was just really interested in that area.
+[50:57.020 --> 50:58.020] I'll do my PhD.
+[50:58.020 --> 51:05.020] So actually, I went through this period of my life where it's for about two, three years where do my PhD full time.
+[51:05.020 --> 51:14.020] I was also spending like four hours a day like at this trading desk, like doing this hedging hedging stuff.
+[51:14.020 --> 51:16.020] And then I also did my first startup like in parallel.
+[51:16.020 --> 51:19.020] So I like this two years of, I call it the two years of no sleep.
+[51:19.020 --> 51:20.020] Right.
+[51:20.020 --> 51:21.020] Of course, yes.
+[51:21.020 --> 51:29.020] The startup was related to what we're talking about now or that was a great event for students.
+[51:30.020 --> 51:32.020] So trying different things.
+[51:32.020 --> 51:45.020] But one thing that I think really probably helps you in the beginning is coming to the VFX or cinema industry without having the pre assumption or pre knowledge as you may because you came from a totally different industry.
+[51:45.020 --> 51:56.020] Do you think it was a helpful gift that you came into this not knowing the assumption, not knowing about the motion capture suits and then come up with a totally different idea, not going to improve the suit.
+[51:57.020 --> 51:58.020] Yeah.
+[51:58.020 --> 51:59.020] Yeah. I don't know.
+[51:59.020 --> 52:02.020] So I definitely came into it naively not knowing it.
+[52:02.020 --> 52:13.020] And I think other entrepreneurs and investors, they say it's good to come in naive like this in many cases, but also the learning curve is super high.
+[52:13.020 --> 52:25.020] So I think in some cases, like if you know the industry and you can have a fresh kind of fresh mind, then then I think you can kind of not have these underlying premises and assumptions and break them and create a new model.
+[52:26.020 --> 52:33.020] So it's hard to kind of make the case for the general, but I think for me, I guess in hindsight, it has helped.
+[52:33.020 --> 52:34.020] Yeah.
+[52:34.020 --> 52:39.020] I knew nothing about mocap, like I didn't know the word when we first got into it.
+[52:39.020 --> 52:42.020] I didn't know anything about VFX.
+[52:42.020 --> 52:44.020] I barely created anything in 3D.
+[52:44.020 --> 52:52.020] Yeah, like all I've done in 3D was like research and then had to learn like about this VFX industry and 3D content creation.
+[52:52.020 --> 52:58.020] That's fascinating because you have it from the outside, it looks like you know a lot in the beginning.
+[52:58.020 --> 53:05.020] It looks like you've known about this industry for the longest time and you're coming in to solve a problem, but you were solving a completely different problem.
+[53:05.020 --> 53:11.020] And it looks like there's this whole industry that could have used your solution and now you have to learn about it.
+[53:11.020 --> 53:13.020] I was just trying to work out, you know.
+[53:13.020 --> 53:15.020] That's what I'm saying.
+[53:15.020 --> 53:16.020] That's what I'm still trying to do.
+[53:16.020 --> 53:19.020] Do you have time now to work out less?
+[53:19.020 --> 53:24.020] You completely dropped that sports application idea by the way, right?
+[53:24.020 --> 53:27.020] I just hack away on it like every now and then.
+[53:27.020 --> 53:35.020] So the reason why I also asked you about the number of employees because I want to know how tough it is for you to manage 25, 26 people.
+[53:35.020 --> 53:37.020] And are you growing this fast?
+[53:37.020 --> 53:42.020] When you're growing this fast, how do you learn to deal with these different teams that are now being set up?
+[53:42.020 --> 53:47.020] Because you have the engineering team, but now you have to have a support team because you have this application.
+[53:47.020 --> 53:51.020] Well, technically you have two applications. Now you have move one and then you have the move.
+[53:51.020 --> 53:53.020] We have a move one, which is a single camera.
+[53:53.020 --> 53:54.020] Yes.
+[53:54.020 --> 53:57.020] We have a move pro, which is the multi camera post-processing solution.
+[53:57.020 --> 53:58.020] Yeah.
+[53:58.020 --> 54:00.020] And we have moved live, which is the real time solution.
+[54:00.020 --> 54:03.020] Yes. So now you have support for those applications.
+[54:03.020 --> 54:09.020] So all of these different teams that are being set up, this is an area where you didn't expect to get into, but now you have to deal with.
+[54:09.020 --> 54:13.020] Yes. You guys are doing great job at it. I just want to know where did you learn about all of this.
+[54:13.020 --> 54:21.020] Did it come through a lot of trial and failure? Did it come through mentors? Did it come through a lot of book reading or an experience from your early startup?
+[54:21.020 --> 54:23.020] Yes, it's definitely a lot of trial and error.
+[54:23.020 --> 54:24.020] Right.
+[54:24.020 --> 54:28.020] I'm a lot of, like I didn't come from management or business school.
+[54:28.020 --> 54:33.020] So definitely a lot of trial and error, a lot of reading, a lot of mentors.
+[54:34.020 --> 54:41.020] I think the more you can have those mentors, like having a coach who can help you with all these things, it definitely can help you learn faster.
+[54:41.020 --> 54:43.020] I think always people are learning and failing.
+[54:43.020 --> 54:46.020] In the early days, you learn and fail much faster.
+[54:46.020 --> 54:51.020] But I think it's a good thing. You want to keep up that quick iteration process to keep learning.
+[54:51.020 --> 54:58.020] But yeah, mentors have really helped a lot of reading and research and then you just have to put into practice and then just kind of review and learn.
+[54:59.020 --> 55:11.020] I love that. Do you have any advice for any aspiring entrepreneurs or watching perhaps from one of your mistakes that you made, one of the trials and errors and fixes that you came up with?
+[55:11.020 --> 55:13.020] Do you have any advice that you would give?
+[55:13.020 --> 55:21.020] I guess like as we've been talking, I think the passion side of it is really important for an entrepreneur because the journey is really tough.
+[55:21.020 --> 55:24.020] It's really difficult. You have to make a lot of sacrifices.
+[55:24.020 --> 55:27.020] And you know, it's very easy to give up.
+[55:27.020 --> 55:28.020] And in some cases, you should give up.
+[55:28.020 --> 55:36.020] So I'm also not saying like absolutely being an entrepreneur, like absolutely keep going, even though it looks like it's not going to work out.
+[55:36.020 --> 55:39.020] You need a lot of wisdom, a lot of judgment.
+[55:39.020 --> 55:44.020] And you have to work out, it's a sacrifice worth it, like sacrificing social and family and things.
+[55:44.020 --> 55:46.020] So you definitely want to go into it carefully.
+[55:46.020 --> 55:52.020] But I think being driven by the passion is extremely important, just like you guys with what you're doing.
+[55:52.020 --> 56:00.020] Because you come across obstacles and in many cases like no one, sometimes people even turn their back on you and you just have to keep going yourself.
+[56:00.020 --> 56:05.020] And if you're driven by the passion and the vision, that is what helps you keep you going.
+[56:05.020 --> 56:11.020] So another tip I guess is to work out because you might come up with a business idea.
+[56:11.020 --> 56:14.020] If you work out, you might just come up with the right business idea.
+[56:14.020 --> 56:17.020] Like more of a story is like exercise.
+[56:17.020 --> 56:22.020] I mean, it's not only helpful for your physical health, but it helps you create businesses.
+[56:22.020 --> 56:24.020] Yeah, in this case.
+[56:24.020 --> 56:26.020] It didn't help us make any businesses.
+[56:26.020 --> 56:28.020] Not yet. Not yet.
+[56:28.020 --> 56:31.020] Maybe we can come up with an idea for business while we're working out.
+[56:31.020 --> 56:32.020] No, but do you work out now?
+[56:32.020 --> 56:34.020] Or yeah, yeah.
+[56:34.020 --> 56:36.020] Jim or at home living room still.
+[56:36.020 --> 56:39.020] Mostly at home, just because I have very little time available.
+[56:39.020 --> 56:43.020] Like I have a very small home gym, but it's like not that well equipped.
+[56:43.020 --> 56:47.020] And so I just try to get as much as I can in a shorter space.
+[56:47.020 --> 56:54.020] So when you have now, move AI that has 25 people, what is your core focus now in the company?
+[56:54.020 --> 57:00.020] Because as a CEO, is it leading and management, finances, marketing, research?
+[57:00.020 --> 57:03.020] You always have to do a bit of everything, especially the startup.
+[57:03.020 --> 57:06.020] And there's different bottlenecks in companies.
+[57:06.020 --> 57:11.020] And so sometimes you have to dive into sales and marketing, sometimes engineering.
+[57:11.020 --> 57:15.020] So the early days was just research and engineering.
+[57:15.020 --> 57:18.020] Unfortunately, that was kind of one of my strengths.
+[57:18.020 --> 57:24.020] And then, but now it's kind of really growing the business, increasing the support material,
+[57:24.020 --> 57:27.020] showing that these use cases, just to help bring to life for different industries,
+[57:27.020 --> 57:29.020] like how move can be used.
+[57:29.020 --> 57:30.020] And so it really does vary.
+[57:30.020 --> 57:34.020] So sometimes it varies week by week, sometimes month by month.
+[57:34.020 --> 57:39.020] Which one is your favorite, if you could pick and if you could hire other people to do the other jobs.
+[57:39.020 --> 57:42.020] If you wanted to focus, which task would be your favorite?
+[57:42.020 --> 57:45.020] I think at heart, I'm an engineer.
+[57:45.020 --> 57:50.020] So I love building things, especially with my own hands, with my own code,
+[57:50.020 --> 57:52.020] by keyboard, I guess, my security.
+[57:52.020 --> 57:55.020] Maybe headset one day who knows.
+[57:55.020 --> 57:58.020] But also, I just love the vision of where it's going.
+[57:58.020 --> 58:03.020] So I think if you're led by the vision, then you're willing to do whatever stuff it takes,
+[58:03.020 --> 58:06.020] even if it's not your core competency, even if it's not your interests,
+[58:06.020 --> 58:09.020] like you will just do it because you're led by the vision.
+[58:09.020 --> 58:14.020] You know, I just want to say, first of all, thank you so much for your time.
+[58:14.020 --> 58:20.020] It's been an honor just listening to the story, because one, I find the story truly fascinating again.
+[58:20.020 --> 58:23.020] I did make fun of the fact that you should work out if you want to come with ideas.
+[58:23.020 --> 58:28.020] But generally, we understand the pain of going through building a new idea,
+[58:28.020 --> 58:33.020] especially when you're trying to disrupt the market in a sense that you're coming up with an all-new solution,
+[58:33.020 --> 58:37.020] in a market that already has solutions, but people don't know that they're outdated
+[58:37.020 --> 58:39.020] or they can be much better.
+[58:39.020 --> 58:43.020] And what you guys have created has been truly useful to the bad decisions team.
+[58:43.020 --> 58:47.020] We've used it in our work, and we're continuing to use it as well.
+[58:48.020 --> 58:52.020] And so I'm looking forward to see the new technologies,
+[58:52.020 --> 58:56.020] the new applications that you guys will have over the next few months and years.
+[58:56.020 --> 58:58.020] And by the time we have this podcast again,
+[58:58.020 --> 59:02.020] there's one thing I want to try is movie eye real time.
+[59:02.020 --> 59:04.020] That's the one thing we have not tried yet.
+[59:04.020 --> 59:05.020] This should definitely give you this.
+[59:05.020 --> 59:08.020] Yeah, and that's why I want to ask you, is that available for public?
+[59:08.020 --> 59:10.020] How can people get access to that?
+[59:10.020 --> 59:11.020] Yeah, it's available for the public.
+[59:11.020 --> 59:12.020] Okay.
+[59:12.020 --> 59:14.020] It's gone the website, pukakul with the sales team,
+[59:14.020 --> 59:16.020] and it will help you get set up with getting the right camera equipment.
+[59:16.020 --> 59:19.020] And then just making sure you put a 3D workflow.
+[59:19.020 --> 59:20.020] Okay.
+[59:20.020 --> 59:21.020] So maybe we should do that.
+[59:21.020 --> 59:22.020] We should do the podcast in 3D.
+[59:22.020 --> 59:23.020] Oh, and then next time.
+[59:23.020 --> 59:24.020] Oh, yes.
+[59:24.020 --> 59:26.020] Actually, then we can put four cameras.
+[59:26.020 --> 59:27.020] That would be insane.
+[59:27.020 --> 59:28.020] Yes.
+[59:28.020 --> 59:29.020] That would be insane.
+[59:29.020 --> 59:30.020] I would love to set that up.
+[59:30.020 --> 59:31.020] That would be crazy.
+[59:31.020 --> 59:32.020] That would be the world's first.
+[59:32.020 --> 59:33.020] I don't know.
+[59:33.020 --> 59:34.020] I'm sure other people have done something.
+[59:34.020 --> 59:37.020] They've done MoCAP, but they're not real time without any suits.
+[59:37.020 --> 59:40.020] So we had a friend James Athena.
+[59:40.020 --> 59:44.020] So he did a podcast, but he did it with a vicon system.
+[59:44.020 --> 59:46.020] And met a humans.
+[59:46.020 --> 59:47.020] Yeah.
+[59:47.020 --> 59:50.020] But then they had to have suits and the markers on.
+[59:50.020 --> 59:52.020] But then without anything on.
+[59:52.020 --> 59:58.020] What was the second time there with clothes on?
+[59:58.020 --> 59:59.020] Yeah, no markers.
+[59:59.020 --> 60:00.020] No, be so careful.
+[60:00.020 --> 60:02.020] No, I don't want to do my.
+[60:02.020 --> 60:03.020] Yeah.
+[60:03.020 --> 60:05.020] Please don't look at your training day.
+[60:05.020 --> 60:07.020] You throw up my account.
+[60:07.020 --> 60:08.020] The bad decisions accounts.
+[60:08.020 --> 60:10.020] Actually, let me know when you want to do that.
+[60:10.020 --> 60:11.020] I won't be here.
+[60:12.020 --> 60:14.020] I'm not going to talk anymore.
+[60:14.020 --> 60:16.020] Farad, you do the outro.
+[60:16.020 --> 60:18.020] No, but we really want to thank you for your time.
+[60:18.020 --> 60:19.020] It's been great talking to you.
+[60:19.020 --> 60:20.020] Thanks.
+[60:20.020 --> 60:21.020] Thanks guys.
+[60:21.020 --> 60:22.020] Appreciate it.
+
+
+Full Transcript:
+ One of our favorite TV series, Shogun, Movie AI was used to actually animate the digital characters. I didn't actually know we were being used to the VFX supervisor. Remember, he just message me and said, Hey, by the way, I used you for this scene and I used you for a bunch more scenes. When I looked at it, I was even trying to work out who's AI, who's a 3D avatar. Tino, he's the co-founder and CEO of Movie AI, the company using artificial intelligence to capture human motion from video. How did you come up with the idea of Movie AI? When you have your first start, it's kind of crazy. You're not sleeping much. I'll go to the gym, so let's work out from home. I thought, hey, let's make this more fun. Let's try to create a personal coach in my living room, so I started setting up cameras to track my motion in 3D. So that's kind of the seed of what became Movie AI. We started working with games companies, electronic arts. They said they're doing a test and it was like a David versus Goliath moment because they had a big studio, 100 plus cameras, all synchronized. I remember being terrified at this, and it's easy to give up. Sometimes you shouldn't give up. How did you know it's time not to give up? It wouldn't be true to say I definitely knew, but we just had a vision, had a belief that it's possible. You were solving a completely different problem, and it looks like there's this whole industry that could have used your solution. How do you see moves role in the future of digital animation? Tino, welcome to the Mad Distance Podcast. I'm going to shade out. It's great to have you here. Yeah, yeah, yeah, it's better. You know what triggered this conversation was the post that you had on LinkedIn. You mentioned that in one of our favorite TV series, Shogun, in one of the scenes, Movie AI was used to actually animate the digital characters. And we looked at that scene, and when we rewatched it again, you couldn't even think that first of all, they were digital humans, second, they were all animated using AI. So the first thing is, how was the entire experience being in a TV series that is watched by millions of people? Yeah, so I didn't actually know we were being used. So the VFX supervisor, we've done a lot of stories with him recently, but I remember he just message me and said, hey, by the way, I used you for this scene, and I used you for a bunch more scenes in Shogun, which is really good, I think, because we try to create a tool that's so easy for people to use, so it doesn't really need our support. And then we obviously do work closely with certain customers who'd really trying to push the limits of what's possible with Markler's motion capture. And yeah, and that's like a show, won a lot of awards. It's just really visually compelling, like really brings out authentic feudal Japan. And yeah, when I looked at it, I was even trying to work out like, okay, who are the, who's AI, who's a 3D avatar? That's when you know you have good fucking VFX. Yeah, that's it. I know, because if you can notice it, that's when it's good VFX. Yeah, because you get certain shows where it's just like VFX, it's just everywhere, right? Yes. And some people like that, and then you get these shows where they're trying to bring out a very compelling story, very authentic story, and then you want to use VFX to bring to life, that story without being imposing on the user. So yeah, that's a good experience. You know, we were watching it with our parents, and we had to stop the show multiple times and go back. And they were like, why are you guys doing it? We were like, okay, we have to find out exactly who's a digital character, what are they used? Because there was the post that you made on LinkedIn that said around 30% of the characters you see in this shot are not real, and they're using Movie Eye to animate them. And then what we did was we went ahead and started doing more research and then found some of the behind the scenes. Most of the characters are not even there. Like when they're actually shooting, they just have the foreground characters, and everything else is CG, which is what's so fascinating because the show's done it so well. The production quality is just so high that you are so immersed in the storytelling and the cinematography and acting as well as marvelous that you're like, this is beautiful. So thank you for making that post because if it wasn't for the post, we wouldn't be here. It's all good. I think it's also interesting. I'm not from a VFX background, but what's interesting is that, they shot the scenes initially, and then a lot was added post. So maybe you have an idea of what you want to do for the scene, you go on set, you go to the location, you film it, and then the director or whoever's like, hey, I wanna bring to life there, so I want to make the army bigger. And then the cool thing is you can start to add these things afterwards. So you can, this iteration cycle is just much more flexible. Yeah, but there's another director, Gareth Edwards, who does it this way. He likes to shoot everything. That's what he did for the creator. And then after the fact, they go ahead and add to the story. So they go ahead and turn, for instance, this shot in the village of a lady and a child playing with grains. They didn't tell them to act in a robotic way. So they filmed them as they were without any markers. And then after the fact, they turn them into robots. So now you have this human acting, but with a robot body, which made the entire scene a lot more authentic in a way. And if you went ahead and started putting markers on them and started adding clothes to them, then the acting would have been slightly different. It wouldn't be so authentic. So this way of iterative filmmaking is very cool. I actually love it. I didn't know Shogun was doing something similar to that. Yeah, I think also different people like to create content differently. They have different styles or, you know, particular style is better for bringing out a different story. Yeah. And so I think the more flexible you can create these tools, just gives more power to the creator to create whatever they're doing. I mean, have you watched Shogun yourself? I've seen some scenes, yeah. OK, we literally started binge watching it. Yeah, yeah. Not stop, man. It is, I mean, I'm fascinated. I think Farad is too with the Japanese culture. And we have never been to Japan, but we have the freaking goal. Yeah, yeah. So many things that we love about you know, the food is amazing, of course. The culture, the culture, yeah. And the history and the samurai and the way they fought is just so different than what you've seen Western movies. You know, it's a completely different world. And so that's what I'm fascinated by. And we haven't finished it though. We've had a lot of trouble. Two of these are the sources. OK, yeah. Awesome. Speaking of your background, you mentioned that you are not from the VFX background. Let's take it a little bit back before even you start moving AI. What were you studying? How did you come up with the idea of moving AI? Yeah, so my background is, I guess, technologists like engineer, like as a kid, as a teen, I've just always been into tech, engineering, building things, also super into sports. So then the kind of precursor to move was, I was doing my PhD at Imperial College London in engineering. So I was actually doing material science. So I was modeling materials and how they fracture and how they deform. So that was my core thesis was analyzing, particularly in this phenomenon of fracture from blunt cracks. That's what I was feeling. What are the purpose of this? Because it's very specific. Yeah. Well, the purpose is you want to understand material. The better you can understand materials, particularly when they break or when they fail, the better you can push materials to the limit. So take an aircraft, right? So when you design something, often you have to build in redundancy, just in case. And particularly with an aircraft or something like that or building, you want to make sure that if it does get pushed to its limits, it doesn't just collapse and break. And one of the main failure modes of materials is fracture. So materials can fail by just deforming too much. But one of the most catastrophic ways it can fail is the way fractures, where you get a new surface created. So the better you can understand when will a material, a fracture, better you can understand it than the better you can push materials to the limit. And then maybe reduce some safety factors for particular applications, whether it's like a turbine blade in an engine or the hull of an aircraft or a building or whatever. Wow. So your degree would be used for construction, aircraft building. So I was at the very, very low level. So how would we use, like, don't know? So I was actually studying the precise area around a crack tip. And so I was modeling it in 3D. So I was using software like ABACUS, the finite element methods. So numerical methods to try to model the material and when it will fracture or when it will break. Also doing some mathematical modeling, geometric modeling, too. And then I was using computer vision to actually do experiments to analyze what's happening around the crack tip. So that's when I first got into, I guess, AI computer vision kind of image processing. I feel to see the connection of that to moving. That's like, dude, I was like, OK, we're not at fracturing anything when we're using our motion capture. Only part is computer vision probably. But let's see where it goes. I want to see where this goes. It's coming. It's coming. Maybe there's a few twists and turns. OK, so I mentioned that I like playing sports. I love working out. So around, what's in my PhD? My first job was born, who's now seven. So it's around seven years ago. And I think if you have kids, no. No. When you have your first job, it's kind of crazy. They're not sleeping much. Your routine is messed up. And so I didn't have time to go to the gym. And I like to work out. And at this time, you're studying still. Yeah, yeah. I was doing my PhD. Right. So then I'm like, OK, I need to go to the gym, can't go to the gym. So let's work out from home. So I started to download these apps. They just say, they just give you a routine of like, do press ups and like, do squats, do sit ups. I just find it really boring. So I thought, hey, let's make this more fun. Let's try to create a personal coach. In my living room. So I started setting up cameras in my living room to track my motion in 3D. So that's kind of the seed of what became, I guess, with AI, like a few years later. So I was just trying to understand my own motion in 3D, trying to create a coach that can automatically count your sets, your reps. Oh, so you would squat and you would measure the distance. And every time, for example, you hit the distance, you would say, OK, well, first, rep, second, rep, third, rep, is that what you were doing? Yeah, yeah. And I was trying to give real time feedback to. So I was just creating this AI or this model. I can give you, like imagine there's actually a coach in your living room with you and who'll be there every day, like in the morning evening. So I was trying to create this coach that could be with you every time you work out from home. OK, where is this application now? Yeah, I actually need it. Yeah. It didn't happen. Who may I know? So it was a bit too early, I think. Yeah. Because it's expensive to the processing, the quality wasn't quite there to actually give you detailed insights. Right. How many cameras you were using at that time? I was experimenting with one to eight probably. This is in your living room. Yeah. What did your wife think about it? She was also working out. OK. She was a test subject. OK. OK. Test subject number one. Yeah. And then your kid was not big enough at the time to do any test for you. Now he's big enough and he's a test subject. Oh, yeah, test subject. OK. So you've got your own set of test subjects. I can't imagine Tino says, like, cameras everywhere. In the whole world. In the whole world. Yeah. For training and quality purposes. Yeah. Yes. OK. So actually created a business at the time to help use that early technology I built to help sports teams. So study working with the UK boxing team, UK tennis team, another football team, Isochi teams. How did you help them? So there's kind of three things in particular. So one is there'll give you videos of opponents. And I'll use that the AI and the computer vision to get physical performance characteristics. And then automatically create highlights. I see. So they can analyze and create game plans against opponents. Secondly, helping using the technology to help them get performance characteristics or youth players to bring them, help them decide who will be in the professional program. Oh, selection. Oh. Yes, selection. Yeah. And then also just tracking training. The third thing is tracking training to because like when you perform in a match, you can't make you can't put sensors. Yes, of course. Definitely. So the more information you can get on when they're performing and competing and then pairing that with training, so helping training to then benefit them for the matches. That is really cool. You know why? Because I used to play League of Legends. And I used to host. I was not related. I was not. I'll tell you why. So I used to also host esports tournaments. And then I would see after every game, the players would go in with the coach and the coach would have all the stats from the game. Because the game does give you all the stats of the enemies of the opponents. So you have their attack, their defense, everything in numbers. But when you're playing boxing, you don't have any of those stats. Were you sort of giving these kind of stats? I mean, definitely not attacking the defense. Yeah, this is absolutely true. So when you play games, it's a 3D experience. And all the data is available. Right? But when you play sports, it's like the real life, real world. You don't have this data, right? And so the challenge is if you can get that data, then you can start to create game plans and you've strapped strategies tactics more effectively. Right. And then improve training as well. So it's essentially, you could say, I'll try to digitize the real world, just like a 3D world is digital in a game. Yes. And the world is just going more towards that way. We need to start to digitize voices, motion, your body as well. Yeah, no, that's very cool. So this isn't a living room. You're doing these tests and then you're working with some companies now and experimenting. What happened after that? Yeah, so it was a lifestyle business. It was super fun. I just found that the sports industry is quite different to the games industry, for example. So they tend to be later adopters of technology. Also culturally, they just tend to invest less money into sports and tech. So then I raised some funding to then start moving out. I essentially take this core idea and start to look for other opportunities outside of sports. And that's how I moved AI was born. So we raised some funding, spent about three, four years, improving the technology so it could get to a higher standard. So soon we started working with games companies. Actually the standard of quality needed and you guys are from this background, like we effects games, like they need a high quality of data so that you have low cleanup afterwards. And so it can ideally go directly in engine. So we found that we'd had to keep pushing the technology. And it took about three, four years before we reached this threshold where electronic arts, they, so EA, they did a test. I remember being terrified at this because they just kind of did it behind the scenes. They said they're doing a test and I was like, okay, well, let's see how this comes out. And it was like a David versus Goliath moment because they had these optical tracking cameras, you know, you put on the suits and you've got the dots. Was it Vicon? Yeah, I think it was Vicon, yeah. And so they had a big studio, 100 plus cameras or synchronized, you know, typically you need like 50 plus markers on the human body, like particular lighting. That actually dressed up a guy, he kind of looked like a Christmas tree, I guess. He was in like a multi-colored suit. He had an inertial base system, he had the markers for the optical system. So he's got both. So he's wearing both and they're in that kind of studio design to capture optical data. So you know, with the suit and the markers, it's effectively as possible. And then there's just set off some go pros, unsynchronized. And then yeah, the results came out and they were comparable to the optical. So that was a huge moment for us. Yeah. So that's after four years working on them. Yeah, yeah, like grinding for a lot of time. And with this company and other companies, you know, we'll give, you know, we'll maybe show them results after three, six months. And they said, yeah, it's looking good, but like it's not quite there. Yeah, so you kind of get punched in the face. Yeah. And then you just have to come back later and then show them more results. So we just kept working. And we got an excellent research, an engineering team who just kept working on this, using techniques and computer vision by mechanics, physics, statistics. So we've got a multidisciplinary team to just try to solve this problem of capturing and understanding human emotion. And yeah, initially we were, or at least the area where we use the most right now is games, video games, film and TV, VFX. But then increasingly, we'll see other industries as well. Right. I think we need to focus on this three to four years because I feel like these three to four years might have already gone by and you guys are definitely a lot more successful now. But these three to four years is what a lot of people have and they give up within that three to four years. Because it's the critical time where you're building, no one believes in you, no one understands what you're building. You have to prove to everybody that what you're building is actually going to be successful. And I want to go back to the beginning because you said you raised some money. Was this done publicly? Is this something that you've disclosed? Like the amount and how it was done? Because I feel like a lot of people might have the idea they need the funding, they don't know how to do it. Yeah. Yeah, so we raised around 10 million in total. But I think at the time we'd raised maybe one to two million dollars. Okay. So not a crazy amount. Yeah. And we just had a lean research focus team. I tried to hire the best people that we could find. Somebody who was in my research group at Imperial so he joined and we had a few other people. But you're right. It is that kind of pre-product market fit. This is really tough. And it's easy to give up. And sometimes you should give up. Why did you know it's time not to give up at that time? Because I'm sure you brought your product, you went to EA or whatever company and they said not good enough. How did you know that you could go back and actually improve it and come back another time? Yeah. I guess you don't always know, right? Yeah. It wouldn't be true to say I definitely knew with 100% certainty you should keep going. But we just had a vision, had a belief that I think, I'm confident or I'm, let's say, 90, 70% plus percent sure that it's possible. And we just had the vision, had a passion for the industry, had some resilience from other past experiences and just were outfailed and stopped, I think, for the right reason. And then this time, I just said, let's just keep going, let's do it. I think in our last episode, we had the founder of Epidemic Sounds. And he said that we as humans tend to make a lot of logical decisions for small decisions. But when it comes to the big life decisions, we're making it emotional. Something deep inside us in our gut tells us to keep going. Did you have that in you? Even if people were telling you, this is not gonna work. This is not good enough. A big company like EA won, exactly. They have their setup. Why would they come and use another product which nobody heard about? No, I definitely believe that it would be possible. I definitely believe that it would be valuable to people. And then what's crazy is there's other bigger opportunities even that have now come up. And so it's kind of grown. Like I definitely didn't have the idea in the first place. But I get like a hobby to me. Like I work on the business like as a hobby, I could spend way more time working on it if I had the time. And even before there was a company like I was working in the space, it's just a passion. So I think you have to have that passion. Yes. Because a lot of people talk about this. Like unless you have that core passion, you come across these roadblocks and it's very easy to give up. What's your working schedule like in those four years? When there's four years, like you have to be a lot of hours in. You have got like four kids. And so you've got to manage family as well. So just making sure that I play a high priority on family. So I make sure that that's second care of. And then also just a lot of hours. Even before move, you know, I'd easily spend a lot of hours into the late nights. Yeah, just coding and doing all the support and everything myself. Let's talk about the technology a little bit. Because when you guys go back and keep improving it, each side of the technology you guys think you had a breakthrough that you were able to reach the threshold that these big companies are asking. Yeah, I think it's a lot of incremental things that kind of get you there. We definitely had some kind of, I guess, like scientific kind of breakthroughs, engineering breakthroughs, but it's just these incremental things at up over time. And particularly for the industry, VFX video games, there was a certain threshold. You do have to get above. So we got above that. But then as you want to, let's say we get to 95% accuracy to get those incremental ones. You have to do a lot of work. And so in the early days, sometimes you can get rapid progress, but then often to, you know, to keep pushing you have to be an extra work to really push the accuracy level. And so I'll say it's just, it's been like very incremental. And we've explored a lot of areas. So like we tried to model the human body, a particular way. We tried to model the physics to make sure that the motion of base physics, because if you're capturing motion of somebody in real life, it's a being physics. So it should also obey that when you translate it to a 3D model. Yeah. You'll be using techniques from AI to like train data set, to learn from how people move. So capturing motion of people and then training models. Could you do a prediction, for example, on the actual motion capture that you guys are having? It's kind of prediction and cleanup. So for example, I went, you want to capture someone's motion in real life. You could, in some cases, you can like load somebody up with either physical sensors or like hundreds of cameras. But in reality, when you put it into production, you don't have that. You may, you might just have a single camera. You might have three, four, five, whatever cameras. You might be trying to do an entire football pitch, soccer pitch. And you only have, it's just expensive. Therefore, you know, we'll create models that try to help you get to that high-cell of equality with less hardware as well. And so that's why we'll use a lot of AI to essentially create a fundamental model of how people move and then try to help people get that same level of equality with less hardware when you put it into production. I find the product that you guys have created fascinating. So just a little bit of a story on our side. We come from the artist world. So we use it to create content, but also for services, for 3D animation, let's say. And we started with inertia suits. So for anybody that doesn't know, those are the suits that you have to put on. And they cost $78,000. That's usually the price it starts at. Starts at, yeah. Starts at, which is pretty steep if you are just beginning, if you're an indie freelancer. It's very hard to get a suit like that. And then you can go all the way up to optical systems, which you have to set up multiple cameras for. They go way above that $7,020,000, $50,000 price pool. Price range. And that's when you go to the studios, right? That's the studios for AAA title games or video for movies that are using that. When we started, we had the suits. And honestly, when you've heard the suit for the first time, it's a great experience. Because you feel like you're getting into the mood of acting. And it's bad ass. But then when you start actually using the suits, you realize, first of all, it's limiting my motion. I don't really feel like I can act in an authentic way. It feels kind of weird. Then you have to calibrate every single time you want to act. And that makes it even more restricted for you to want to express yourself. Every single time you want to create an animation. And then there's the price point as we discussed. And also sometimes your hand stops working. Yeah. So you'll have to recalibrate that again. Exactly. So for us, when we first heard about Move, just like you said, actually before we started the podcast, we didn't actually believe this was a thing. We thought, OK, it's just some gimmicky thing. Then we tested it. You guys didn't have Move One at the time. You guys had Move with multiple cameras. We were blown away. Because I remember our first animation. We laid on the ground. And then we got back up. And that was something the suits couldn't do. Like the legs would all start flipping around. And you guys did that perfectly. We would lay on the ground and get back up. And that's when we realized there's true potential in this. And now fast forward all the way to today when you guys have Move One, you can set up our iPhone, just one iPhone and shoot yourself within a few seconds. And then you go from your idea to the motion being created. And then boom, you can take that into Unreal Engine. And after about 30 minutes, you've got the animation that you performed in your room. That is revolutionary for me and for Farad and whoever's been working in bad decisions. So for us, we see exactly the potential for you yourself. How do you see the market of motion capture changing? Because of course we had the initial suits. We have the Y-con cameras. And now we have Movie Eye. There's many different markets this can go into. We've got Avatar level movies where they have the craziest technologies. Underwater motion capture. Underwater motion capture. And then we have small studios which create animation. And then we have indie content creators just on their own alone. How do you see the market changing in the next few years? I appreciate the kind words about the product. Yeah, I've got some ideas. But also my mind gets blown every kind of few months. It used to be like quite regularly. And now I've seen a lot. But there's still a few things that I'm really excited by. But just for I guess content creation. So we've got these content creators on YouTube, Tech Talk, where there's somebody who's a big fan of Pokemon. And they create this Pokemon, quite things seems, let's say. Or there's somebody who wants to be a Motown, kind of singer. So they create a virtual version of themselves. They're motion capture themselves. They either use a digital voice or real voice. But these people have thousands, millions of followers. And so I think what's really interesting is when you create a tool for people, they naturally will use it in lots of different ways. And then you see the output and then some of your mind is blown with the type of content, especially when they're combining different tools together. And so I definitely see content creation being democratized in 3D. As you guys know, 3D content creation is difficult, expensive. It's time consuming. It's a high learning curve. But I think even with 2D content creation, that was the case. There's a time when we had, there were not that many photographers and image editors, right? Let's say from the 90s 2000, you have this huge Canon camera. You have to edit it. Whereas now you've got billions of 2D photographers and 2D image editors, right? You've got billion plus people. You can just load up your phone and then edit it, right? Yeah. And then that's because the technology became more accessible. It became more powerful. It's easy to use and it's cheaper, right? Now it's in everyone's pocket. And content creation, I see going that way. And so the more we're creating these tools, whether it's move or creating a clone of yourself, your voice or what you look like, and then altering that. As this tool then becomes easier to use, I see content creation becoming easier. And then we start to see new use cases coming up. And this is just within content creation. But for move also, I see use cases outside of content creation. So we've been using increasingly in industrial use cases, training, training robots, life sciences for rehab and diagnosis of conditions. Again, they're quite nascent areas, but it comes from people who are curious and at the leading edge of tech, like trying things out in their industry as they see these new tools becoming more available and then starting to piece things together. Well, there is also the event side of things that me and Farrar are very much interested in. So one of them would be the Fortnite events. And you guys did a recent one. And this one was with Miles Smith for Fortnite. And to my knowledge, I believe up until this moment, they've been using really high tech technology in terms of hardware to create these motion captures, but now they're using move. Is that right? Yeah, that's right. When was that Fortnite concert? I think it was around October at launch. Oh, this October. Yeah, like 2024. Then we used moving Fortnite much earlier. We used the last April. Yes. So if you look at the avatars up there, so we use that for Abu Dhabi autonomous racing, and we made a fortnight map for them. So the entire trailer was animated using movie eye. Awesome. So we had all these avatars that we were talking about. Talk to you. So we did it in April. Yes. And then we did a recent one for Dubai police. We created downtown Dubai and Dubai Marina. And then we took that into Unreal Engine Fortnite editor. And then we had the SWAT character who was doing the intro. So we all like to do cool cinematic intros like video game. You've been sitting on this information. We wanted to give them a lot of answers. Yes. So we had the SWAT character do an animation. And I'm not joking. It took us 30 minutes literally from the idea. We had it on Figma. And then we wrote down the script. And then we found out that the camera. So the camera was set up right there. Wait, in this room. In this room. I'm working on that chair. Phanos is walking in the room acting like the police squad head. And then he's talking in front of the camera. In 30 minutes, I can see the motions in Unreal Engine 5. Yeah, I'm going to be honest. You guys are doing a fucking fantastic job. Because we have been there when we use the suits. And I do want to give a shout out to the guys who worked on the suits. Because the suits in their own time, they were great. But they were limiting for artists. They were limiting. And I can see that a lot of new and up and common artists will always be limited by the fact that they need to pay a certain amount of money to get into it. So there's that upfront cost to get the suit. And then there's a problem that you cannot really express yourself freely. If you can't afford the suit, you have to go to Miximo and use somebody else's library of animations to create your own story. And that will never be your own story. So for example, for Fortnite, we managed to create our own story because it was my own motion. And the best thing is you don't wear anything. That's the best fucking part. So you guys literally just went in and just started to wear anything. Is that it? No, you know all your videos in the comments. Actually, you guys are fucking accessing. I was wearing something. OK. Just for everybody. No markers. No markers. No markers. No markers. No suits, which made it so much easier. And then the setup is also the thing. So whenever we were using the mocap suits, one of us had to take 10 minutes to get into the suit. Put the cable, put the battery behind it. You can't even be a person. Yeah, you cannot actually. You're kind of weird and cyberpunky because then the battery pack was behind Farhad. And then I had to hook him to the computer and he couldn't move. It was like the weirdest thing. And now we don't have to do any of that. So I don't see a future where Muvia is not part of the picture. I see that future where Muvia is just taking over in terms of motion capture technology. Of course, for us, it has to do a lot with the animation world. But as you mentioned, there's so many other use cases that you yourself are surprised by when you hear about it. I'm not sure people are reaching out day by day. They're on LinkedIn or other platforms just showing you, hey, we use Muvia for this. Which one was the most surprising to you? Most surprising. Most surprising. You was KSF Muvia. Please not only fans or maybe only fans. Never know. I'll have to think about it. Like one interesting one was like digital invitations. So what do you mean by that? So you want to invite somebody to your wedding. He want to invite someone to your birthday party. You get these websites where you can put in their email address and they get an animated card. Right. But they're looking at having a 3D avatar invite you. So imagine it's like Elsa from Frozen inviting your friends to your sick birthday party. Or something like that. I see. So I found that mind blowing because these products have hundreds of millions of users. Active users. You know, there's events happening. I think like bridal showers, kids birthday parties were like the really popular news cases. And yeah, I wanted to bring 3D and more personalized invites and more creative in invite. Like that. I found that really interesting because of the scale and then also just the use case that I. Yes. And what about the future use cases that you think Muvia would be extremely suitable for the application of it? And you think it has not been used yet. Is there any that you haven't? So just before I answer that so you're talking about the suits. I don't see suits becoming obsolete. I definitely you don't. Yeah. Well, I'm excited by the tooling getting better for everyone, whether it's suit suit based or non suit based and motion capture and creating 3D animation. Like that market expanding. I think it's going to expand significantly as it's cheaper and easier to create this 3D content. Of course, you know, if on the consumption side like with headsets, you know, that can also increase the market further because that natively doesn't need 3D. But even without that, there's there's a lot of growth as the tool in becomes more effective. I mean, the suits are useful for like situations where you can't put a camera. And so like that I don't see the suits going away forever, but it might even increase, you know, in the long run because the market expands as 3D content creation is easier as motion captures easier. But yeah, I definitely see move being used in more and more more workers. I see. And then the use cases that you think movie, I would be perfect for again market or an application that you haven't seen yet. But you think movie, I will go in that market. Yeah. So one interesting area is so we launched this real time system. So we move live. So this gives you a good quality motion. It's optimized for speed and low latency. So the quality is still good, but it's not the post processing multi camera level quality. And so that will give you data back within around 100 milliseconds. Wow. That's interesting. And you can put into Unreal or Unity. How many cameras do you use for that? Like we recommend for the minimum. Okay. But it can be they're not like expensive cameras like a few hundred bucks camera. But these are specific cameras. Yeah, like a floor camera. Like you just order and it comes within within the week. This would be good for live entertainment. Yes. Imagine we had a Yoris in I think the last three episodes. They are handling all the production for tomorrow. I'm just a music festival. Yeah. And they use Unreal Engine for all the LEDs. I can imagine they can put four cameras around the DJ and capture their motion. Because what they have done with tomorrow is that everything that is in the physical environments reflects in the Unreal Engine board. Time of the day. It's real time. It's raining. It's all real time. So I can imagine if the DJ turns into a character and it's within the LEDs, they can use that. So has it been used for the music festivals or anywhere yet? Yeah, it's a relatively new product. So the people are still building the integrations. But we've been used by like last year, three Nike stores. That's part of an activation for the Yoris, the football competition. They set up these kind of units near the entrance of Nike stores, London, Berlin, Paris. And you can consume it or like somebody walks in and can just jump in the space and then your motion was captured. And then it was transferred in real time to an avatar and you can see yourself move. And they did a particular activation around the fabric going from hot to cold. Right. The interesting thing was what in general is that when you're being captured in real time and then either you see yourself how you look or like as a different type of avatar, it's really, it's really engaging. So for example, in the store, you had different music coming on. So there'll be like like Bollywood music or something and then people will like dance like that style and then different type of music comes on and people dance that and they'll just spend time in the section. We've even gone to a few parties or a few events and we've just set up the system just for networking and somebody requested it. And then people will hog the system. Like people will just spend like a line of people and then there's one guy. And I think one case is like a mocap actor and you could do flips and all these gymnastics. And he was just like doing all this crazy stuff. The system was working and then people were just watching it on the screen and then everyone's like, Hey, I want to jump in now. And then they don't want to they don't want to let it go. Yeah, we've had some of some use cases where people have set up the system and their live streaming like a DJ performance on Twitch. And so as, yeah, like as people start integrating into their workflows, I definitely will definitely see more and more interesting use cases coming up. This is like a human psychology, humans like mirrors and this is mirror on steroids. You can you can even change your outfit, change your size, change everything. And I believe it definitely could increase the time spent in the shop in the store. Probably they bought more stuff as well. So it's a great marketing campaign. So when you guys are looking at different. So just on this point, though. So yeah, people love mirrors. And then so I mentioned like how I test out the product on me, my wife and the kids. So I remember one test. So in that three to four year, I guess like will in this period or what, what even I call it. What you said. So I remember we were like, okay, it's now working pretty well on like adults. Like let's try it on kids. So then I went to one of our investors. He's got a tennis court. So we went to his tennis court outdoors. We just sell up some cameras. I think it's I think it's GoPro's. And then and then we've got my son to just like run around. Yeah. And then we so we motion captured it. The results came out really good. And we put him on a like a bipedal robot like just to re target. And then we were super impressed because like now it's working on kids. And I was really excited to show it to Jacob who I think was five years old at the time. So like pretty I'm on that talk. Yes. And I showed it to him and he was like, okay, like. Not in there. Not off the matter of passion. But then at the time he's really into dinosaurs. Right. He's like, I want to be a dinosaur. And then we retargeted it and we created a pipeline to retarget to I think it's like a mini to your ex or something. Yeah. And he looked at that and that blue is mine because now he could like mirror himself and see himself. As a dinosaur like he's really into dinosaurs. He wishes he could like he probably imagines he could be a dinosaur like in his dreams or during the day. And now he can kind of bring that to life and have fun. Yeah, I feel like for kids that would be very, very interesting. If you can turn them into what they want to be turned into. Yeah. So the robot was not impressive enough for. Yeah. I don't want to be a robot like like dinosaurs are cool. That's insane. So you had an idea that he would work on kids at the time or no. We just never tested it and we thought, okay, we've optimized it for adults because that's kind of the main use case. And then it works for kids. And right now we discuss this briefly before the podcast. How's the user base growing for move? Yeah, it's growing significantly. So we've been using more and more high end project as well as on a YouTube creator. So you get like tens of millions of views per day. We just kind of simple 3D explainers, for example. And so yeah, we've been used in, you know, high end kind of AAA projects for film and games. So for example, EA used us for games. Ubisoft for just dance. Which games in EA? Is it? Yeah, I can't mention exactly. It should be FIFA. Well, it's not called FIFA anymore school. FC. Yeah, I kind of deep down still call it FIFA. Yeah, it should be FIFA. For so many years. For so many years. Yeah. So yeah, just dance. Yeah, games. What else is there? So like music videos like MGM team music video grimes. Coachella concerts. Yeah. Boys show gone. So like a lot of, yeah, a lot of a lot of high profile projects you could say. So for this project, for example, grimes for Coachella, does the team come to you guys and get help or get support? Or they're using a movie eye on their own and you just find out later on that they use move? In a lot of cases, we try to design the tool to be self service possible. We're of course provide support for anyone who needs support. I think in that case, we did provide some support because they were using our newly developed real time system. But then there was also another partner agency or studio in LA who helped kind of with the logistics of a studio and everything. So yeah, we'll partner with different people to help kind of bring these use cases to life. One of the coolest things I saw was a post from you with the Rayban meta glasses. And you're recording somebody else and then you took that footage, manage to get the digital motion, essentially out of the person. I didn't know, I mean, it makes a lot of sense because there's a camera on the Rayban meta glasses. And naturally you should be able to get it. But when you did it and I saw that video with fire, I was like, Holy shit, that's insane. So I can just be walking without my phone and I can see a cool motion. Of course, get permission from the person and then record them and then be able to get any motion that I want. That is for me the accessibility that you guys offer. How do you see the future of this? So not the future of move on its own, but the future of spatial computing. You had a post about this on LinkedIn. We now do see Apple moving into the VR world. Of course, the form factor of these VR heads is going to get smaller and smaller. How do you see moves role in the future of digital animation and these glasses, spatial computing? Yeah, so as you said, the Raybounds, they've got a camera on them. So we're getting a proliferation of cameras in the world. You know, a Tesla has a lot of cameras. There's a time where cars didn't have that many cameras on them. Yes. I think vacuum cleaners have cameras on them. I'm sure lawn mowers, if they don't already, will have cameras on them. You start to get more, because they need to perceive what's happening in the real world to make the product better. We're fundamentally working on trying to understand the digitized how living systems in general work. We're now really focused on how humans work, because that's a pretty chunky challenge in itself. The more analytics understanding we can bring to, like we can create, whether it's running for 3D experience, or whether it's helping perceive the real world, that's what we focused on. As cameras proliferate, you get more sensors available in the real world. Maybe in 5-10 years time or next year, everyone will be walking around with a camera, like facing forward every machine or most machines. A lot of machines in warehouses already have cameras on them. So imagine every car has multiple cameras. You have multiple cameras that are online or not online. So there are more sensors available, and the more you can perceive the real world, the better you can make a lot of products. So I definitely see move helping with that perception, helping to understand what's going on in terms of the 3D motion animation. So yeah, I don't know which areas will take off the most. You absolutely can see in a few years to 5-10 years how everything around the world will be perceived. You know, satellites are being put up at a faster rate than ever before. So there are cameras looking down, I guess not at all. Because yeah, the curtains are drawn, I guess. We're good for now, we're safe. Yeah, but you step outside and there's so many satellites that can kind of see you, whether it's an RGB image, it's an infrared image. Like this is the world just seems to be going this way and we just want to help to perceive what's happening in the real world to build an important application. Sounds scary, man. Being watched everywhere. But your guys focus on human motion capture. Correct me if I'm wrong. Initially you guys didn't have the finger tracking when you guys started. And then I think you added the finger and hand tracking. Is there any plan to add facial motion capture as well? Yeah, potentially. I think there's a lot of other good solutions already out there for face. So there's no point reinventing the wheel. So we may integrate or we may build in our own solution. But yeah, it's an important part of yeah of like perceiving the real world for performance capture. What about object tracking? Yeah, we already do some of that. So one of the most common objects we see that our customers have is tracking, tracking balls like soccer balls and guns maybe. Yeah, that's pretty. We got a new show. Star Wars show. Yeah, I'm very curious. You guys are already doing that internally like doing these tests for us to focus. Yeah, yeah. So yeah, we already we do a lot of we have a lot of sports use cases. So we do track like balls and they're all kind of the same shape. Yeah. And they're quite like there's the same kind of degrees of freedom. Yeah, in the roadmap, we do have the ability to track more complex objects. So yeah, that is coming. But yeah, it's it's not something we have. It's swords and all considered complex objects. I'm just curious about the roadmap. Yeah, it's good questions. So swords, I guess they're not that complex, but you know, swords have different lengths. Yes, different. Yeah, yeah, it's just like different attributes. And so. Because in many cases, if we used in like a in a film shoot or video game shoot. Somebody might just decide to bring on a totally new object. Yes. And so we want to make sure that the product can handle those situations. So whether it's like putting a sticker on the object so that you can just it can just run like immediately. And you can start tracking just like a few, a few objects. Or it's creating an AI model that can do it totally reckless like we're experimenting with the best kind of user experience. Well, that's definitely a very tough task for your engineering team to handle. And so I can see because there's so many possibilities and you have to choose. And create a roadmap that will be best suitable for the mass market. So of course, swords is interesting to us, but maybe the majority of the market doesn't actually want to use swords. Like we know we want to use it. What about API integrations? I know you guys are working on that as well. What are the most famous ones that you guys are doing? And is there anything that you can share about the roadmap of? Yeah, so we've got a few really interesting things. So we launched our API last year. And so we've got a few interesting people building on the API anywhere from consumer apps to industrial applications. So I guess one interesting use case is there's a company called winning edge winning edge. So it's a really interesting company working on really interesting use case. So it's a sports use case. So it's it's former Olympians who really want to help their. You know, people like them achieve elite performance. And being able to have an easy to use tool that can capture motion to help with the analytics help with the training for the athlete. So that's a really interesting use case whereby elite. Elite performers can now start to have analytics to improve their performance. We've got people also integrating it for consumer kind of fitness as well. So you know original I do original. Yeah, the original idea. So they're using it on app now like a mobile app or. Yeah, so we've got a Swift SDK. We've got a Python SDK. Right. So it's really easy to integrate all you need to do is just give it video. And you can also if you also give it other information like the orientation of the camera, then our. Our core model can then use that to get even high quality data. OK. But then also we've got industrial applications where people need to understand how people are moving in warehouses for safety reasons. There's a lot of warehouses that have people doing very repetitive tasks. Yeah. And you know, lifting heavy things or. And you can get emotions. You can get injuries. Like very serious injuries. So being able to assess like or predict when somebody particular motion. Like could injure somebody or then be able to monitor if it's like they already injured or hurt or something. So. So putting the sensing into warehouses is also an important case. This is very interesting for example for the safety of a factory. When they upload the video, is it a real time video that's. Keeps being fed to your server and then this signal will come out that for example person A or this person is doing the wrong move. Is it a real time interface? So experimenting with there's a lot of different warehouses are quite complex. Yeah. And so in some cases, maybe it's moving rig. In some cases, it's a real time feed. We experimenting with the best ways to. To deploy. OK. So like it could be real time, but then also. It is relatively expensive. I say relatively, but then if you process it on edge with local hardware, then it's you know, it's. So we're different customers experimenting with different use cases. So those are still emerging and hopefully next time we catch up and tell you more about those. How big is the company at the moment in terms of number of employees. About 20, 25 people. 20, 25. All the East in the UK. UK in Europe. OK. So when you started this in your living room, just trying to create a sports utility application for yourself, you were not thinking of becoming an entrepreneur because when you become an entrepreneur, now you have to lead people. You have to unite people around a mission. Did you have any idea when you were in university that you want to actually create teams and guide people towards a mission or were you like a lone wolf? When I was at university, I experimented with different entrepreneurial things like I, like I was consulting in finance. Right. Which is totally different. Yeah, that's why it's quite interesting. Why were you doing that at the site? This is just a passion for you. Fractures and finance. I thought it might be a passion and I was definitely interested. So for example, yeah, during university, I was consulting in, yeah, in finance. I was part of a small team. We managed liquid ass support for earlier for a big UK retail bank, like a 50 billion pound liquid ass support for the use of like bonds, mostly government bonds. Right. And then we did all the all the interest rate risk hedging. You guys are looking to be like, yeah, I'm going to do it because we started with material science, fractures, then we went to motion capture and video games and now we're going in the middle. And then wow, I'm glad I can talk about something you don't know because you guys know way more than me than VFX. But yeah, yeah, it's finance liquid ass support for you. Right. Interest rate risk. This is what's effects risk hedging and then restructuring. So I was just really interested in that area. I'll do my PhD. So actually, I went through this period of my life where it's for about two, three years where do my PhD full time. I was also spending like four hours a day like at this trading desk, like doing this hedging hedging stuff. And then I also did my first startup like in parallel. So I like this two years of, I call it the two years of no sleep. Right. Of course, yes. The startup was related to what we're talking about now or that was a great event for students. So trying different things. But one thing that I think really probably helps you in the beginning is coming to the VFX or cinema industry without having the pre assumption or pre knowledge as you may because you came from a totally different industry. Do you think it was a helpful gift that you came into this not knowing the assumption, not knowing about the motion capture suits and then come up with a totally different idea, not going to improve the suit. Yeah. Yeah. I don't know. So I definitely came into it naively not knowing it. And I think other entrepreneurs and investors, they say it's good to come in naive like this in many cases, but also the learning curve is super high. So I think in some cases, like if you know the industry and you can have a fresh kind of fresh mind, then then I think you can kind of not have these underlying premises and assumptions and break them and create a new model. So it's hard to kind of make the case for the general, but I think for me, I guess in hindsight, it has helped. Yeah. I knew nothing about mocap, like I didn't know the word when we first got into it. I didn't know anything about VFX. I barely created anything in 3D. Yeah, like all I've done in 3D was like research and then had to learn like about this VFX industry and 3D content creation. That's fascinating because you have it from the outside, it looks like you know a lot in the beginning. It looks like you've known about this industry for the longest time and you're coming in to solve a problem, but you were solving a completely different problem. And it looks like there's this whole industry that could have used your solution and now you have to learn about it. I was just trying to work out, you know. That's what I'm saying. That's what I'm still trying to do. Do you have time now to work out less? You completely dropped that sports application idea by the way, right? I just hack away on it like every now and then. So the reason why I also asked you about the number of employees because I want to know how tough it is for you to manage 25, 26 people. And are you growing this fast? When you're growing this fast, how do you learn to deal with these different teams that are now being set up? Because you have the engineering team, but now you have to have a support team because you have this application. Well, technically you have two applications. Now you have move one and then you have the move. We have a move one, which is a single camera. Yes. We have a move pro, which is the multi camera post-processing solution. Yeah. And we have moved live, which is the real time solution. Yes. So now you have support for those applications. So all of these different teams that are being set up, this is an area where you didn't expect to get into, but now you have to deal with. Yes. You guys are doing great job at it. I just want to know where did you learn about all of this. Did it come through a lot of trial and failure? Did it come through mentors? Did it come through a lot of book reading or an experience from your early startup? Yes, it's definitely a lot of trial and error. Right. I'm a lot of, like I didn't come from management or business school. So definitely a lot of trial and error, a lot of reading, a lot of mentors. I think the more you can have those mentors, like having a coach who can help you with all these things, it definitely can help you learn faster. I think always people are learning and failing. In the early days, you learn and fail much faster. But I think it's a good thing. You want to keep up that quick iteration process to keep learning. But yeah, mentors have really helped a lot of reading and research and then you just have to put into practice and then just kind of review and learn. I love that. Do you have any advice for any aspiring entrepreneurs or watching perhaps from one of your mistakes that you made, one of the trials and errors and fixes that you came up with? Do you have any advice that you would give? I guess like as we've been talking, I think the passion side of it is really important for an entrepreneur because the journey is really tough. It's really difficult. You have to make a lot of sacrifices. And you know, it's very easy to give up. And in some cases, you should give up. So I'm also not saying like absolutely being an entrepreneur, like absolutely keep going, even though it looks like it's not going to work out. You need a lot of wisdom, a lot of judgment. And you have to work out, it's a sacrifice worth it, like sacrificing social and family and things. So you definitely want to go into it carefully. But I think being driven by the passion is extremely important, just like you guys with what you're doing. Because you come across obstacles and in many cases like no one, sometimes people even turn their back on you and you just have to keep going yourself. And if you're driven by the passion and the vision, that is what helps you keep you going. So another tip I guess is to work out because you might come up with a business idea. If you work out, you might just come up with the right business idea. Like more of a story is like exercise. I mean, it's not only helpful for your physical health, but it helps you create businesses. Yeah, in this case. It didn't help us make any businesses. Not yet. Not yet. Maybe we can come up with an idea for business while we're working out. No, but do you work out now? Or yeah, yeah. Jim or at home living room still. Mostly at home, just because I have very little time available. Like I have a very small home gym, but it's like not that well equipped. And so I just try to get as much as I can in a shorter space. So when you have now, move AI that has 25 people, what is your core focus now in the company? Because as a CEO, is it leading and management, finances, marketing, research? You always have to do a bit of everything, especially the startup. And there's different bottlenecks in companies. And so sometimes you have to dive into sales and marketing, sometimes engineering. So the early days was just research and engineering. Unfortunately, that was kind of one of my strengths. And then, but now it's kind of really growing the business, increasing the support material, showing that these use cases, just to help bring to life for different industries, like how move can be used. And so it really does vary. So sometimes it varies week by week, sometimes month by month. Which one is your favorite, if you could pick and if you could hire other people to do the other jobs. If you wanted to focus, which task would be your favorite? I think at heart, I'm an engineer. So I love building things, especially with my own hands, with my own code, by keyboard, I guess, my security. Maybe headset one day who knows. But also, I just love the vision of where it's going. So I think if you're led by the vision, then you're willing to do whatever stuff it takes, even if it's not your core competency, even if it's not your interests, like you will just do it because you're led by the vision. You know, I just want to say, first of all, thank you so much for your time. It's been an honor just listening to the story, because one, I find the story truly fascinating again. I did make fun of the fact that you should work out if you want to come with ideas. But generally, we understand the pain of going through building a new idea, especially when you're trying to disrupt the market in a sense that you're coming up with an all-new solution, in a market that already has solutions, but people don't know that they're outdated or they can be much better. And what you guys have created has been truly useful to the bad decisions team. We've used it in our work, and we're continuing to use it as well. And so I'm looking forward to see the new technologies, the new applications that you guys will have over the next few months and years. And by the time we have this podcast again, there's one thing I want to try is movie eye real time. That's the one thing we have not tried yet. This should definitely give you this. Yeah, and that's why I want to ask you, is that available for public? How can people get access to that? Yeah, it's available for the public. Okay. It's gone the website, pukakul with the sales team, and it will help you get set up with getting the right camera equipment. And then just making sure you put a 3D workflow. Okay. So maybe we should do that. We should do the podcast in 3D. Oh, and then next time. Oh, yes. Actually, then we can put four cameras. That would be insane. Yes. That would be insane. I would love to set that up. That would be crazy. That would be the world's first. I don't know. I'm sure other people have done something. They've done MoCAP, but they're not real time without any suits. So we had a friend James Athena. So he did a podcast, but he did it with a vicon system. And met a humans. Yeah. But then they had to have suits and the markers on. But then without anything on. What was the second time there with clothes on? Yeah, no markers. No, be so careful. No, I don't want to do my. Yeah. Please don't look at your training day. You throw up my account. The bad decisions accounts. Actually, let me know when you want to do that. I won't be here. I'm not going to talk anymore. Farad, you do the outro. No, but we really want to thank you for your time. It's been great talking to you. Thanks. Thanks guys. Appreciate it.
