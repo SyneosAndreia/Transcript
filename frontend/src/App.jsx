@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react';
-import { 
-    Container, 
-    Box, 
-    FormControl, 
-    InputLabel, 
-    Select, 
-    MenuItem, 
-    TextField, 
-    Button, 
-    Paper, 
-    LinearProgress, 
+import axios from 'axios';
+import {
+    Container,
+    Box,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    TextField,
+    Button,
+    Paper,
+    LinearProgress,
     Typography,
     Alert
 } from '@mui/material';
 import { transcriptionService } from './services/api';
+import { API_URL } from './services/api';
+import TranscriptResults from './components/TranscriptResults';
 
 function App() {
     const [sourceType, setSourceType] = useState('');
@@ -50,7 +53,13 @@ function App() {
         try {
             setError('');
             setIsProcessing(true);
-            setTranscript(null)
+            setTranscript(null);
+            setProgress({
+                status: 'idle',
+                message: '',
+                progress: 0,
+                segments: []
+            })
 
             // Send data based on source type
             const response = await transcriptionService.processMedia(
@@ -58,7 +67,7 @@ function App() {
                 sourceType === 'file' ? file : url
             );
 
-            if(response.status === 'success') {
+            if (response.status === 'success') {
                 setTranscript(response)
             }
 
@@ -70,16 +79,16 @@ function App() {
 
     useEffect(() => {
         let interval;
-        
+
         if (isProcessing) {
             interval = setInterval(async () => {
                 try {
                     console.log("Polling for progress..."); // Debug log
                     const progressData = await transcriptionService.getProgress();
                     console.log("Received progress data:", progressData); // Debug log
-                    
+
                     setProgress(progressData);
-    
+
                     if (progressData.status === 'complete' || progressData.status === 'error') {
                         setIsProcessing(false);
                     }
@@ -90,7 +99,7 @@ function App() {
                 }
             }, 1000);
         }
-    
+
         // Cleanup function
         return () => {
             if (interval) {
@@ -99,19 +108,48 @@ function App() {
         };
     }, [isProcessing]);
 
-    const handleDownload = () => {
-        if (transcript && transcript.filename) {
-            console.log(transcript.filename)
-            const downloadUrl = `/api/download/${transcript.filename}`;
-            const downloadLink = document.createElement('a')
-            downloadLink.href = downloadUrl
-            downloadLink.download = transcript.filename;
+    const handleDownload = async (filename) => {
+        // try {
+        //     const response = await axios.get(`${API_URL}/download/${filename}`, {
+        //         responseType: 'blob'  // Important for file downloads
+        //     });
 
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink)
+        //     // Create a download link
+        //     const url = window.URL.createObjectURL(new Blob([response.data]));
+        //     const link = document.createElement('a');
+        //     link.href = url;
+        //     link.setAttribute('download', filename);
+        //     document.body.appendChild(link);
+        //     link.click();
+        //     link.remove();
+        //     window.URL.revokeObjectURL(url);
+        // } catch (error) {
+        //     console.error('Download error:', error);
+        // }
+        if (!filename) {
+            console.error('No filename provided for download');
+            return;
         }
-    }
+
+
+        console.log("Downloading file:", filename);
+        console.log("Using API URL:", API_URL);
+
+
+        try {
+            const blob = await transcriptionService.downloadTranscript(filename);
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', filename);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Download error:', error);
+        }
+    };
 
     // Poll progress
     const pollProgress = () => {
@@ -121,8 +159,8 @@ function App() {
                 const progressData = await transcriptionService.getProgress();
                 console.log("Received progress data:", progressData); // Debug log
                 console.log("Segments:", progressData.segments); // Debug log
-                
-                setProgress(progressData );
+
+                setProgress(progressData);
 
                 if (progressData.status === 'complete' || progressData.status === 'error') {
                     clearInterval(interval);
@@ -198,9 +236,9 @@ function App() {
 
                 {isProcessing && (
                     <Box className="mb-4">
-                        <LinearProgress 
-                            variant="determinate" 
-                            value={progress.progress} 
+                        <LinearProgress
+                            variant="determinate"
+                            value={progress.progress}
                             className="mb-2"
                         />
                         <Typography variant="body2" color="textSecondary">
@@ -210,19 +248,19 @@ function App() {
                         {progress.segments && progress.segments.length > 0 && (
                             <Paper>
                                 {progress.segments.map((segment, index) => (
-                                <Box key={index}>
-                                    <Typography 
-                                        component="div"
-                                        variant='body2'
-                                    >
-                                        <span>
-                                            [{segment.start} --&gt; {segment.end}]
-                                        </span>
-                                        <span>
-                                            {segment.text}
-                                        </span>
-                                    </Typography>
-                                </Box>
+                                    <Box key={index}>
+                                        <Typography
+                                            component="div"
+                                            variant='body2'
+                                        >
+                                            <span>
+                                                [{segment.start} --&gt; {segment.end}]
+                                            </span>
+                                            <span>
+                                                {segment.text}
+                                            </span>
+                                        </Typography>
+                                    </Box>
 
                                 ))}
                             </Paper>
@@ -235,7 +273,7 @@ function App() {
                     </Box>
                 )}
 
-                {transcript && (
+                {/* {transcript && (
                     <Box className="mb-4">
                         <Alert severity="success" className='mb-2'>
                             Transcription completed successfully!
@@ -243,16 +281,26 @@ function App() {
                         <Button
                             variant="contained"
                             color="secondary"
-                            onClick={handleDownload}
+                            onClick={() => {
+                                console.log("Transcript data:", transcript); // Add this log
+                                handleDownload(transcript.filename);
+                            }}
                             fullWidth
                             className='mb-2'
                         >Download Transcript
                         </Button>
-        <Typography variant="body2" className="mt-2 p-4 bg-gray-50 rounded">
-            {transcript.transcript}
-        </Typography>
+                        <Typography variant="body2" className="mt-2 p-4 bg-gray-50 rounded">
+                            {transcript.transcript}
+                        </Typography>
 
                     </Box>
+                )} */}
+
+                {transcript && (
+                    <TranscriptResults
+                        transcript={transcript}
+                        onDownload={handleDownload}
+                    />
                 )}
 
                 {/* Submit Button */}
