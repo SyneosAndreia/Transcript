@@ -12,7 +12,9 @@ import {
     Paper,
     LinearProgress,
     Typography,
-    Alert
+    Alert,
+    FormControlLabel,
+    Checkbox  
 } from '@mui/material';
 import { transcriptionService } from './services/api';
 import { API_URL } from './services/api';
@@ -29,6 +31,7 @@ function App() {
         progress: 0,
         segments: []
     });
+    const [timeStamps, setTimeStamps] = useState(false);
     const [transcript, setTranscript] = useState(null);
 
     const [error, setError] = useState('');
@@ -59,7 +62,7 @@ function App() {
                 message: '',
                 progress: 0,
                 segments: []
-            })
+            });
 
             // Send data based on source type
             const response = await transcriptionService.processMedia(
@@ -68,7 +71,19 @@ function App() {
             );
 
             if (response.status === 'success') {
-                setTranscript(response)
+                setIsProcessing(false);  // Stop polling when we get success
+                if (response.transcripts) {
+                    setTranscript({
+                        status: 'success',
+                        transcripts: response.transcripts
+                    });
+                } else {
+                    setTranscript({
+                        status: 'success',
+                        text: response.transcript,
+                        filename: response.filename
+                    });
+                }
             }
 
         } catch (err) {
@@ -77,36 +92,43 @@ function App() {
         }
     };
 
+    const handleCancel = () => {}
+
     useEffect(() => {
         let interval;
 
         if (isProcessing) {
+            console.log("Starting progress polling");
             interval = setInterval(async () => {
                 try {
-                    console.log("Polling for progress..."); // Debug log
                     const progressData = await transcriptionService.getProgress();
-                    console.log("Received progress data:", progressData); // Debug log
+                    console.log("Progress data:", progressData);
 
                     setProgress(progressData);
 
                     if (progressData.status === 'complete' || progressData.status === 'error') {
+                        console.log("Stopping polling - status:", progressData.status);
                         setIsProcessing(false);
+                        clearInterval(interval);
                     }
                 } catch (err) {
-                    console.error("Error in polling:", err); // Debug error log
+                    console.error("Error in polling:", err);
                     setError(err.message || 'Error checking progress');
                     setIsProcessing(false);
+                    clearInterval(interval);
                 }
             }, 1000);
         }
 
-        // Cleanup function
         return () => {
             if (interval) {
+                console.log("Cleanup: clearing polling interval");
                 clearInterval(interval);
             }
         };
     }, [isProcessing]);
+
+
 
     const handleDownload = async (filename) => {
         // try {
@@ -177,13 +199,14 @@ function App() {
 
     return (
         <Container maxWidth="md" className="py-8">
-            <Typography variant="h4" className="text-center mb-8">
+            <Typography variant="h4" className="text-center" sx={{ mb: 4 }}>
                 Video Transcription Tool
             </Typography>
 
             <Paper className="p-6">
                 {/* Source Type Selection */}
-                <FormControl fullWidth className="mb-4">
+                <FormControl fullWidth sx={{ mb: 2 }}>
+                    {/* <FormControl fullWidth className="mb-4"> */}
                     <InputLabel>What would you like to transcribe?</InputLabel>
                     <Select
                         value={sourceType}
@@ -196,7 +219,7 @@ function App() {
                         <MenuItem value="file">Upload Video/Audio File</MenuItem>
                     </Select>
                 </FormControl>
-
+                
                 {/* Input Fields */}
                 {sourceType === 'file' ? (
                     <Button
@@ -226,6 +249,8 @@ function App() {
                         />
                     )
                 )}
+                
+                <FormControlLabel control={<Checkbox checked={timeStamps} onChange={(e) => setTimeStamps(e.target.checked)} />} label="TimeStamps"/>
 
                 {/* Progress and Error Display */}
                 {error && (
@@ -245,31 +270,7 @@ function App() {
                             {progress.message}
                         </Typography>
 
-                        {progress.segments && progress.segments.length > 0 && (
-                            <Paper>
-                                {progress.segments.map((segment, index) => (
-                                    <Box key={index}>
-                                        <Typography
-                                            component="div"
-                                            variant='body2'
-                                        >
-                                            <span>
-                                                [{segment.start} --&gt; {segment.end}]
-                                            </span>
-                                            <span>
-                                                {segment.text}
-                                            </span>
-                                        </Typography>
-                                    </Box>
 
-                                ))}
-                            </Paper>
-
-
-
-
-                            // <TranscriptionProgress segments={progress.segments}/>
-                        )}
                     </Box>
                 )}
 
@@ -304,14 +305,28 @@ function App() {
                 )}
 
                 {/* Submit Button */}
-                <Button
-                    variant="contained"
-                    onClick={handleSubmit}
-                    disabled={isProcessing || !sourceType || (!url && !file)}
-                    fullWidth
-                >
-                    Start Transcription
-                </Button>
+                <div className='flex gap-20'>
+                    <Button
+                        variant="contained"
+                        onClick={handleSubmit}
+                        disabled={isProcessing || !sourceType || (!url && !file) || transcript}
+                        fullWidth
+                        sx={{ mt: 2 }}
+                    >
+                        Start Transcription
+                    </Button>
+                    {/* Submit Button */}
+                    <Button
+                        variant="contained"
+                        onClick={handleCancel}
+                        disabled={!isProcessing || sourceType || !(!url && !file) || !transcript}
+                        fullWidth
+                        sx={{ mt: 2 }}
+                    >
+                        Cancel Transcription
+                    </Button>
+
+                </div>
             </Paper>
         </Container>
     );

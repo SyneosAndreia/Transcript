@@ -34,7 +34,7 @@ ENVIRONMENT = os.getenv('FLASK_ENV', 'development')  # 'development' or 'product
 USE_FIREBASE = ENVIRONMENT == 'production'  # True if in production, False in development
 
 
-# Load environment variables
+# Load Firebase environment variables
 load_dotenv()
 try:
     # Try to get credentials from environment variable
@@ -129,9 +129,11 @@ app = Flask(__name__)
 
 CORS(app, resources={
     r"/api/*": {
-        "origins": "*",  # Allow all origins temporarily
+        "origins": ["http://localhost:5173", "https://transcript-backend-i9us.onrender.com"],
         "methods": ["GET", "POST"],
-        "allow_headers": ["Content-Type"]
+        "allow_headers": ["Content-Type"],
+        "expose_headers": ["Content-Disposition"],
+        "supports_credentials": True
     }
 })
 
@@ -499,7 +501,8 @@ def process_media():
                         all_transcripts.append({
                             'title': title,
                             'text': text,
-                            'path': stored_transcript_path
+                            'path': stored_transcript_path,
+                            'filename': transcript_filename 
                         })
                         
                         # Clean up local files
@@ -568,6 +571,7 @@ def process_media():
                     'status': 'success',
                     'message': 'Processing complete',
                     'transcript': text,
+                    'filename': transcript_filename,
                     'transcript_path': stored_transcript_path
                 })
             else:

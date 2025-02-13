@@ -16,3 +16,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.mb-4 {
+  margin-bottom: 4px;
+}
