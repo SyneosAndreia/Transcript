@@ -11,7 +11,7 @@ import stat
 import shutil
 
 import firebase_admin
-from firebase_admin import credentials, storage
+from firebase_admin import credentials, storage, initialize_app
 
 # Configuration =============================================================================
 UPLOAD_FOLDER = 'uploads'
@@ -27,13 +27,32 @@ ENVIRONMENT = os.getenv('FLASK_ENV', 'development')  # 'development' or 'product
 USE_FIREBASE = ENVIRONMENT == 'production'  # True if in production, False in development
 
 
-# Firebase setup
-firebase_key_path = os.path.join('firebase', 'datavendor-prod-firebase-adminsdk-vkrda-73eabc949e.json')
-cred = credentials.Certificate(firebase_key_path)
-firebase_admin.initialize_app(cred, {
-    'storageBucket': "datavendor-prod.firebasestorage.app"
-})
-bucket = storage.bucket
+# Load environment variables
+load_dotenv()
+try:
+    # Try to get credentials from environment variable
+    if os.getenv('FIREBASE_CREDENTIALS'):
+        cred_dict = json.loads(os.getenv('FIREBASE_CREDENTIALS'))
+        cred = credentials.Certificate(cred_dict)
+    else:
+        # Fallback to file for local development
+        firebase_key_path = os.path.join('firebase', 'datavendor-prod-firebase-adminsdk-vkrda-73eabc949e.json')
+        cred = credentials.Certificate(firebase_key_path)
+
+    # Get storage bucket from environment variable or use default
+    storage_bucket = os.getenv('FIREBASE_STORAGE_BUCKET', 'datavendor-prod.firebasestorage.app')
+
+    # Initialize Firebase app
+    firebase_admin.initialize_app(cred, {
+        'storageBucket': storage_bucket
+    })
+    
+    bucket = storage.bucket()
+    logger.info("Firebase initialized successfully")
+    
+except Exception as e:
+    logger.error(f"Error initializing Firebase: {str(e)}")
+    raise
 
 #Firebase Helpers ===========================================================================
 def save_to_firebase(file_data, folder, filename):
