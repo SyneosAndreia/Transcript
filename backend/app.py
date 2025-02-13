@@ -9,6 +9,13 @@ from datetime import datetime
 import traceback
 import stat
 import shutil
+from dotenv import load_dotenv
+import json
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 import firebase_admin
 from firebase_admin import credentials, storage, initialize_app
