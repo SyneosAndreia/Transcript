@@ -1,7 +1,7 @@
 // src/services/api.js
 import axios from 'axios';
 
-export const API_URL = import.meta.env.VITE_API_URL || '/api';
+export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 export const transcriptionService = {
     // Upload file or process YouTube URL
@@ -12,19 +12,37 @@ export const transcriptionService = {
     
         const formData = new FormData();
         formData.append('type', type);
-        
+
         if (type === 'file') {
-            formData.append('file', data);
+            if(data instanceof FormData) {
+                return axios.post(`${API_URL}/process`, data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+            }
+            // MULTIPLE FILES
+            if(Array.isArray(data)) {
+                data.forEach(file => {
+                    formData.append('files[]', file);
+                });
+            } else {
+                formData.append('files[]', data);
+            }
         } else {
             formData.append('source', data);
         }
-    
+
         try {
-            const response = await axios.post(`${API_URL}/process`, formData);
+            const response = await axios.post(`${API_URL}/process`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
             return response.data;
         } catch (error) {
-            console.error('Error details:', error.response?.data);
-            throw error.response?.data || error.message;
+            console.log('Error details:', error.response?.data);
+            throw error.response?.data || error.message
         }
     },
 
@@ -43,7 +61,10 @@ export const transcriptionService = {
             console.log("Downloading file:", filename);
             console.log("Using API URL:", API_URL);
             const response = await axios.get(`${API_URL}/download/${filename}`, {
-                responseType: 'blob'
+                responseType: 'blob',
+                headers: {
+                    'Accept': 'application/octet-stream',
+                },
             });
             if (response.status === 200) {
                 return response.data;
@@ -52,6 +73,15 @@ export const transcriptionService = {
             }
         } catch (error) {
             throw error.response?.data || error.message;
+        }
+    },
+
+    cancelTransCript: async () => {
+        try {
+            const response = await axios.post(`${API_URL}/cancel`)
+            return response.data;
+        } catch (error) {
+            throw error.response?.data || error.message
         }
     }
 };

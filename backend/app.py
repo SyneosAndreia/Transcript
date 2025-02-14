@@ -13,9 +13,14 @@ from dotenv import load_dotenv
 import json
 import logging
 
-# Set up logging
-logging.basicConfig(level=logging.DEBUG)
+
+# Set up logging - alternative to print or console.log in JS
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s'  # Adds timestamp and log level
+)
 logger = logging.getLogger(__name__)
+
 
 import firebase_admin
 from firebase_admin import credentials, storage, initialize_app
@@ -33,6 +38,12 @@ FIREBASE_TRANSCRIPT_FOLDER = 'transcripts'
 ENVIRONMENT = os.getenv('FLASK_ENV', 'development')  # 'development' or 'production'
 USE_FIREBASE = ENVIRONMENT == 'production'  # True if in production, False in development
 
+
+# At the start of your Flask app, add this
+for folder in [UPLOAD_FOLDER, TEMP_FOLDER, TRANSCRIPTS_FOLDER]:
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+        logger.info(f"Created folder: {folder}")
 
 # Load Firebase environment variables
 load_dotenv()
@@ -80,6 +91,8 @@ def delete_from_firebase(file_path):
 def download_from_firebase(firebase_path, local_path):
     """Download file from Firebase to local path"""
     try:
+        print(f"🔥 Downloading {firebase_path} from Firebase to {local_path}...")
+        
         blob = bucket.blob(firebase_path)
         blob.download_to_filename(local_path)
         return True
@@ -92,14 +105,31 @@ def save_file(file_data, folder, filename, use_firebase= USE_FIREBASE):
         return save_to_firebase(file_data, folder, filename)
     else:
         # Save locally
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+            logger.info(f"Created folder: {folder}")
+
         local_path = os.path.join(folder, filename)
-        if isinstance(file_data, bytes):
-            with open(local_path, 'wb') as f:
-                f.write(file_data)
-        else:
-            with open(local_path, 'w', encoding='utf-8') as f:
-                f.write(file_data)
-        return local_path
+        logger.info(f"Saving file locally to: {local_path}")
+
+        try:
+            if isinstance(file_data, bytes):
+                with open(local_path, 'wb') as f:
+                    f.write(file_data)
+            else:
+                with open(local_path, 'w', encoding='utf-8') as f:
+                    f.write(file_data)
+                    
+            logger.info(f"✅ File saved successfully at: {local_path}")
+            logger.info(f"File exists check: {os.path.exists(local_path)}")
+            logger.info(f"File size: {os.path.getsize(local_path)} bytes")
+            return local_path
+        
+        except Exception as e:
+            logger.error(f"❌ Error saving file: {e}")
+            raise
+    
+    
 def delete_file(file_path, use_firebase=USE_FIREBASE):
     """Delete file from either Firebase or local storage"""
     if use_firebase:
@@ -114,14 +144,26 @@ def delete_file(file_path, use_firebase=USE_FIREBASE):
 
 def download_file(source_path, local_path, use_firebase=USE_FIREBASE):
     """Download/copy file to local path from either Firebase or local storage"""
+    normalized_source_path = os.path.normpath(source_path)
+    
+    logger.info(f"Looking for file at: {os.path.abspath(normalized_source_path)}")
+
     if use_firebase:
-        return download_from_firebase(source_path, local_path)
+        logger.info(f"📡 Fetching from Firebase: {source_path}")
+        return download_from_firebase(normalized_source_path, local_path)
     else:
         try:
-            shutil.copy2(source_path, local_path)
-            return True
+            logger.info(f"📁 Copying local file from {normalized_source_path} to {local_path}")
+            shutil.copy2(normalized_source_path, local_path)
+            if os.path.exists(normalized_source_path):
+                shutil.copy2(normalized_source_path, local_path)
+                logger.info(f"✅ Copy successful: {local_path}")
+                return True
+            else:
+                logger.error(f"File does not exist at: {normalized_source_path}")
+                return False
         except Exception as e:
-            print(f"Error copying local file: {e}")
+            logger.info(f"Error copying local file: {e}")
             return False
 
 
@@ -387,151 +429,86 @@ def get_progress():
 
 @app.route('/api/process', methods=['POST'])
 def process_media():
-    """Process uploaded file or YouTube URL"""
+    """
+    Process media files for transcription.
+    
+    Handles three types of inputs:
+    - Multiple file uploads
+    - Single YouTube video URL
+    - YouTube playlist URL
+    
+    Returns:
+        JSON response with transcription results or error message
+    """
     audio_file = None
+    temp_files = []  # Track temporary files for cleanup
+
     try:
         print("Starting process_media...")
         source_type = request.form.get('type')
         print(f"Source type: {source_type}")
         
-        current_progress['status'] = 'processing'
-        update_progress("Starting process...", 0)
+        # Reset progress tracking
+        current_progress.update({
+            'status': 'processing',
+            'message': '',
+            'progress': 0,
+            'segments': []
+        })
         
-        if source_type == 'video':
-            source_url = request.form.get('source')
-            print(f"Processing URL: {source_url}")
-            
-            if not source_url:
-                return jsonify({'error': 'No URL provided'}), 400
-            
-            # Download the audio
-            audio_file, title = download_audio(source_url)
-            
-            if audio_file and os.path.exists(audio_file):
-                print(f"Audio file exists at: {audio_file}")
-                
-                # Save audio file to storage
-                with open(audio_file, 'rb') as f:
-                    audio_filename = os.path.basename(audio_file)
-                    stored_audio_path = save_file(
-                        f.read(), 
-                        FIREBASE_AUDIO_FOLDER if USE_FIREBASE else TEMP_FOLDER,
-                        audio_filename
-                    )
-                
-                # Transcribe
-                transcript_file, text = transcribe_audio(
-                    audio_file,
-                    f"Video: {title}\nURL: {source_url}"
-                )
-                
-                if transcript_file:
-                    # Save transcript to storage
-                    with open(transcript_file, 'r', encoding='utf-8') as f:
-                        transcript_content = f.read()
-                    transcript_filename = os.path.basename(transcript_file)
-                    stored_transcript_path = save_file(
-                        transcript_content,
-                        FIREBASE_TRANSCRIPT_FOLDER if USE_FIREBASE else TRANSCRIPTS_FOLDER,
-                        transcript_filename
-                    )
-                    
-                    # Clean up local files
-                    delete_file(audio_file)
-                    # delete_file(transcript_file)
-                    
-                    print("Process completed successfully")
-                    update_progress("Processing complete!", 100)
-                    current_progress['status'] = 'complete'
-                    
-                    return jsonify({
-                        'status': 'success',
-                        'message': 'Processing complete',
-                        'transcript': text,
-                        'filename': transcript_filename,
-                        'transcript_path': stored_transcript_path
-                    })
-                else:
-                    raise Exception("Transcription failed")
-            else:
-                raise Exception("Audio download failed or file not found")
-
+        if source_type == 'file':
+            return handle_file_uploads()
+        elif source_type == 'video':
+            return handle_single_video()
         elif source_type == 'playlist':
-            source_url = request.form.get('source')
-            print(f"Processing playlist URL: {source_url}")
-            
-            if not source_url:
-                return jsonify({'error': 'No URL provided'}), 400
-            
-            videos = get_playlist_videos(source_url)
-            update_progress(f"Found {len(videos)} videos in playlist", 10)
-            
-            all_transcripts = []
-            
-            for idx, video_url in enumerate(videos, 1):
-                update_progress(f"Processing video {idx}/{len(videos)}")
-                audio_file, title = download_audio(video_url)
-                
-                if audio_file:
-                    # Save audio to storage
-                    with open(audio_file, 'rb') as f:
-                        audio_filename = os.path.basename(audio_file)
-                        stored_audio_path = save_file(
-                            f.read(),
-                            FIREBASE_AUDIO_FOLDER if USE_FIREBASE else TEMP_FOLDER,
-                            audio_filename
-                        )
-                    
-                    transcript_file, text = transcribe_audio(
-                        audio_file, 
-                        f"Video {idx}: {title}\nURL: {video_url}"
-                    )
-                    
-                    if transcript_file:
-                        # Save transcript to storage
-                        with open(transcript_file, 'r', encoding='utf-8') as f:
-                            transcript_content = f.read()
-                        transcript_filename = os.path.basename(transcript_file)
-                        stored_transcript_path = save_file(
-                            transcript_content,
-                            FIREBASE_TRANSCRIPT_FOLDER if USE_FIREBASE else TRANSCRIPTS_FOLDER,
-                            transcript_filename
-                        )
-                        
-                        all_transcripts.append({
-                            'title': title,
-                            'text': text,
-                            'path': stored_transcript_path,
-                            'filename': transcript_filename 
-                        })
-                        
-                        # Clean up local files
-                        delete_file(audio_file)
-                        delete_file(transcript_file)
-            
-            if all_transcripts:
-                print("Playlist processing completed successfully")
-                update_progress("Processing complete!", 100)
-                current_progress['status'] = 'complete'
-                return jsonify({
-                    'status': 'success',
-                    'message': 'Playlist processing complete',
-                    'transcripts': all_transcripts
-                })
-            else:
-                raise Exception("No transcripts were generated")
-                
-        elif source_type == 'file':
-            if 'file' not in request.files:
-                return jsonify({'error': 'No file uploaded'}), 400
-            
-            file = request.files['file']
-            if file.filename == '':
-                return jsonify({'error': 'No file selected'}), 400
-            
-            if not allowed_file(file.filename):
-                return jsonify({'error': 'File type not allowed'}), 400
-            
+            return handle_playlist()
+        else:
+            return jsonify({'error': 'Invalid source type'}), 400
+
+    except Exception as e:
+        print(f"Process error: {str(e)}")
+        print(traceback.format_exc())
+        current_progress['status'] = 'error'
+        update_progress(f"Error: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+    
+    finally:
+        # Clean up any temporary files
+        for temp_file in temp_files:
+            try:
+                delete_file(temp_file)
+            except Exception as e:
+                print(f"Error cleaning up {temp_file}: {e}")
+
+
+def handle_file_uploads():
+    """Handle multiple file uploads for transcription."""
+    if 'files[]' not in request.files:
+        return jsonify({'error': 'No files selected'}), 400
+    
+    files = request.files.getlist('files[]')
+    if not files or all(file.filename == '' for file in files):
+        return jsonify({'error': 'No files detected'}), 400 
+
+    all_transcripts = []
+    skipped_files = []
+    total_files = len(files)
+    processed_count = 0
+
+    for idx, file in enumerate(files, 1):
+        if not allowed_file(file.filename):
+            skipped_files.append({
+                'name': file.filename,
+                'reason': 'Unsupported file type'
+            })
+            continue
+
+        try:
+            update_progress(
+                f"Processing file {idx}/{total_files}: {file.filename}", 
+                (processed_count * 100) // total_files
+            )
+
             # Save uploaded file
             filename = secure_filename(file.filename)
             stored_audio_path = save_file(
@@ -539,20 +516,239 @@ def process_media():
                 FIREBASE_AUDIO_FOLDER if USE_FIREBASE else UPLOAD_FOLDER,
                 filename
             )
-            
-            # If using Firebase, need to download for processing
+
+            # Prepare for processing
+            process_path = stored_audio_path
             if USE_FIREBASE:
                 temp_path = os.path.join(TEMP_FOLDER, filename)
                 download_file(stored_audio_path, temp_path)
                 process_path = temp_path
-            else:
-                process_path = stored_audio_path
-            
+
             # Transcribe
-            transcript_file, text = transcribe_audio(process_path, f"Uploaded file: {filename}")
-            
+            transcript_file, text = transcribe_audio(
+                process_path,
+                f"Uploaded file: {filename}"
+            )
+
             if transcript_file:
                 # Save transcript
+                with open(transcript_file, 'r', encoding='utf-8') as f:
+                    transcript_content = f.read()
+                    
+                transcript_filename = os.path.basename(transcript_file)
+
+                folder = FIREBASE_TRANSCRIPT_FOLDER if USE_FIREBASE else TRANSCRIPTS_FOLDER
+
+                stored_transcript_path = save_file(
+                    transcript_content,
+                    FIREBASE_TRANSCRIPT_FOLDER if USE_FIREBASE else TRANSCRIPTS_FOLDER,
+                    transcript_filename
+                )
+                
+                all_transcripts.append({
+                    'title': filename,
+                    'text': text,
+                    'path': stored_transcript_path,
+                    'filename': transcript_filename
+                })
+                
+                processed_count += 1
+
+                # Clean up temporary files
+                if USE_FIREBASE:
+                    delete_file(temp_path)
+                delete_file(transcript_file)
+            else:
+                raise Exception("Transcription failed")
+
+        except Exception as e:
+            skipped_files.append({
+                'name': file.filename,
+                'reason': str(e)
+            })
+            continue
+
+    if not all_transcripts:
+        message = "No files were successfully transcribed"
+        if skipped_files:
+            message += f". {len(skipped_files)} files were skipped."
+        raise Exception(message)
+
+    update_progress("Processing complete!", 100)
+    current_progress['status'] = 'complete'
+
+    response_data = {
+        'status': 'success',
+        'message': 'Processing complete',
+        'transcripts': all_transcripts
+    }
+    
+    if skipped_files:
+        response_data['skipped_files'] = skipped_files
+
+    return jsonify(response_data)
+
+
+def handle_single_video():
+    """Handle single YouTube video transcription."""
+    audio_file = None
+    transcript_file = None
+    stored_transcript_path = None
+    
+    try:
+        source_url = request.form.get('source')
+        logger.info(f"Processing URL: {source_url}")
+        
+        if not source_url:
+            return jsonify({'error': 'No URL provided'}), 400
+        
+        # Download the audio
+        audio_file, title = download_audio(source_url)
+        logger.info(f"Download completed - Audio file: {audio_file}, Title: {title}")
+        
+        if not audio_file or not os.path.exists(audio_file):
+            logger.error("Audio file not found or download failed")
+            raise Exception("Audio download failed or file not found")
+
+        logger.info(f"Audio file exists at: {audio_file}")
+        
+        # Save audio file to storage
+        with open(audio_file, 'rb') as f:
+            audio_content = f.read()  # Read content before closing file
+            
+        audio_filename = os.path.basename(audio_file)
+        stored_audio_path = save_file(
+            audio_content, 
+            FIREBASE_AUDIO_FOLDER if USE_FIREBASE else TEMP_FOLDER,
+            audio_filename
+        )
+        logger.info(f"Audio saved to storage at: {stored_audio_path}")
+        
+        # Transcribe
+        transcript_file, text = transcribe_audio(
+            audio_file,
+            f"Video: {title}\nURL: {source_url}"
+        )
+        
+        if not transcript_file:
+            raise Exception("Transcription failed")
+
+        logger.info(f"Transcription successful, file at: {transcript_file}")
+
+        # Read transcript content and close file before copying
+        with open(transcript_file, 'r', encoding='utf-8') as f:
+            transcript_content = f.read()
+            
+        transcript_filename = os.path.basename(transcript_file)
+        
+        if not USE_FIREBASE:
+            # For local development, copy transcript to final location
+            stored_transcript_path = os.path.join(TRANSCRIPTS_FOLDER, transcript_filename)
+            logger.info(f"Saving transcript to final location: {stored_transcript_path}")
+            
+            # Write to new location instead of copying
+            with open(stored_transcript_path, 'w', encoding='utf-8') as f:
+                f.write(transcript_content)
+        else:
+            stored_transcript_path = save_file(
+                transcript_content,
+                FIREBASE_TRANSCRIPT_FOLDER,
+                transcript_filename
+            )
+
+        logger.info(f"Transcript saved to storage at: {stored_transcript_path}")
+        
+        update_progress("Processing complete!", 100)
+        current_progress['status'] = 'complete'
+
+        response = {
+            'status': 'success',
+            'message': 'Processing complete',
+            'transcript': text,
+            'filename': transcript_filename,
+            'transcript_path': stored_transcript_path
+        }
+        logger.info(f"Sending response with transcript path: {stored_transcript_path}")
+        return jsonify(response)
+
+    except Exception as e:
+        logger.error(f"Error in handle_single_video: {str(e)}")
+        logger.error(traceback.format_exc())
+        raise
+
+    finally:
+        # Add a small delay to ensure files are not in use
+        time.sleep(0.1)
+
+        # Clean up temporary files
+        if audio_file and os.path.exists(audio_file):
+            logger.info(f"Cleaning up audio file: {audio_file}")
+            if audio_file.startswith(TEMP_FOLDER):
+                try:
+                    delete_file(audio_file)
+                except Exception as e:
+                    logger.error(f"Error deleting audio file: {e}")
+        
+        # In development mode, only clean up temporary transcript files
+        if not USE_FIREBASE:
+            if transcript_file and os.path.exists(transcript_file):
+                if transcript_file.startswith(TEMP_FOLDER):  # Only delete if it's in temp folder
+                    try:
+                        logger.info(f"Cleaning up temp transcript file: {transcript_file}")
+                        delete_file(transcript_file)
+                    except Exception as e:
+                        logger.error(f"Error deleting temp transcript file: {e}")
+        else:
+            # In Firebase mode, clean up all local files
+            if transcript_file and os.path.exists(transcript_file):
+                try:
+                    logger.info(f"Cleaning up transcript file: {transcript_file}")
+                    delete_file(transcript_file)
+                except Exception as e:
+                    logger
+
+def handle_playlist():
+    """Handle YouTube playlist transcription."""
+    source_url = request.form.get('source')
+    logger.info("Starting handle_single_video with URL: %s", source_url)
+    
+    if not source_url:
+        logger.error("No URL provided")
+        return jsonify({'error': 'No URL provided'}), 400
+    
+    videos = get_playlist_videos(source_url)
+    if not videos:
+        return jsonify({'error': 'No videos found in playlist'}), 400
+
+    update_progress(f"Found {len(videos)} videos in playlist", 10)
+    
+    all_transcripts = []
+    skipped_videos = []
+    
+    for idx, video_url in enumerate(videos, 1):
+        try:
+            update_progress(f"Processing video {idx}/{len(videos)}")
+            audio_file, title = download_audio(video_url)
+            
+            if not audio_file:
+                raise Exception("Audio download failed")
+
+            # Save audio to storage
+            with open(audio_file, 'rb') as f:
+                audio_filename = os.path.basename(audio_file)
+                stored_audio_path = save_file(
+                    f.read(),
+                    FIREBASE_AUDIO_FOLDER if USE_FIREBASE else TEMP_FOLDER,
+                    audio_filename
+                )
+            
+            transcript_file, text = transcribe_audio(
+                audio_file, 
+                f"Video {idx}: {title}\nURL: {video_url}"
+            )
+            
+            if transcript_file:
+                # Save transcript to storage
                 with open(transcript_file, 'r', encoding='utf-8') as f:
                     transcript_content = f.read()
                 transcript_filename = os.path.basename(transcript_file)
@@ -562,70 +758,132 @@ def process_media():
                     transcript_filename
                 )
                 
-                # Clean up
-                if USE_FIREBASE:
-                    delete_file(temp_path)
-                delete_file(transcript_file)
-                
-                return jsonify({
-                    'status': 'success',
-                    'message': 'Processing complete',
-                    'transcript': text,
-                    'filename': transcript_filename,
-                    'transcript_path': stored_transcript_path
+                all_transcripts.append({
+                    'title': title,
+                    'text': text,
+                    'path': stored_transcript_path,
+                    'filename': transcript_filename 
                 })
             else:
                 raise Exception("Transcription failed")
-        
-    except Exception as e:
-        print(f"Process error: {str(e)}")
-        print(traceback.format_exc())
-        current_progress['status'] = 'error'
-        update_progress(f"Error: {str(e)}")
-        return jsonify({'error': str(e)}), 500  
+
+        except Exception as e:
+            skipped_videos.append({
+                'url': video_url,
+                'reason': str(e)
+            })
+            continue
+
+        finally:
+            # Clean up local files
+            if 'audio_file' in locals() and audio_file:
+                delete_file(audio_file)
+            if 'transcript_file' in locals():
+                delete_file(transcript_file)
+    
+    if not all_transcripts:
+        message = "No videos were successfully transcribed"
+        if skipped_videos:
+            message += f". {len(skipped_videos)} videos were skipped."
+        raise Exception(message)
+
+    print("Playlist processing completed successfully")
+    update_progress("Processing complete!", 100)
+    current_progress['status'] = 'complete'
+
+    response_data = {
+        'status': 'success',
+        'message': 'Playlist processing complete',
+        'transcripts': all_transcripts
+    }
+
+    if skipped_videos:
+        response_data['skipped_videos'] = skipped_videos
+
+    return jsonify(response_data)
+
+
+
+
+
+
+
+
+
 
 @app.route('/api/download/<filename>')
 def download_transcript(filename):
     """Download a transcript file"""
     try:
-        print(f"Download request received for file: {filename}")
-        print(f"Storage mode: {'Firebase' if USE_FIREBASE else 'Local'}")
+        logger.info(f"Download request received for file: {filename}")
+        logger.info(f"Storage mode: {'Firebase' if USE_FIREBASE else 'Local'}")
         
         safe_filename = secure_filename(filename)
         if USE_FIREBASE:
-            print(f"Attempting to download from Firebase path: {FIREBASE_TRANSCRIPT_FOLDER}/{safe_filename}")
+            logger.info(f"Attempting to download from Firebase path: {FIREBASE_TRANSCRIPT_FOLDER}/{safe_filename}")
             temp_path = os.path.join(TEMP_FOLDER, safe_filename)
             firebase_path = f"{FIREBASE_TRANSCRIPT_FOLDER}/{safe_filename}"
             
             if download_file(firebase_path, temp_path, use_firebase=True):
-                print(f"File downloaded to temp path: {temp_path}")
+                logger.info(f"File downloaded to temp path: {temp_path}")
                 return send_file(
                     temp_path,
                     as_attachment=True,
                     download_name=filename,
-                    mimetype='text/plain'  # Added explicit mimetype
+                    mimetype='text/plain'
                 )
             else:
-                print("File not found in Firebase")
+                logger.error("File not found in Firebase")
                 return jsonify({'error': 'File not found in Firebase'}), 404
         else:
             safe_path = os.path.join(TRANSCRIPTS_FOLDER, safe_filename)
-            print(f"Attempting to download from local path: {safe_path}")
+            logger.info(f"Looking for local file at: {os.path.abspath(safe_path)}")
+            logger.info(f"Transcripts directory contents: {os.listdir(TRANSCRIPTS_FOLDER)}")
+            
             if os.path.exists(safe_path):
+                logger.info(f"File found, sending: {safe_path}")
                 return send_file(
                     safe_path,
                     as_attachment=True,
                     download_name=filename,
-                    mimetype='text/plain'  # Added explicit mimetype
+                    mimetype='text/plain'
                 )
             else:
-                print("File not found locally")
+                logger.error(f"File not found at {safe_path}")
                 return jsonify({'error': 'File not found'}), 404
                 
     except Exception as e:
-        print(f"Download error: {str(e)}")
-        print(traceback.format_exc())
+        logger.error(f"Download error: {str(e)}")
+        logger.error(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
+
+
+
+@app.route('/api/cancel', methods=['POST'])
+def cancel_transcription():
+    try:
+        current_progress.update({
+            'status': 'idle',
+            'message': '',
+            'progress': 0,
+            'segments': []
+        })
+
+        if not USE_FIREBASE:
+            if os.path.exists(TRANSCRIPTS_FOLDER):
+                for file in os.listdir(TRANSCRIPTS_FOLDER):
+                    try:
+                        file_path = os.path.join(TRANSCRIPTS_FOLDER, file)
+                        logger.info(f"Deleting file: {file_path}")
+                        os.remove(file_path)
+                    except Exception as e:
+                        logger.error(f"Error deleting file {file}: {e}")
+                        
+        return jsonify({'status': 'success', 'message': 'Transcription canceled'})
+    except Exception as e:
+        logger.error(f"Error in cancel_transcription: {e}")
+        return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)

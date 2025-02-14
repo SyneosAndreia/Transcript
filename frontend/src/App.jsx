@@ -14,8 +14,10 @@ import {
     Typography,
     Alert,
     FormControlLabel,
-    Checkbox  
+    Checkbox,
+    IconButton
 } from '@mui/material';
+import { UploadFile, Close } from '@mui/icons-material';
 import { transcriptionService } from './services/api';
 import { API_URL } from './services/api';
 import TranscriptResults from './components/TranscriptResults';
@@ -24,6 +26,7 @@ function App() {
     const [sourceType, setSourceType] = useState('');
     const [url, setUrl] = useState('');
     const [file, setFile] = useState(null);
+    const [files, setFiles] = useState([])
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState({
         status: 'idle',
@@ -33,7 +36,6 @@ function App() {
     });
     const [timeStamps, setTimeStamps] = useState(false);
     const [transcript, setTranscript] = useState(null);
-
     const [error, setError] = useState('');
 
     // Handle source type change
@@ -41,22 +43,42 @@ function App() {
         setSourceType(e.target.value);
         setUrl('');
         setFile(null);
+        setFiles([])
         setError('');
     };
 
     // Handle file selection
     const handleFileChange = (e) => {
-        if (e.target.files.length > 0) {
-            setFile(e.target.files[0]);
-        }
+        // Filelist is an object
+        const selectedFiles = Array.from(e.target.files)
+        setFiles(prev => [...prev, ...selectedFiles])
     };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // console.log(e.dataTransfer.files)
+        const droppedFiles = Array.from(e.dataTransfer.files)
+        setFiles(prev => [...prev, ...droppedFiles])
+    }
+
+    const removeFile = (index) => {
+        setFiles(prev => {
+            return prev.filter((_, i) => index !== i)
+        })
+    }
 
     // Start processing
     const handleSubmit = async () => {
         try {
             setError('');
             setIsProcessing(true);
-            setTranscript(null);
+            setTranscript(null);  // We only need this one state
             setProgress({
                 status: 'idle',
                 message: '',
@@ -64,50 +86,135 @@ function App() {
                 segments: []
             });
 
-            // Send data based on source type
-            const response = await transcriptionService.processMedia(
-                sourceType,
-                sourceType === 'file' ? file : url
-            );
+            console.log(sourceType)
 
-            if (response.status === 'success') {
-                setIsProcessing(false);  // Stop polling when we get success
-                if (response.transcripts) {
+            if (sourceType === 'file') {
+                const formData = new FormData();
+                formData.append('type', sourceType)
+                files.forEach((file, index) => {
+                    formData.append('files[]', file);
+                });
+
+                const response = await transcriptionService.processMedia(sourceType, formData);
+
+                if (response.status === "success") {
+                    setIsProcessing(false)
                     setTranscript({
                         status: 'success',
-                        transcripts: response.transcripts
+                        transcript: response.transcript,
+                        filename: response.filename,
+                        transcript_path: response.transcript_path
                     });
-                } else {
+                }
+
+            } else {
+                const response = await transcriptionService.processMedia(sourceType, url);
+
+                if (response.status === 'success') {
+                    setIsProcessing(false);
                     setTranscript({
                         status: 'success',
-                        text: response.transcript,
-                        filename: response.filename
-                    });
+                        transcript: response.transcript,
+                        filename: response.filename,
+                        transcript_path: response.transcript_path
+                    })
                 }
             }
 
+            //     if(sourceType === 'file') {
+            //         // console.log(files)
+            //         const formData = new FormData();
+            //         formData.append('type', sourceType)
+            //         files.forEach((file, index) => {
+            //             formData.append('files[]', file);
+            //         });
+
+            //         const response = await transcriptionService.processMedia(sourceType, formData);
+
+            //         if(response.status === "success") {
+            //             setIsProcessing(false)
+            //             if(response.transcript) {
+            //                 // in case we're uploading multiple files
+            //                 setTranscript({
+            //                     status: 'success',
+            //                     transcript: response.transcript,
+            //                     filename: response.filename,
+            //                     transcript_path: response.transcript_path
+            //                 })
+            //             } else {
+            //                 // in case we're uploading one file
+            //                 setTranscript({
+            //                     status: 'success',
+            //                     text: response.transcript,
+            //                     filename: response.filename
+            //                 })
+            //             }
+            //         }
+            //     } else {
+            //         const response = await transcriptionService.processMedia(sourceType, url);
+
+            //         if(response.status === 'success') {
+            //             setIsProcessing(false);
+            //             if(response.transcript) {
+            //                 setTranscript({
+            //                     status: 'success',
+            //                     transcript: response.transcript
+            //                 });
+            //             } else {
+            //                 setTranscript({
+            //                     status: 'success',
+            //                     text: response.transcript,
+            //                     filename: response.filename
+            //                 })
+            //             }
+            //         }
+            //     }
+
+            // } catch (err) {
+            //     setError(err.message || 'An error occurred');
+            //     setIsProcessing(false);
         } catch (err) {
             setError(err.message || 'An error occurred');
             setIsProcessing(false);
         }
     };
 
-    const handleCancel = () => {}
+    const handleCancel = async () => {
+
+        try {
+            await transcriptionService.cancelTransCript();
+            setSourceType('')
+            setUrl('');
+            setFile(null);
+            setFiles([])
+            setError('');
+            setTranscript(null);  
+            setProgress({         
+                status: 'idle',
+                message: '',
+                progress: 0,
+                segments: []
+            });
+        } catch (err) {
+            console.error('Error canceling transcription:', err);
+            setError(err.message || 'Error canceling transcription');
+        }
+    }
 
     useEffect(() => {
         let interval;
 
         if (isProcessing) {
-            console.log("Starting progress polling");
+            // console.log("Starting progress polling");
             interval = setInterval(async () => {
                 try {
                     const progressData = await transcriptionService.getProgress();
-                    console.log("Progress data:", progressData);
+                    // console.log("Progress data:", progressData);
 
                     setProgress(progressData);
 
                     if (progressData.status === 'complete' || progressData.status === 'error') {
-                        console.log("Stopping polling - status:", progressData.status);
+                        // console.log("Stopping polling - status:", progressData.status);
                         setIsProcessing(false);
                         clearInterval(interval);
                     }
@@ -122,7 +229,7 @@ function App() {
 
         return () => {
             if (interval) {
-                console.log("Cleanup: clearing polling interval");
+                // console.log("Cleanup: clearing polling interval");
                 clearInterval(interval);
             }
         };
@@ -154,8 +261,8 @@ function App() {
         }
 
 
-        console.log("Downloading file:", filename);
-        console.log("Using API URL:", API_URL);
+        // console.log("Downloading file:", filename);
+        // console.log("Using API URL:", API_URL);
 
 
         try {
@@ -177,10 +284,10 @@ function App() {
     const pollProgress = () => {
         const interval = setInterval(async () => {
             try {
-                console.log("Polling for progress..."); // Debug log
+                // console.log("Polling for progress..."); // Debug log
                 const progressData = await transcriptionService.getProgress();
-                console.log("Received progress data:", progressData); // Debug log
-                console.log("Segments:", progressData.segments); // Debug log
+                // console.log("Received progress data:", progressData); // Debug log
+                // console.log("Segments:", progressData.segments); // Debug log
 
                 setProgress(progressData);
 
@@ -216,27 +323,55 @@ function App() {
                     >
                         <MenuItem value="video">Single Video URL</MenuItem>
                         <MenuItem value="playlist">YouTube Playlist URL</MenuItem>
-                        <MenuItem value="file">Upload Video/Audio File</MenuItem>
+                        <MenuItem value="file">Upload Video/Audio File(s)</MenuItem>
                     </Select>
                 </FormControl>
-                
+
                 {/* Input Fields */}
                 {sourceType === 'file' ? (
-                    <Button
-                        variant="contained"
-                        component="label"
-                        disabled={isProcessing}
-                        className="mb-4"
-                        fullWidth
-                    >
-                        Upload File
-                        <input
-                            type="file"
-                            hidden
-                            onChange={handleFileChange}
-                            accept="audio/*,video/*"
-                        />
-                    </Button>
+                    <div>
+                        <div
+                            className='border-2 border-dashed border-gray-300 rounded-lg p-8 tex-center cursor-pointer hover:border-blue-500 transition-colors'
+                            onClick={() => document.getElementById('file-upload').click()}
+                            onDragOver={handleDragOver}
+                            onDrop={handleDrop}
+                        >
+                            <UploadFile
+                                sx={{
+                                    width: 48,
+                                    height: 48,
+                                    margin: 'auto',
+                                    color: 'text.secondary'
+                                }}
+                            />
+                            <p>Drag and drop files here, or click to select files</p>
+                            <input
+                                id="file-upload"
+                                type="file"
+                                hidden
+                                multiple
+                                onChange={handleFileChange}
+                                accept="audio/*,video/*"
+                            />
+                        </div>
+
+                        {files.length > 0 && (
+                            <div>
+                                {files.map((file, index) => (
+                                    <div key={index}>
+                                        <span>{file.name}</span>
+                                        <IconButton
+                                            onClick={() => removeFile(index)}
+                                            size="small"
+                                            color="error"
+                                        >
+                                            <Close fontSize="small" />
+                                        </IconButton>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 ) : (
                     sourceType && (
                         <TextField
@@ -249,8 +384,8 @@ function App() {
                         />
                     )
                 )}
-                
-                <FormControlLabel control={<Checkbox checked={timeStamps} onChange={(e) => setTimeStamps(e.target.checked)} />} label="TimeStamps"/>
+
+                <FormControlLabel control={<Checkbox checked={timeStamps} onChange={(e) => setTimeStamps(e.target.checked)} />} label="TimeStamps" />
 
                 {/* Progress and Error Display */}
                 {error && (
@@ -274,29 +409,6 @@ function App() {
                     </Box>
                 )}
 
-                {/* {transcript && (
-                    <Box className="mb-4">
-                        <Alert severity="success" className='mb-2'>
-                            Transcription completed successfully!
-                        </Alert>
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            onClick={() => {
-                                console.log("Transcript data:", transcript); // Add this log
-                                handleDownload(transcript.filename);
-                            }}
-                            fullWidth
-                            className='mb-2'
-                        >Download Transcript
-                        </Button>
-                        <Typography variant="body2" className="mt-2 p-4 bg-gray-50 rounded">
-                            {transcript.transcript}
-                        </Typography>
-
-                    </Box>
-                )} */}
-
                 {transcript && (
                     <TranscriptResults
                         transcript={transcript}
@@ -309,7 +421,7 @@ function App() {
                     <Button
                         variant="contained"
                         onClick={handleSubmit}
-                        disabled={isProcessing || !sourceType || (!url && !file) || transcript}
+                        disabled={!!(isProcessing || !sourceType || (sourceType === 'file' ? files.length === 0 : !url) || transcript)}
                         fullWidth
                         sx={{ mt: 2 }}
                     >
@@ -319,8 +431,9 @@ function App() {
                     <Button
                         variant="contained"
                         onClick={handleCancel}
-                        disabled={!isProcessing || sourceType || !(!url && !file) || !transcript}
+                        disabled={sourceType === ''}
                         fullWidth
+                        color="error"
                         sx={{ mt: 2 }}
                     >
                         Cancel Transcription
