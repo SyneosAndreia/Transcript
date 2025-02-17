@@ -1,8 +1,13 @@
 const TranscriptResults = ({ transcript, onDownload }) => {
-  console.log(transcript.transcript_path)
+  console.log(transcript)
+  // Add this to check the structure
+  if (transcript?.transcripts) {
+      console.log('Multiple transcripts found:', transcript.transcripts);
+  }
 
   // Handle multiple transcripts
-  if (transcript?.transcripts) {    // Changed from transcript?.transcript
+  if (transcript?.status === 'success' && transcript.transcripts) {
+    console.log(transcript.transcripts)    
     return (
       <div className="border rounded-lg p-6 shadow-sm">
         <div className="space-y-4">
@@ -30,9 +35,8 @@ const TranscriptResults = ({ transcript, onDownload }) => {
                   <button
                     onClick={() => {
                       console.log('path:',item)
-
-                      console.log('Download clicked for:', filename);
-                      onDownload(filename);
+                      console.log('Download clicked for:', item.filename);
+                      onDownload(item.filename);
                     }}
                     className="bg-blue-500 text-white py-1 px-3 rounded text-sm hover:bg-blue-600 transition-colors"
                   >
@@ -48,7 +52,7 @@ const TranscriptResults = ({ transcript, onDownload }) => {
   }
 
   // Handle single transcript
-  if (transcript?.status === 'success') {
+  if (transcript?.status === 'success' && transcript.transcript) {
     console.log('Handling single transcript:', transcript);
     // Get filename from either direct filename property or from transcript_path
     const filename = transcript.filename || transcript.transcript_path?.split(/[/\\]/).pop();
@@ -84,6 +88,7 @@ const TranscriptResults = ({ transcript, onDownload }) => {
       </div>
     );
   }
+  console.log('No matching condition found for transcript:', transcript);
 
   return null;
 };

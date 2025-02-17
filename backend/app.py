@@ -100,36 +100,7 @@ def download_from_firebase(firebase_path, local_path):
         print(f"Error downloading from Firebase: {e}")
         return False
     
-def save_file(file_data, folder, filename, use_firebase= USE_FIREBASE):
-    if use_firebase:
-        return save_to_firebase(file_data, folder, filename)
-    else:
-        # Save locally
-        if not os.path.exists(folder):
-            os.makedirs(folder)
-            logger.info(f"Created folder: {folder}")
-
-        local_path = os.path.join(folder, filename)
-        logger.info(f"Saving file locally to: {local_path}")
-
-        try:
-            if isinstance(file_data, bytes):
-                with open(local_path, 'wb') as f:
-                    f.write(file_data)
-            else:
-                with open(local_path, 'w', encoding='utf-8') as f:
-                    f.write(file_data)
-                    
-            logger.info(f"✅ File saved successfully at: {local_path}")
-            logger.info(f"File exists check: {os.path.exists(local_path)}")
-            logger.info(f"File size: {os.path.getsize(local_path)} bytes")
-            return local_path
-        
-        except Exception as e:
-            logger.error(f"❌ Error saving file: {e}")
-            raise
-    
-    
+   
 def delete_file(file_path, use_firebase=USE_FIREBASE):
     """Delete file from either Firebase or local storage"""
     if use_firebase:
@@ -167,6 +138,7 @@ def download_file(source_path, local_path, use_firebase=USE_FIREBASE):
             return False
 
 
+# 2. Configuration and Setup
 app = Flask(__name__)
 
 CORS(app, resources={
@@ -187,13 +159,6 @@ for folder in [UPLOAD_FOLDER, TEMP_FOLDER, TRANSCRIPTS_FOLDER]:
     os.makedirs(folder)
     # Give full permissions
     os.chmod(folder, stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)
-
-@app.route('/')
-def index():
-    return jsonify({
-        "status": "running",
-        "message": "Transcription API is running"
-    })
 
 @app.route('/api/debug')
 def debug():
@@ -233,6 +198,11 @@ current_progress = {
     'segments': []
 }
 
+# 3. Helper functions and utilities
+def allowed_file(filename):
+    """Check if file extension is allowed"""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 def update_progress(message, progress=None, segment=None):
     """Update the global progress tracker"""
     print(f"Progress Update: {message} - {progress}%")  # Debug print
@@ -244,10 +214,37 @@ def update_progress(message, progress=None, segment=None):
             current_progress['segments'] = []
         current_progress['segments'].append(segment);
 
-def allowed_file(filename):
-    """Check if file extension is allowed"""
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+def save_file(file_data, folder, filename, use_firebase= USE_FIREBASE):
+    if use_firebase:
+        return save_to_firebase(file_data, folder, filename)
+    else:
+        # Save locally
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+            logger.info(f"Created folder: {folder}")
 
+        local_path = os.path.join(folder, filename)
+        logger.info(f"Saving file locally to: {local_path}")
+
+        try:
+            if isinstance(file_data, bytes):
+                with open(local_path, 'wb') as f:
+                    f.write(file_data)
+            else:
+                with open(local_path, 'w', encoding='utf-8') as f:
+                    f.write(file_data)
+                    
+            logger.info(f"✅ File saved successfully at: {local_path}")
+            logger.info(f"File exists check: {os.path.exists(local_path)}")
+            logger.info(f"File size: {os.path.getsize(local_path)} bytes")
+            return local_path
+        
+        except Exception as e:
+            logger.error(f"❌ Error saving file: {e}")
+            raise
+
+   
+# 4. Core business logic functions
 def download_audio(url, output_path=TEMP_FOLDER):
     """Download audio from YouTube video"""
     try:
@@ -326,32 +323,6 @@ def download_audio(url, output_path=TEMP_FOLDER):
         update_progress(f"Error downloading audio: {str(e)}")
         return None, None
 
-def get_playlist_videos(url):
-    """Get all video URLs from a YouTube playlist"""
-    try:
-        print(f"Fetching playlist information from: {url}")  # Debug print
-        update_progress("Fetching playlist information...")
-        ydl_opts = {
-            'quiet': True,
-            'extract_flat': 'in_playlist',
-            'force_generic_extractor': True
-        }
-        
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            result = ydl.extract_info(url, download=False)
-            if 'entries' in result:
-                videos = [entry['url'] for entry in result['entries']]
-                print(f"Found {len(videos)} videos in playlist")  # Debug print
-                return videos
-            else:
-                print("No playlist entries found, treating as single video")  # Debug print
-                return [result['webpage_url']]
-    except Exception as e:
-        print(f"Playlist error: {str(e)}")  # Debug print
-        print(traceback.format_exc())
-        update_progress(f"Error getting playlist: {str(e)}")
-        return []
-
 def transcribe_audio(audio_file, source_info=""):
     """Transcribe audio file using Whisper"""
     try:
@@ -421,65 +392,6 @@ def transcribe_audio(audio_file, source_info=""):
         print(traceback.format_exc())
         update_progress(f"Error in transcription: {str(e)}")
         return None, None
-@app.route('/api/progress')
-def get_progress():
-    """Get current progress status"""
-    return jsonify(current_progress)
-
-
-@app.route('/api/process', methods=['POST'])
-def process_media():
-    """
-    Process media files for transcription.
-    
-    Handles three types of inputs:
-    - Multiple file uploads
-    - Single YouTube video URL
-    - YouTube playlist URL
-    
-    Returns:
-        JSON response with transcription results or error message
-    """
-    audio_file = None
-    temp_files = []  # Track temporary files for cleanup
-
-    try:
-        print("Starting process_media...")
-        source_type = request.form.get('type')
-        print(f"Source type: {source_type}")
-        
-        # Reset progress tracking
-        current_progress.update({
-            'status': 'processing',
-            'message': '',
-            'progress': 0,
-            'segments': []
-        })
-        
-        if source_type == 'file':
-            return handle_file_uploads()
-        elif source_type == 'video':
-            return handle_single_video()
-        elif source_type == 'playlist':
-            return handle_playlist()
-        else:
-            return jsonify({'error': 'Invalid source type'}), 400
-
-    except Exception as e:
-        print(f"Process error: {str(e)}")
-        print(traceback.format_exc())
-        current_progress['status'] = 'error'
-        update_progress(f"Error: {str(e)}")
-        return jsonify({'error': str(e)}), 500
-    
-    finally:
-        # Clean up any temporary files
-        for temp_file in temp_files:
-            try:
-                delete_file(temp_file)
-            except Exception as e:
-                print(f"Error cleaning up {temp_file}: {e}")
-
 
 def handle_file_uploads():
     """Handle multiple file uploads for transcription."""
@@ -588,7 +500,6 @@ def handle_file_uploads():
 
     return jsonify(response_data)
 
-
 def handle_single_video():
     """Handle single YouTube video transcription."""
     audio_file = None
@@ -635,7 +546,7 @@ def handle_single_video():
 
         logger.info(f"Transcription successful, file at: {transcript_file}")
 
-        # Read transcript content and close file before copying
+        # Read transcript content
         with open(transcript_file, 'r', encoding='utf-8') as f:
             transcript_content = f.read()
             
@@ -709,107 +620,230 @@ def handle_single_video():
 
 def handle_playlist():
     """Handle YouTube playlist transcription."""
-    source_url = request.form.get('source')
-    logger.info("Starting handle_single_video with URL: %s", source_url)
+    temp_files = []  # Track temp files for cleanup
     
-    if not source_url:
-        logger.error("No URL provided")
-        return jsonify({'error': 'No URL provided'}), 400
-    
-    videos = get_playlist_videos(source_url)
-    if not videos:
-        return jsonify({'error': 'No videos found in playlist'}), 400
+    try:
+        source_url = request.form.get('source')
+        logger.info(f"Processing playlist URL: {source_url}")
+        
+        if not source_url:
+            return jsonify({'error': 'No URL provided'}), 400
+        
+        videos = get_playlist_videos(source_url)
+        if not videos:
+            return jsonify({'error': 'No videos found in playlist'}), 400
 
-    update_progress(f"Found {len(videos)} videos in playlist", 10)
-    
-    all_transcripts = []
-    skipped_videos = []
-    
-    for idx, video_url in enumerate(videos, 1):
-        try:
-            update_progress(f"Processing video {idx}/{len(videos)}")
-            audio_file, title = download_audio(video_url)
+        update_progress(f"Found {len(videos)} videos in playlist", 10)
+        
+        all_transcripts = []
+        skipped_videos = []
+        
+        for idx, video_url in enumerate(videos, 1):
+            audio_file = None
+            transcript_file = None
             
-            if not audio_file:
-                raise Exception("Audio download failed")
+            try:
+                update_progress(f"Processing video {idx}/{len(videos)}")
+                audio_file, title = download_audio(video_url)
+                logger.info(f"Downloaded audio for video {idx}: {title}")
+                
+                if not audio_file:
+                    raise Exception("Audio download failed")
 
-            # Save audio to storage
-            with open(audio_file, 'rb') as f:
+                # Save audio file to storage
+                with open(audio_file, 'rb') as f:
+                    audio_content = f.read()
+                    
                 audio_filename = os.path.basename(audio_file)
                 stored_audio_path = save_file(
-                    f.read(),
+                    audio_content,
                     FIREBASE_AUDIO_FOLDER if USE_FIREBASE else TEMP_FOLDER,
                     audio_filename
                 )
-            
-            transcript_file, text = transcribe_audio(
-                audio_file, 
-                f"Video {idx}: {title}\nURL: {video_url}"
-            )
-            
-            if transcript_file:
-                # Save transcript to storage
+                logger.info(f"Audio saved to storage at: {stored_audio_path}")
+
+                # Transcribe
+                transcript_file, text = transcribe_audio(
+                    audio_file,
+                    f"Video {idx}: {title}\nURL: {video_url}"
+                )
+                
+                if not transcript_file:
+                    raise Exception("Transcription failed")
+
+                logger.info(f"Transcription successful, file at: {transcript_file}")
+
+                # Save transcript
                 with open(transcript_file, 'r', encoding='utf-8') as f:
                     transcript_content = f.read()
+                    
                 transcript_filename = os.path.basename(transcript_file)
-                stored_transcript_path = save_file(
-                    transcript_content,
-                    FIREBASE_TRANSCRIPT_FOLDER if USE_FIREBASE else TRANSCRIPTS_FOLDER,
-                    transcript_filename
-                )
+                
+                if not USE_FIREBASE:
+                    # For local development, save to transcripts folder
+                    stored_transcript_path = os.path.join(TRANSCRIPTS_FOLDER, transcript_filename)
+                    logger.info(f"Saving transcript to final location: {stored_transcript_path}")
+                    with open(stored_transcript_path, 'w', encoding='utf-8') as f:
+                        f.write(transcript_content)
+                else:
+                    stored_transcript_path = save_file(
+                        transcript_content,
+                        FIREBASE_TRANSCRIPT_FOLDER,
+                        transcript_filename
+                    )
                 
                 all_transcripts.append({
                     'title': title,
                     'text': text,
                     'path': stored_transcript_path,
-                    'filename': transcript_filename 
+                    'filename': transcript_filename
                 })
-            else:
-                raise Exception("Transcription failed")
+                
+                # Track temp files for cleanup
+                if audio_file:
+                    temp_files.append(audio_file)
+                if transcript_file and transcript_file.startswith(TEMP_FOLDER):
+                    temp_files.append(transcript_file)
 
-        except Exception as e:
-            skipped_videos.append({
-                'url': video_url,
-                'reason': str(e)
-            })
-            continue
+            except Exception as e:
+                logger.error(f"Error processing video {idx}: {e}")
+                skipped_videos.append({
+                    'url': video_url,
+                    'reason': str(e)
+                })
+                continue
 
-        finally:
-            # Clean up local files
-            if 'audio_file' in locals() and audio_file:
-                delete_file(audio_file)
-            if 'transcript_file' in locals():
-                delete_file(transcript_file)
-    
-    if not all_transcripts:
-        message = "No videos were successfully transcribed"
+        if not all_transcripts:
+            message = "No videos were successfully transcribed"
+            if skipped_videos:
+                message += f". {len(skipped_videos)} videos were skipped."
+            raise Exception(message)
+
+        logger.info("Playlist processing completed successfully")
+        update_progress("Processing complete!", 100)
+        current_progress['status'] = 'complete'
+
+        response_data = {
+            'status': 'success',
+            'message': 'Playlist processing complete',
+            'transcripts': all_transcripts
+        }
+
         if skipped_videos:
-            message += f". {len(skipped_videos)} videos were skipped."
-        raise Exception(message)
+            response_data['skipped_videos'] = skipped_videos
 
-    print("Playlist processing completed successfully")
-    update_progress("Processing complete!", 100)
-    current_progress['status'] = 'complete'
+        return jsonify(response_data)
 
-    response_data = {
-        'status': 'success',
-        'message': 'Playlist processing complete',
-        'transcripts': all_transcripts
-    }
-
-    if skipped_videos:
-        response_data['skipped_videos'] = skipped_videos
-
-    return jsonify(response_data)
+    finally:
+        # Clean up temp files but not final transcripts
+        for temp_file in temp_files:
+            if temp_file and os.path.exists(temp_file):
+                try:
+                    if temp_file.startswith(TEMP_FOLDER):
+                        logger.info(f"Cleaning up temp file: {temp_file}")
+                        delete_file(temp_file)
+                except Exception as e:
+                    logger.error(f"Error deleting temp file {temp_file}: {e}")
 
 
 
 
+    
+    
+   
+
+def get_playlist_videos(url):
+    """Get all video URLs from a YouTube playlist"""
+    try:
+        print(f"Fetching playlist information from: {url}")  # Debug print
+        update_progress("Fetching playlist information...")
+        ydl_opts = {
+            'quiet': True,
+            'extract_flat': 'in_playlist',
+            'force_generic_extractor': True
+        }
+        
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            result = ydl.extract_info(url, download=False)
+            if 'entries' in result:
+                videos = [entry['url'] for entry in result['entries']]
+                print(f"Found {len(videos)} videos in playlist")  # Debug print
+                return videos
+            else:
+                print("No playlist entries found, treating as single video")  # Debug print
+                return [result['webpage_url']]
+    except Exception as e:
+        print(f"Playlist error: {str(e)}")  # Debug print
+        print(traceback.format_exc())
+        update_progress(f"Error getting playlist: {str(e)}")
+        return []
 
 
+# 5. Routes (endpoints)
+@app.route('/')
+def index():
+    return jsonify({
+        "status": "running",
+        "message": "Transcription API is running"
+    })
 
+@app.route('/api/progress')
+def get_progress():
+    """Get current progress status"""
+    return jsonify(current_progress)
 
+@app.route('/api/process', methods=['POST'])
+def process_media():
+    """
+    Process media files for transcription.
+    
+    Handles three types of inputs:
+    - Multiple file uploads
+    - Single YouTube video URL
+    - YouTube playlist URL
+    
+    Returns:
+        JSON response with transcription results or error message
+    """
+    audio_file = None
+    temp_files = []  # Track temporary files for cleanup
 
+    try:
+        print("Starting process_media...")
+        source_type = request.form.get('type')
+        print(f"Source type: {source_type}")
+        
+        # Reset progress tracking
+        current_progress.update({
+            'status': 'processing',
+            'message': '',
+            'progress': 0,
+            'segments': []
+        })
+        
+        if source_type == 'file':
+            return handle_file_uploads()
+        elif source_type == 'video':
+            return handle_single_video()
+        elif source_type == 'playlist':
+            return handle_playlist()
+        else:
+            return jsonify({'error': 'Invalid source type'}), 400
+
+    except Exception as e:
+        print(f"Process error: {str(e)}")
+        print(traceback.format_exc())
+        current_progress['status'] = 'error'
+        update_progress(f"Error: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+    
+    finally:
+        # Clean up any temporary files
+        for temp_file in temp_files:
+            try:
+                delete_file(temp_file)
+            except Exception as e:
+                print(f"Error cleaning up {temp_file}: {e}")
 
 @app.route('/api/download/<filename>')
 def download_transcript(filename):
@@ -857,8 +891,6 @@ def download_transcript(filename):
         logger.error(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
 
-
-
 @app.route('/api/cancel', methods=['POST'])
 def cancel_transcription():
     try:
@@ -878,11 +910,14 @@ def cancel_transcription():
                         os.remove(file_path)
                     except Exception as e:
                         logger.error(f"Error deleting file {file}: {e}")
-                        
+
         return jsonify({'status': 'success', 'message': 'Transcription canceled'})
     except Exception as e:
         logger.error(f"Error in cancel_transcription: {e}")
         return jsonify({'error': str(e)}), 500
+
+
+
 
 
 if __name__ == '__main__':

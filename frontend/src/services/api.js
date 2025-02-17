@@ -15,12 +15,13 @@ export const transcriptionService = {
 
         if (type === 'file') {
             if(data instanceof FormData) {
-                return axios.post(`${API_URL}/process`, data, {
+                const response =  await axios.post(`${API_URL}/process`, data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 });
             }
+
             // MULTIPLE FILES
             if(Array.isArray(data)) {
                 data.forEach(file => {
@@ -39,6 +40,7 @@ export const transcriptionService = {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+            console.log('Server response:', response.data);
             return response.data;
         } catch (error) {
             console.log('Error details:', error.response?.data);
