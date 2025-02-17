@@ -196,9 +196,13 @@ function App() {
 
             let response;
             if(sourceType === 'file') {
+                console.log('Uploading files:', files);
                 const formData = new FormData();
                 formData.append('type', sourceType)
+
+
                 files.forEach(file => {
+                    console.log('Appending file:', file.name);
                     formData.append('files[]', file)
                 });
 

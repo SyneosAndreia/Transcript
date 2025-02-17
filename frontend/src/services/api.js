@@ -5,42 +5,39 @@ export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/ap
 
 export const transcriptionService = {
     // Upload file or process YouTube URL
+    
     processMedia: async (type, data) => {
         if (!['video', 'playlist', 'file'].includes(type)) {
             throw new Error('Invalid media type')
         }
-    
-        const formData = new FormData();
-        formData.append('type', type);
 
-        if (type === 'file') {
-            if(data instanceof FormData) {
-                const response =  await axios.post(`${API_URL}/process`, data, {
+        try {
+            // For file uploads, just send the FormData directly
+            if (type === 'file' && data instanceof FormData) {
+                console.log('Sending file FormData:', data);
+                // Log the content of FormData for debugging
+                for (let pair of data.entries()) {
+                    console.log(pair[0], pair[1]);
+                }
+                
+                const response = await axios.post(`${API_URL}/process`, data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 });
+                return response.data;
             }
 
-            // MULTIPLE FILES
-            if(Array.isArray(data)) {
-                data.forEach(file => {
-                    formData.append('files[]', file);
-                });
-            } else {
-                formData.append('files[]', data);
-            }
-        } else {
+            // For other types (video, playlist)
+            const formData = new FormData();
+            formData.append('type', type);
             formData.append('source', data);
-        }
 
-        try {
             const response = await axios.post(`${API_URL}/process`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            console.log('Server response:', response.data);
             return response.data;
         } catch (error) {
             console.log('Error details:', error.response?.data);
