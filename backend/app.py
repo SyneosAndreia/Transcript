@@ -53,7 +53,7 @@ print("FLASK_ENV:", os.environ.get('FLASK_ENV'))
 
 
 
-# At the start of your Flask app, add this
+
 for folder in [UPLOAD_FOLDER, TEMP_FOLDER, TRANSCRIPTS_FOLDER]:
     if not os.path.exists(folder):
         os.makedirs(folder)
@@ -180,13 +180,13 @@ app = Flask(__name__)
 #         "max_age": 600
 #     }
 # })
+# Get allowed origins from environment variables
+# Default to localhost if not set
+ALLOWED_ORIGINS = os.getenv('ALLOWED_ORIGINS', 'http://localhost:5173').split(',')
 
 CORS(app, resources={
     r"/api/*": {
-        "origins": [
-            "http://localhost:5173",
-            "https://transcript-delta.vercel.app"
-        ],
+        "origins": ALLOWED_ORIGINS,
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": [
             "Content-Type",
@@ -194,66 +194,31 @@ CORS(app, resources={
             "X-Requested-With"
         ],
         "expose_headers": ["Content-Disposition"],
-        "supports_credentials": True
+        "supports_credentials": True, # without this  Iget an error locally
+        "max_age": 600
     }
 })
 
-
-# Middleware to log CORS-related information
-@app.before_request
-def log_request_info():
-    logger.debug('Request Headers: %s', request.headers)
-    logger.debug('Request Origin: %s', request.origin)
-    logger.debug('Request Method: %s', request.method)
-
-# Dedicated CORS debugging route
-@app.route('/api/cors-debug', methods=['OPTIONS', 'GET'])
-@cross_origin()
-def cors_debug():
-    # Log additional debugging information
-    logger.debug('CORS Debug Endpoint Hit')
-    logger.debug('Request Origin: %s', request.origin)
-    logger.debug('Request Method: %s', request.method)
-
-    # Construct a response with explicit CORS headers
-    response = jsonify({
-        "status": "CORS debugging successful",
-        "origin": request.origin,
-        "method": request.method,
-        "headers": dict(request.headers)
-    })
-
-    # Manually add CORS headers
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-    response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
-    
-    return response
-
-# Optional: Catch-all OPTIONS handler
-@app.route('/api/<path:path>', methods=['OPTIONS'])
-@cross_origin()
-def options_handler(path):
-    logger.debug(f'OPTIONS request for path: {path}')
-    response = jsonify(success=True)
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    return response
-
-
-
-
-
-
-
-
-
-
-
-@app.route('/api/health', methods=['GET'])
+@app.route('/api/health')
 def health_check():
-    return jsonify({'status': 'healthy'}), 200
+    return {
+        'status': 'healthy',
+        'cors_config': {
+            'allowed_origins': ALLOWED_ORIGINS
+        }
+    }
+
+# Error handler for CORS-related errors
+@app.errorhandler(403)
+def handle_cors_error(e):
+    if 'CORS' in str(e):
+        return {
+            'error': 'CORS error',
+            'message': 'Origin not allowed',
+            'allowed_origins': ALLOWED_ORIGINS
+        }, 403
+    return {'error': str(e)}, 403
+
 
 # Clear and recreate directories
 for folder in [UPLOAD_FOLDER, TEMP_FOLDER, TRANSCRIPTS_FOLDER]:

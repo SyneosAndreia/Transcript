@@ -23,6 +23,9 @@ import { API_URL } from './services/api';
 import TranscriptResults from './components/TranscriptResults';
 
 function App() {
+    console.log('API URL:', import.meta.env.VITE_API_URL);
+
+    
     const [sourceType, setSourceType] = useState('');
     const [url, setUrl] = useState('');
     const [file, setFile] = useState(null);
@@ -72,113 +75,6 @@ function App() {
             return prev.filter((_, i) => index !== i)
         })
     }
-
-    // Start processing
-    // const handleSubmit = async () => {
-    //     try {
-    //         setError('');
-    //         setIsProcessing(true);
-    //         setTranscript(null);  // We only need this one state
-    //         setProgress({
-    //             status: 'idle',
-    //             message: '',
-    //             progress: 0,
-    //             segments: []
-    //         });
-
-    //         console.log(sourceType)
-
-    //         if (sourceType === 'file') {
-    //             const formData = new FormData();
-    //             formData.append('type', sourceType)
-    //             files.forEach((file, index) => {
-    //                 formData.append('files[]', file);
-    //             });
-
-    //             const response = await transcriptionService.processMedia(sourceType, formData);
-
-    //             if (response.status === "success") {
-    //                 setIsProcessing(false)
-    //                 console.log('Response from server:', response);
-    //                 setTranscript({
-    //                     status: 'success',
-    //                     transcript: response.transcript,
-    //                     filename: response.filename,
-    //                     transcript_path: response.transcript_path
-    //                 });
-    //             }
-
-    //         } else {
-    //             const response = await transcriptionService.processMedia(sourceType, url);
-
-    //             if (response.status === 'success') {
-    //                 setIsProcessing(false);
-    //                 setTranscript({
-    //                     status: 'success',
-    //                     transcript: response.transcript,
-    //                     filename: response.filename,
-    //                     transcript_path: response.transcript_path
-    //                 })
-    //             }
-    //         }
-
-    //         //     if(sourceType === 'file') {
-    //         //         // console.log(files)
-    //         //         const formData = new FormData();
-    //         //         formData.append('type', sourceType)
-    //         //         files.forEach((file, index) => {
-    //         //             formData.append('files[]', file);
-    //         //         });
-
-    //         //         const response = await transcriptionService.processMedia(sourceType, formData);
-
-    //         //         if(response.status === "success") {
-    //         //             setIsProcessing(false)
-    //         //             if(response.transcript) {
-    //         //                 // in case we're uploading multiple files
-    //         //                 setTranscript({
-    //         //                     status: 'success',
-    //         //                     transcript: response.transcript,
-    //         //                     filename: response.filename,
-    //         //                     transcript_path: response.transcript_path
-    //         //                 })
-    //         //             } else {
-    //         //                 // in case we're uploading one file
-    //         //                 setTranscript({
-    //         //                     status: 'success',
-    //         //                     text: response.transcript,
-    //         //                     filename: response.filename
-    //         //                 })
-    //         //             }
-    //         //         }
-    //         //     } else {
-    //         //         const response = await transcriptionService.processMedia(sourceType, url);
-
-    //         //         if(response.status === 'success') {
-    //         //             setIsProcessing(false);
-    //         //             if(response.transcript) {
-    //         //                 setTranscript({
-    //         //                     status: 'success',
-    //         //                     transcript: response.transcript
-    //         //                 });
-    //         //             } else {
-    //         //                 setTranscript({
-    //         //                     status: 'success',
-    //         //                     text: response.transcript,
-    //         //                     filename: response.filename
-    //         //                 })
-    //         //             }
-    //         //         }
-    //         //     }
-
-    //         // } catch (err) {
-    //         //     setError(err.message || 'An error occurred');
-    //         //     setIsProcessing(false);
-    //     } catch (err) {
-    //         setError(err.message || 'An error occurred');
-    //         setIsProcessing(false);
-    //     }
-    // };
 
     const handleSubmit = async () => {
         try {
