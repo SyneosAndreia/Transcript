@@ -168,16 +168,20 @@ app = Flask(__name__)
 
 CORS(app, resources={
     r"/api/*": {
-        "origins": ["http://localhost:5173","https://transcript-delta.vercel.app"],  # Note: no trailing slash
+        "origins": [
+            "http://localhost:5173",
+            "https://transcript-delta.vercel.app",
+            "https://transcript-delta.vercel.app/i1"
+        ],
         "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"],
-        "expose_headers": [
+        "allow_headers": [
             "Content-Type", 
             "Authorization",
             "Access-Control-Allow-Origin",
             "Access-Control-Allow-Headers",
             "X-Requested-With"
-            ],
+        ],
+        "expose_headers": ["Content-Disposition"],
         "supports_credentials": True,
         "max_age": 600
     }
