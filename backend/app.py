@@ -463,21 +463,11 @@ def transcribe_audio(audio_file, source_info=""):
 
 def handle_file_uploads():
     """Handle multiple file uploads for transcription."""
-    print("Starting file upload handling")
-    print("Firebase config:", {
-        "bucket_exists": bool(FIREBASE_STORAGE_BUCKET),
-        "credentials_exist": bool(FIREBASE_CREDENTIALS),
-        "temp_folder_exists": os.path.exists(TEMP_FOLDER),
-        "firebase_enabled": USE_FIREBASE
-    })
-    print("Temp folder path:", TEMP_FOLDER)
-   
-    print("Starting file upload handling")
-    print("Request files keys:", list(request.files.keys()))
-    print("Request form data:", dict(request.form))
-   
-    if 'files[]' not in request.files:
-       print("Available files:", dict(request.files))
+    logger.info("Starting file upload handling")
+    logger.info(f"Request files: {request.files}")
+    logger.info(f"Request form data: {dict(request.form)}")
+    
+
 
     temp_files = []  # Initialize temp_files list
    
@@ -921,57 +911,52 @@ def get_progress():
 
 @app.route('/api/process', methods=['POST'])
 def process_media():
-    """
-    Process media files for transcription.
-    
-    Handles three types of inputs:
-    - Multiple file uploads
-    - Single YouTube video URL
-    - YouTube playlist URL
-    
-    Returns:
-        JSON response with transcription results or error message
-    """
-    audio_file = None
-    temp_files = []  # Track temporary files for cleanup
+    """Process media files for transcription."""
+    logger.info("=============================================")
+    logger.info("Starting process_media request")
+    logger.info(f"Request Files Keys: {list(request.files.keys())}")
+    logger.info(f"Request Form Data: {dict(request.form)}")
 
     try:
-        print("Starting process_media...")
         source_type = request.form.get('type')
-        print(f"Source type: {source_type}")
-        
-        # Reset progress tracking
-        current_progress.update({
-            'status': 'processing',
-            'message': '',
-            'progress': 0,
-            'segments': []
-        })
+        logger.info(f"Source type: {source_type}")
         
         if source_type == 'file':
+            if 'files[]' not in request.files:
+                logger.error("files[] not in request.files")
+                logger.error(f"Available keys: {list(request.files.keys())}")
+                return jsonify({'error': 'No files selected'}), 400
+
+            files = request.files.getlist('files[]')
+            logger.info(f"Number of files received: {len(files)}")
+
+            for file in files:
+                logger.info(f"Processing file: {file.filename}")
+                logger.info(f"File content type: {file.content_type}")
+                
+                # Check if file type is allowed
+                if not allowed_file(file.filename):
+                    logger.error(f"File type not allowed: {file.filename}")
+                    return jsonify({
+                        'error': f'File type not allowed for {file.filename}. Allowed types: {", ".join(ALLOWED_EXTENSIONS)}'
+                    }), 400
+
+            # Continue with processing...
             return handle_file_uploads()
+
         elif source_type == 'video':
             return handle_single_video()
         elif source_type == 'playlist':
             return handle_playlist()
         else:
+            logger.error(f"Invalid source type: {source_type}")
             return jsonify({'error': 'Invalid source type'}), 400
 
     except Exception as e:
-        print(f"Process error: {str(e)}")
-        print(traceback.format_exc())
-        current_progress['status'] = 'error'
-        update_progress(f"Error: {str(e)}")
+        logger.error("Error in process_media:")
+        logger.error(str(e))
+        logger.error(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
-    
-    finally:
-        # Clean up any temporary files
-        for temp_file in temp_files:
-            try:
-                delete_file(temp_file)
-            except Exception as e:
-                print(f"Error cleaning up {temp_file}: {e}")
-
 @app.route('/api/download/<filename>')
 def download_transcript(filename):
     """Download a transcript file"""

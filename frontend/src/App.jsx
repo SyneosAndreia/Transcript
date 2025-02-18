@@ -25,7 +25,7 @@ import TranscriptResults from './components/TranscriptResults';
 function App() {
     console.log('API URL:', import.meta.env.VITE_API_URL);
 
-    
+
     const [sourceType, setSourceType] = useState('');
     const [url, setUrl] = useState('');
     const [file, setFile] = useState(null);
@@ -85,13 +85,13 @@ function App() {
                 status: 'idle',
                 message: '',
                 progress: 0,
-                segments: []            
+                segments: []
             });
 
             console.log('Source Type: ', sourceType)
 
             let response;
-            if(sourceType === 'file') {
+            if (sourceType === 'file') {
                 console.log('Uploading files:', files);
                 const formData = new FormData();
                 formData.append('type', sourceType)
@@ -109,7 +109,7 @@ function App() {
 
             console.log('Response from server:', response);
 
-            if (response.status === 'success' ) {
+            if (response.status === 'success') {
                 setIsProcessing(false)
 
                 if (response.transcripts) {
@@ -145,8 +145,8 @@ function App() {
             setFile(null);
             setFiles([])
             setError('');
-            setTranscript(null);  
-            setProgress({         
+            setTranscript(null);
+            setProgress({
                 status: 'idle',
                 message: '',
                 progress: 0,
@@ -344,12 +344,12 @@ function App() {
 
                 {transcript && (
                     <>
-                    {console.log('Transcript state before passing to component:', transcript)}
-                    <TranscriptResults
-                        transcript={transcript}
-                        onDownload={handleDownload}
-                    />
-                    
+                        {console.log('Transcript state before passing to component:', transcript)}
+                        <TranscriptResults
+                            transcript={transcript}
+                            onDownload={handleDownload}
+                        />
+
                     </>
                 )}
 
