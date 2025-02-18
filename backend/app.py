@@ -433,132 +433,144 @@ def transcribe_audio(audio_file, source_info=""):
         return None, None
 
 def handle_file_uploads():
-   """Handle multiple file uploads for transcription."""
-   print("Starting file upload handling")
-   print("Firebase config:", {
-    "bucket_exists": bool(FIREBASE_STORAGE_BUCKET),
-    "credentials_exist": bool(FIREBASE_CREDENTIALS),
-    "temp_folder_exists": os.path.exists(TEMP_FOLDER),
-    "firebase_enabled": USE_FIREBASE
+    """Handle multiple file uploads for transcription."""
+    print("Starting file upload handling")
+    print("Firebase config:", {
+        "bucket_exists": bool(FIREBASE_STORAGE_BUCKET),
+        "credentials_exist": bool(FIREBASE_CREDENTIALS),
+        "temp_folder_exists": os.path.exists(TEMP_FOLDER),
+        "firebase_enabled": USE_FIREBASE
     })
-   print("Temp folder path:", TEMP_FOLDER)
+    print("Temp folder path:", TEMP_FOLDER)
    
-   print("Starting file upload handling")
-   print("Request files keys:", list(request.files.keys()))
-   print("Request form data:", dict(request.form))
+    print("Starting file upload handling")
+    print("Request files keys:", list(request.files.keys()))
+    print("Request form data:", dict(request.form))
    
-   if 'files[]' not in request.files:
+    if 'files[]' not in request.files:
        print("Available files:", dict(request.files))
 
-   temp_files = []  # Initialize temp_files list
+    temp_files = []  # Initialize temp_files list
    
-   try:
-       logger.info('Starting file upload handling')
+    try:
+        logger.info('Starting file upload handling')
        
-       if 'files[]' not in request.files:
+        if 'files[]' not in request.files:
            logger.error("No files[] in request.files")
            logger.error(f"Request files: {request.files}")
            return jsonify({'error': 'No files selected'}), 400
        
-       files = request.files.getlist('files[]')
-       logger.info(f"Received {len(files)} files")
+        files = request.files.getlist('files[]')
+        logger.info(f"Received {len(files)} files")
 
-       if not files or all(file.filename == '' for file in files):
+        if not files or all(file.filename == '' for file in files):
            logger.error("No files detected or empty filenames")
            return jsonify({'error': 'No files detected'}), 400 
 
-       all_transcripts = []
-       skipped_files = []
-       total_files = len(files)
-       processed_count = 0
+        all_transcripts = []
+        skipped_files = []
+        total_files = len(files)
+        processed_count = 0
 
-       for idx, file in enumerate(files, 1):
-           logger.info(f"Processing file {idx}: {file.filename}")
+        for idx, file in enumerate(files, 1):
+            logger.info(f"Processing file {idx}: {file.filename}")
            
-           if not allowed_file(file.filename):
-               logger.error(f"File type not allowed: {file.filename}")
-               skipped_files.append({
+            if not allowed_file(file.filename):
+                logger.error(f"File type not allowed: {file.filename}")
+                skipped_files.append({
                    'name': file.filename,
                    'reason': 'Unsupported file type'
-               })
-               continue
+                })
+                continue
 
-           try:
-               update_progress(
+            try:
+                update_progress(
                    f"Processing file {idx}/{total_files}: {file.filename}", 
                    (processed_count * 100) // total_files
-               )
+                )
 
-               # Save uploaded file
-               filename = secure_filename(file.filename)
-               logger.info(f"Saving file: {filename}")
+                # Save uploaded file
+                filename = secure_filename(file.filename)
+                logger.info(f"Saving file: {filename}")
                
-               file_content = file.read()
-               logger.info(f"File content size: {len(file_content)} bytes")
+                file_content = file.read()
+                logger.info(f"File content size: {len(file_content)} bytes")
                
-               stored_audio_path = save_file(
+                stored_audio_path = save_file(
                    file_content,
                    FIREBASE_AUDIO_FOLDER if USE_FIREBASE else TEMP_FOLDER,
                    filename
-               )
-               logger.info(f"File saved to: {stored_audio_path}")
+                )
+                logger.info(f"File saved to: {stored_audio_path}")
 
-               # Track temp files for cleanup
-               if stored_audio_path.startswith(TEMP_FOLDER):
+                # Track temp files for cleanup
+                if stored_audio_path.startswith(TEMP_FOLDER):
                    temp_files.append(stored_audio_path)
 
-               # Prepare for processing
-               process_path = stored_audio_path
-               if USE_FIREBASE:
+                # Prepare for processing
+                process_path = stored_audio_path
+                if USE_FIREBASE:
                    temp_path = os.path.join(TEMP_FOLDER, filename)
                    logger.info(f"Downloading to temp path: {temp_path}")
                    download_file(stored_audio_path, temp_path)
                    process_path = temp_path
                    temp_files.append(temp_path)
 
-               # Transcribe
-               logger.info(f"Starting transcription for: {process_path}")
-               transcript_file, text = transcribe_audio(
+                # Transcribe
+                logger.info(f"Starting transcription for: {process_path}")
+                transcript_file, text = transcribe_audio(
                    process_path,
                    f"Uploaded file: {filename}"
-               )
+                )
                
-               if transcript_file:
-                   logger.info(f"Transcription completed, reading content")
-                   with open(transcript_file, 'r', encoding='utf-8') as f:
+                if transcript_file:
+                    logger.info(f"Transcription completed, reading content")
+                    with open(transcript_file, 'r', encoding='utf-8') as f:
                        transcript_content = f.read()
 
-                   transcript_filename = os.path.basename(transcript_file)
-                   stored_transcript_path = os.path.join(TRANSCRIPTS_FOLDER, transcript_filename)
+                    transcript_filename = os.path.basename(transcript_file)
+
+                   # Save locally
+                    stored_transcript_path = os.path.join(TRANSCRIPTS_FOLDER, transcript_filename)
                    
                    # Save the transcript
-                   with open(stored_transcript_path, 'w', encoding='utf-8') as f:
+                    with open(stored_transcript_path, 'w', encoding='utf-8') as f:
                        f.write(transcript_content)
+                    
+                    if USE_FIREBASE: 
+                        stored_transcript_path = save_file(
+                            transcript_content,
+                            FIREBASE_TRANSCRIPT_FOLDER,
+                            transcript_filename
+                            )
+                        logger.info(f"Transcript saved to Firebase: {stored_transcript_path}")
+                    else:
+                        stored_transcript_path = os.path.join(TRANSCRIPTS_FOLDER, transcript_filename)
                    
                    # Add to successful transcripts
-                   all_transcripts.append({
+                    all_transcripts.append({
                        'title': filename,
                        'text': text,
                        'path': stored_transcript_path,
                        'filename': transcript_filename
-                   })
+                    })
                    
                    # Increment counter
-                   processed_count += 1
-                   logger.info(f"Successfully added transcript for {filename}")
-               else:
+                    processed_count += 1
+                    logger.info(f"Successfully added transcript for {filename}")
+                else:
                    raise Exception("Transcription failed - no transcript file produced")
 
-           except Exception as e:
-               logger.error(f"Error processing file {file.filename}: {str(e)}")
-               logger.error(traceback.format_exc())
-               skipped_files.append({
+            except Exception as e:
+                logger.error(f"Error processing file {file.filename}: {str(e)}")
+                logger.error(traceback.format_exc())
+                skipped_files.append({
                    'name': file.filename,
                    'reason': str(e)
-               })
-               continue
+                })
+                continue
 
-       if not all_transcripts:
+        if not all_transcripts:
            logger.error(f"all_transcripts is empty. Processed count: {processed_count}")
            logger.error(f"Files processed: {[f.filename for f in files]}")
            message = "No files were successfully transcribed"
@@ -568,30 +580,30 @@ def handle_file_uploads():
            logger.error(f"Skipped files: {skipped_files}")
            raise Exception(message)
 
-       update_progress("Processing complete!", 100)
-       current_progress['status'] = 'complete'
+        update_progress("Processing complete!", 100)
+        current_progress['status'] = 'complete'
 
-       response_data = {
+        response_data = {
            'status': 'success',
            'message': 'Processing complete',
            'transcripts': all_transcripts
-       }
+        }
 
-       if skipped_files:
-           response_data['skipped_files'] = skipped_files
+        if skipped_files:
+            response_data['skipped_files'] = skipped_files
 
-       logger.info(f"Returning response with {len(all_transcripts)} transcripts")
-       return jsonify(response_data)
+        logger.info(f"Returning response with {len(all_transcripts)} transcripts")
+        return jsonify(response_data)
    
-   finally:
-       for temp_file in temp_files:
-           try:
-               if temp_file and os.path.exists(temp_file):
-                   if temp_file.startswith(TEMP_FOLDER):
-                       logger.info(f"Cleaning up temp file: {temp_file}")
-                       delete_file(temp_file)
-           except Exception as e:
-               logger.error(f"Error deleting temp file {temp_file}: {e}")
+    finally:
+        for temp_file in temp_files:
+            try:
+                if temp_file and os.path.exists(temp_file):
+                    if temp_file.startswith(TEMP_FOLDER):
+                        logger.info(f"Cleaning up temp file: {temp_file}")
+                        delete_file(temp_file)
+            except Exception as e:
+                logger.error(f"Error deleting temp file {temp_file}: {e}")
 
 def handle_single_video():
     """Handle single YouTube video transcription."""
