@@ -141,17 +141,31 @@ def download_file(source_path, local_path, use_firebase=USE_FIREBASE):
 # 2. Configuration and Setup
 app = Flask(__name__)
 
+# CORS(app, resources={
+#     r"/api/*": {
+#         "origins": ["http://localhost:5173", "https://transcript-delta.vercel.app/"],
+#         "methods": ["GET", "POST", "OPTIONS"],  # Added OPTIONS
+#         "allow_headers": ["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
+#         "expose_headers": ["Content-Disposition", "Access-Control-Allow-Origin"],
+#         "supports_credentials": True,
+#         "max_age": 600
+#     }
+# })
+
 CORS(app, resources={
     r"/api/*": {
-        "origins": ["http://localhost:5173", "https://transcript-delta.vercel.app/"],
-        "methods": ["GET", "POST", "OPTIONS"],  # Added OPTIONS
-        "allow_headers": ["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
-        "expose_headers": ["Content-Disposition", "Access-Control-Allow-Origin"],
+        "origins": "*",  # Temporarily allow all origins
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["*"],
+        "expose_headers": ["*"],
         "supports_credentials": True,
         "max_age": 600
     }
 })
 
+@app.route('/api/health', methods=['GET'])
+def health_check():
+    return jsonify({'status': 'healthy'}), 200
 
 # Clear and recreate directories
 for folder in [UPLOAD_FOLDER, TEMP_FOLDER, TRANSCRIPTS_FOLDER]:
@@ -396,6 +410,15 @@ def transcribe_audio(audio_file, source_info=""):
 
 def handle_file_uploads():
    """Handle multiple file uploads for transcription."""
+   print("Starting file upload handling")
+   print("Firebase config:", {
+    "bucket_exists": bool(FIREBASE_STORAGE_BUCKET),
+    "credentials_exist": bool(FIREBASE_CREDENTIALS),
+    "temp_folder_exists": os.path.exists(TEMP_FOLDER),
+    "firebase_enabled": USE_FIREBASE
+    })
+   print("Temp folder path:", TEMP_FOLDER)
+   
    print("Starting file upload handling")
    print("Request files keys:", list(request.files.keys()))
    print("Request form data:", dict(request.form))
