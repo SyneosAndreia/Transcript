@@ -1,26 +1,30 @@
-// src/services/api.js
 import axios from 'axios';
 
 export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
+// Create axios instance with default config
+const api = axios.create({
+    baseURL: API_URL,
+    withCredentials: true,
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});
+
 export const transcriptionService = {
-    // Upload file or process YouTube URL
-    
     processMedia: async (type, data) => {
         if (!['video', 'playlist', 'file'].includes(type)) {
             throw new Error('Invalid media type')
         }
 
         try {
-            // For file uploads, just send the FormData directly
             if (type === 'file' && data instanceof FormData) {
                 console.log('Sending file FormData:', data);
-                // Log the content of FormData for debugging
                 for (let pair of data.entries()) {
                     console.log(pair[0], pair[1]);
                 }
                 
-                const response = await axios.post(`${API_URL}/process`, data, {
+                const response = await api.post('/process', data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -28,12 +32,11 @@ export const transcriptionService = {
                 return response.data;
             }
 
-            // For other types (video, playlist)
             const formData = new FormData();
             formData.append('type', type);
             formData.append('source', data);
 
-            const response = await axios.post(`${API_URL}/process`, formData, {
+            const response = await api.post('/process', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -45,10 +48,9 @@ export const transcriptionService = {
         }
     },
 
-    // Get progress updates
     getProgress: async () => {
         try {
-            const response = await axios.get(`${API_URL}/progress`);
+            const response = await api.get('/progress');
             return response.data;
         } catch (error) {
             throw error.response?.data || error.message;
@@ -59,7 +61,7 @@ export const transcriptionService = {
         try {
             console.log("Downloading file:", filename);
             console.log("Using API URL:", API_URL);
-            const response = await axios.get(`${API_URL}/download/${filename}`, {
+            const response = await api.get(`/download/${filename}`, {
                 responseType: 'blob',
                 headers: {
                     'Accept': 'application/octet-stream',
@@ -77,7 +79,7 @@ export const transcriptionService = {
 
     cancelTransCript: async () => {
         try {
-            const response = await axios.post(`${API_URL}/cancel`)
+            const response = await api.post('/cancel')
             return response.data;
         } catch (error) {
             throw error.response?.data || error.message
