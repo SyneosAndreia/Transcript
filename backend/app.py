@@ -25,6 +25,12 @@ logger = logging.getLogger(__name__)
 import firebase_admin
 from firebase_admin import credentials, storage, initialize_app
 
+
+
+# Environment variables 
+FIREBASE_STORAGE_BUCKET = os.environ.get('FIREBASE_STORAGE_BUCKET')
+FIREBASE_CREDENTIALS = os.environ.get('FIREBASE_CREDENTIALS')
+
 # Configuration =============================================================================
 UPLOAD_FOLDER = 'uploads'
 TEMP_FOLDER = 'temp_audio'
@@ -37,6 +43,14 @@ FIREBASE_TRANSCRIPT_FOLDER = 'transcripts'
 
 ENVIRONMENT = os.getenv('FLASK_ENV', 'development')  # 'development' or 'production'
 USE_FIREBASE = ENVIRONMENT == 'production'  # True if in production, False in development
+
+
+# Debug
+print("Environment variables check:")
+print("FIREBASE_STORAGE_BUCKET:", os.environ.get('FIREBASE_STORAGE_BUCKET'))
+print("FIREBASE_CREDENTIALS exists:", bool(os.environ.get('FIREBASE_CREDENTIALS')))
+print("FLASK_ENV:", os.environ.get('FLASK_ENV'))
+
 
 
 # At the start of your Flask app, add this
