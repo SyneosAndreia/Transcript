@@ -198,18 +198,16 @@ ALLOWED_ORIGINS = os.getenv('ALLOWED_ORIGINS', 'http://localhost:5173').split(',
 
 CORS(app, resources={
     r"/api/*": {
-        "origins": ALLOWED_ORIGINS,
+        "origins": ["https://transcript-delta.vercel.app"],  # Explicitly list the origin
         "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": [
-            "Content-Type",
-            "Authorization",
-            "X-Requested-With"
-        ],
+        "allow_headers": "*",  # Allow all headers
         "expose_headers": ["Content-Disposition"],
-        "supports_credentials": True, # without this  Iget an error locally
+        "supports_credentials": True,
         "max_age": 600
     }
 })
+
+
 
 @app.route('/api/health')
 def health_check():
@@ -220,17 +218,20 @@ def health_check():
         }
     }
 
-# Error handler for CORS-related errors
+# Add more detailed CORS error handling
 @app.errorhandler(403)
 def handle_cors_error(e):
     if 'CORS' in str(e):
-        return {
+        logger.error(f"CORS Error: {str(e)}")
+        logger.error(f"Request Origin: {request.headers.get('Origin')}")
+        logger.error(f"Request Method: {request.method}")
+        logger.error(f"Request Headers: {dict(request.headers)}")
+        return jsonify({
             'error': 'CORS error',
             'message': 'Origin not allowed',
-            'allowed_origins': ALLOWED_ORIGINS
-        }, 403
+            'allowed_origins': ["https://transcript-delta.vercel.app"]
+        }), 403
     return {'error': str(e)}, 403
-
 
 # Clear and recreate directories
 for folder in [UPLOAD_FOLDER, TEMP_FOLDER, TRANSCRIPTS_FOLDER]:
@@ -646,7 +647,7 @@ def handle_file_uploads():
                         delete_file(temp_file)
             except Exception as e:
                 logger.error(f"Error deleting temp file {temp_file}: {e}")
-                
+
 def handle_single_video():
     """Handle single YouTube video transcription."""
     audio_file = None
