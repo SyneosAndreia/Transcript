@@ -475,17 +475,15 @@ def transcribe_audio(audio_file, source_info=""):
 
 def handle_file_uploads():
     """Handle multiple file uploads for transcription."""
+    logger.info("=============================================")
     logger.info("Starting file upload handling")
     logger.info(f"Request files: {request.files}")
     logger.info(f"Request form data: {dict(request.form)}")
-    
-
+    logger.info(f"Firebase mode: {USE_FIREBASE}")
 
     temp_files = []  # Initialize temp_files list
    
     try:
-        logger.info('Starting file upload handling')
-       
         if 'files[]' not in request.files:
            logger.error("No files[] in request.files")
            logger.error(f"Request files: {request.files}")
@@ -504,7 +502,9 @@ def handle_file_uploads():
         processed_count = 0
 
         for idx, file in enumerate(files, 1):
-            logger.info(f"Processing file {idx}: {file.filename}")
+            logger.info(f"===== Processing file {idx}/{total_files} =====")
+            logger.info(f"Filename: {file.filename}")
+            logger.info(f"Content type: {file.content_type}")
            
             if not allowed_file(file.filename):
                 logger.error(f"File type not allowed: {file.filename}")
@@ -522,11 +522,15 @@ def handle_file_uploads():
 
                 # Save uploaded file
                 filename = secure_filename(file.filename)
-                logger.info(f"Saving file: {filename}")
+                logger.info(f"Secured filename: {filename}")
                
                 file_content = file.read()
-                logger.info(f"File content size: {len(file_content)} bytes")
+                logger.info(f"File content read, size: {len(file_content)} bytes")
                
+                # Log before Firebase save
+                logger.info(f"Attempting to save to {'Firebase' if USE_FIREBASE else 'local'} storage")
+                logger.info(f"Target folder: {FIREBASE_AUDIO_FOLDER if USE_FIREBASE else TEMP_FOLDER}")
+
                 stored_audio_path = save_file(
                    file_content,
                    FIREBASE_AUDIO_FOLDER if USE_FIREBASE else TEMP_FOLDER,
@@ -536,15 +540,19 @@ def handle_file_uploads():
 
                 # Track temp files for cleanup
                 if stored_audio_path.startswith(TEMP_FOLDER):
+                   logger.info(f"Adding to temp files for cleanup: {stored_audio_path}")
                    temp_files.append(stored_audio_path)
 
                 # Prepare for processing
                 process_path = stored_audio_path
                 if USE_FIREBASE:
                    temp_path = os.path.join(TEMP_FOLDER, filename)
-                   logger.info(f"Downloading to temp path: {temp_path}")
-                   download_file(stored_audio_path, temp_path)
+                   logger.info(f"Firebase mode: Downloading to temp path: {temp_path}")
+                   success = download_file(stored_audio_path, temp_path)
+                   if not success:
+                       raise Exception(f"Failed to download file from Firebase to temp location: {temp_path}")
                    process_path = temp_path
+                   logger.info(f"Using temp path for processing: {process_path}")
                    temp_files.append(temp_path)
 
                 # Transcribe
@@ -555,30 +563,31 @@ def handle_file_uploads():
                 )
                
                 if transcript_file:
-                    logger.info(f"Transcription completed, reading content")
+                    logger.info(f"Transcription completed successfully")
+                    logger.info(f"Reading transcript from: {transcript_file}")
+                    
                     with open(transcript_file, 'r', encoding='utf-8') as f:
                        transcript_content = f.read()
 
                     transcript_filename = os.path.basename(transcript_file)
+                    logger.info(f"Transcript filename: {transcript_filename}")
 
-                   # Save locally
-                    stored_transcript_path = os.path.join(TRANSCRIPTS_FOLDER, transcript_filename)
-                   
-                   # Save the transcript
-                    with open(stored_transcript_path, 'w', encoding='utf-8') as f:
-                       f.write(transcript_content)
-                    
+                    # Save the transcript
                     if USE_FIREBASE: 
+                        logger.info(f"Saving transcript to Firebase in folder: {FIREBASE_TRANSCRIPT_FOLDER}")
                         stored_transcript_path = save_file(
                             transcript_content,
                             FIREBASE_TRANSCRIPT_FOLDER,
                             transcript_filename
-                            )
+                        )
                         logger.info(f"Transcript saved to Firebase: {stored_transcript_path}")
                     else:
                         stored_transcript_path = os.path.join(TRANSCRIPTS_FOLDER, transcript_filename)
+                        logger.info(f"Saving transcript locally to: {stored_transcript_path}")
+                        with open(stored_transcript_path, 'w', encoding='utf-8') as f:
+                            f.write(transcript_content)
                    
-                   # Add to successful transcripts
+                    # Add to successful transcripts
                     all_transcripts.append({
                        'title': filename,
                        'text': text,
@@ -586,9 +595,9 @@ def handle_file_uploads():
                        'filename': transcript_filename
                     })
                    
-                   # Increment counter
+                    # Increment counter
                     processed_count += 1
-                    logger.info(f"Successfully added transcript for {filename}")
+                    logger.info(f"Successfully processed file {idx}/{total_files}")
                 else:
                    raise Exception("Transcription failed - no transcript file produced")
 
@@ -602,8 +611,9 @@ def handle_file_uploads():
                 continue
 
         if not all_transcripts:
-           logger.error(f"all_transcripts is empty. Processed count: {processed_count}")
-           logger.error(f"Files processed: {[f.filename for f in files]}")
+           logger.error(f"No files were successfully transcribed")
+           logger.error(f"Processed count: {processed_count}")
+           logger.error(f"Files attempted: {[f.filename for f in files]}")
            message = "No files were successfully transcribed"
            if skipped_files:
                message += f". {len(skipped_files)} files were skipped."
@@ -627,15 +637,16 @@ def handle_file_uploads():
         return jsonify(response_data)
    
     finally:
+        logger.info("Cleaning up temporary files")
         for temp_file in temp_files:
             try:
                 if temp_file and os.path.exists(temp_file):
                     if temp_file.startswith(TEMP_FOLDER):
-                        logger.info(f"Cleaning up temp file: {temp_file}")
+                        logger.info(f"Deleting temp file: {temp_file}")
                         delete_file(temp_file)
             except Exception as e:
                 logger.error(f"Error deleting temp file {temp_file}: {e}")
-
+                
 def handle_single_video():
     """Handle single YouTube video transcription."""
     audio_file = None
