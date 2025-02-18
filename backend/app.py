@@ -171,7 +171,13 @@ CORS(app, resources={
         "origins": ["http://localhost:5173","https://transcript-delta.vercel.app"],  # Note: no trailing slash
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"],
-        "expose_headers": ["Content-Disposition"],
+        "expose_headers": [
+            "Content-Type", 
+            "Authorization",
+            "Access-Control-Allow-Origin",
+            "Access-Control-Allow-Headers",
+            "X-Requested-With"
+            ],
         "supports_credentials": True,
         "max_age": 600
     }
