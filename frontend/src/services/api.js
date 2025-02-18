@@ -12,42 +12,96 @@ const api = axios.create({
 });
 
 export const transcriptionService = {
+    // processMedia: async (type, data) => {
+    //     if (!['video', 'playlist', 'file'].includes(type)) {
+    //         throw new Error('Invalid media type')
+    //     }
+
+    //     try {
+    //         if (type === 'file' && data instanceof FormData) {
+    //             console.log('Sending file FormData:', data);
+    //             for (let pair of data.entries()) {
+    //                 console.log(pair[0], pair[1]);
+    //             }
+                
+    //             const response = await api.post('/process', data, {
+    //                 headers: {
+    //                     'Content-Type': 'multipart/form-data'
+    //                 }
+    //             });
+    //             return response.data;
+    //         }
+
+    //         const formData = new FormData();
+    //         formData.append('type', type);
+    //         formData.append('source', data);
+
+    //         const response = await api.post('/process', formData, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data'
+    //             }
+    //         });
+    //         return response.data;
+    //     } catch (error) {
+    //         console.log('Error details:', error.response?.data);
+    //         throw error.response?.data || error.message
+    //     }
+    // },
+
     processMedia: async (type, data) => {
         if (!['video', 'playlist', 'file'].includes(type)) {
             throw new Error('Invalid media type')
         }
-
-        try {
-            if (type === 'file' && data instanceof FormData) {
-                console.log('Sending file FormData:', data);
-                for (let pair of data.entries()) {
-                    console.log(pair[0], pair[1]);
+    
+        const maxRetries = 3;
+        let retryCount = 0;
+        let lastError = null;
+    
+        while (retryCount < maxRetries) {
+            try {
+                if (type === 'file' && data instanceof FormData) {
+                    console.log('Attempting upload, try #', retryCount + 1);
+                    
+                    const response = await api.post('/process', data, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        },
+                        timeout: 30000 // 30 seconds timeout
+                    });
+                    return response.data;
                 }
-                
-                const response = await api.post('/process', data, {
+    
+                const formData = new FormData();
+                formData.append('type', type);
+                formData.append('source', data);
+    
+                const response = await api.post('/process', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
-                    }
+                    },
+                    timeout: 30000
                 });
                 return response.data;
-            }
-
-            const formData = new FormData();
-            formData.append('type', type);
-            formData.append('source', data);
-
-            const response = await api.post('/process', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+            } catch (error) {
+                lastError = error;
+                retryCount++;
+                
+                // Only retry on network errors or 502 errors
+                if (!error.response || error.response.status === 502) {
+                    console.log(`Upload failed, retrying... (${retryCount}/${maxRetries})`);
+                    // Wait before retrying (exponential backoff)
+                    await new Promise(resolve => setTimeout(resolve, 2000 * retryCount));
+                    continue;
                 }
-            });
-            return response.data;
-        } catch (error) {
-            console.log('Error details:', error.response?.data);
-            throw error.response?.data || error.message
+                
+                // Don't retry other types of errors
+                break;
+            }
         }
+    
+        console.log('Error details:', lastError.response?.data);
+        throw lastError.response?.data || lastError.message;
     },
-
     getProgress: async () => {
         try {
             const response = await api.get('/progress');
