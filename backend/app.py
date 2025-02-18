@@ -143,7 +143,7 @@ app = Flask(__name__)
 
 CORS(app, resources={
     r"/api/*": {
-        "origins": ["http://localhost:5173", "https://transcript-backend-i9us.onrender.com"],
+        "origins": ["http://localhost:5173", "https://transcript-delta.vercel.app/"],
         "methods": ["GET", "POST"],
         "allow_headers": ["Content-Type"],
         "expose_headers": ["Content-Disposition"],
