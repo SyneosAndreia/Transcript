@@ -105,38 +105,31 @@ def delete_from_firebase(file_path):
 def download_from_firebase(firebase_path, local_path):
     """Download file from Firebase to local path"""
     try:
-        print(f"🔥 Downloading {firebase_path} from Firebase to {local_path}...")
-        print(f"Full blob path: {firebase_path}")
+        logger.info(f"🔥 Downloading from Firebase")
+        logger.info(f"Firebase path: {firebase_path}")
+        logger.info(f"Local destination: {local_path}")
         
-        # List all blobs in the audio folder to verify
-        audio_blobs = list(bucket.list_blobs(prefix='audio/'))
-        print("Available blobs in audio folder:")
-        for blob in audio_blobs:
-            print(f" - {blob.name}")
+        # Ensure the destination directory exists
+        os.makedirs(os.path.dirname(local_path), exist_ok=True)
         
         blob = bucket.blob(firebase_path)
         
-        # Check if blob exists
-        if not blob.exists():
-            print(f"❌ Blob does not exist: {firebase_path}")
-            # Try finding a similar blob
-            similar_blobs = [b for b in audio_blobs if firebase_path.split('/')[-1] in b.name]
-            if similar_blobs:
-                print("Found similar blobs:")
-                for similar_blob in similar_blobs:
-                    print(f" - {similar_blob.name}")
-                    blob = similar_blob
-                    firebase_path = similar_blob.name
-            else:
-                raise FileNotFoundError(f"No blob found for {firebase_path}")
+        # Log blob details
+        logger.info(f"Blob exists: {blob.exists()}")
+        logger.info(f"Blob public URL: {blob.public_url}")
         
         blob.download_to_filename(local_path)
-        print(f"✅ Download successful to {local_path}")
+        
+        logger.info(f"✅ Download successful to {local_path}")
+        logger.info(f"Local file exists: {os.path.exists(local_path)}")
+        logger.info(f"Local file size: {os.path.getsize(local_path)} bytes")
+        
         return True
     except Exception as e:
-        print(f"Error downloading from Firebase: {e}")
-        print(traceback.format_exc())
+        logger.error(f"Error downloading from Firebase: {e}")
+        logger.error(traceback.format_exc())
         return False
+    
 def delete_file(file_path, use_firebase=USE_FIREBASE):
     """Delete file from either Firebase or local storage"""
     if use_firebase:
