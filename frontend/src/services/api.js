@@ -84,5 +84,28 @@ export const transcriptionService = {
         } catch (error) {
             throw error.response?.data || error.message
         }
+    },
+
+    testCORS: async () => {
+        try {
+            console.log('Testing CORS with API URL:', API_URL);
+            
+            const response = await api.options('/cors-debug', {
+                headers: {
+                    'Origin': window.location.origin,
+                    'Access-Control-Request-Method': 'GET'
+                }
+            });
+
+            console.log('CORS Test Response:', {
+                status: response.status,
+                headers: response.headers
+            });
+
+            return response;
+        } catch (error) {
+            console.error('CORS Test Error:', error);
+            throw error;
+        }
     }
 };

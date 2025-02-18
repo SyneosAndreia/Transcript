@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, send_file
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import yt_dlp
 import whisper
 import os
@@ -185,22 +185,71 @@ CORS(app, resources={
     r"/api/*": {
         "origins": [
             "http://localhost:5173",
-            "https://transcript-delta.vercel.app",
-            "https://transcript-delta.vercel.app/i1"
+            "https://transcript-delta.vercel.app"
         ],
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": [
-            "Content-Type", 
+            "Content-Type",
             "Authorization",
-            "Access-Control-Allow-Origin",
-            "Access-Control-Allow-Headers",
             "X-Requested-With"
         ],
         "expose_headers": ["Content-Disposition"],
-        "supports_credentials": True,
-        "max_age": 600
+        "supports_credentials": True
     }
 })
+
+
+# Middleware to log CORS-related information
+@app.before_request
+def log_request_info():
+    logger.debug('Request Headers: %s', request.headers)
+    logger.debug('Request Origin: %s', request.origin)
+    logger.debug('Request Method: %s', request.method)
+
+# Dedicated CORS debugging route
+@app.route('/api/cors-debug', methods=['OPTIONS', 'GET'])
+@cross_origin()
+def cors_debug():
+    # Log additional debugging information
+    logger.debug('CORS Debug Endpoint Hit')
+    logger.debug('Request Origin: %s', request.origin)
+    logger.debug('Request Method: %s', request.method)
+
+    # Construct a response with explicit CORS headers
+    response = jsonify({
+        "status": "CORS debugging successful",
+        "origin": request.origin,
+        "method": request.method,
+        "headers": dict(request.headers)
+    })
+
+    # Manually add CORS headers
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
+    
+    return response
+
+# Optional: Catch-all OPTIONS handler
+@app.route('/api/<path:path>', methods=['OPTIONS'])
+@cross_origin()
+def options_handler(path):
+    logger.debug(f'OPTIONS request for path: {path}')
+    response = jsonify(success=True)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/api/health', methods=['GET'])
 def health_check():
