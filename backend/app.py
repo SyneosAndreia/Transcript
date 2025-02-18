@@ -144,10 +144,11 @@ app = Flask(__name__)
 CORS(app, resources={
     r"/api/*": {
         "origins": ["http://localhost:5173", "https://transcript-delta.vercel.app/"],
-        "methods": ["GET", "POST"],
-        "allow_headers": ["Content-Type"],
-        "expose_headers": ["Content-Disposition"],
-        "supports_credentials": True
+        "methods": ["GET", "POST", "OPTIONS"],  # Added OPTIONS
+        "allow_headers": ["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
+        "expose_headers": ["Content-Disposition", "Access-Control-Allow-Origin"],
+        "supports_credentials": True,
+        "max_age": 600
     }
 })
 
@@ -395,6 +396,13 @@ def transcribe_audio(audio_file, source_info=""):
 
 def handle_file_uploads():
    """Handle multiple file uploads for transcription."""
+   print("Starting file upload handling")
+   print("Request files keys:", list(request.files.keys()))
+   print("Request form data:", dict(request.form))
+   
+   if 'files[]' not in request.files:
+       print("Available files:", dict(request.files))
+
    temp_files = []  # Initialize temp_files list
    
    try:
@@ -537,6 +545,7 @@ def handle_file_uploads():
                        delete_file(temp_file)
            except Exception as e:
                logger.error(f"Error deleting temp file {temp_file}: {e}")
+
 def handle_single_video():
     """Handle single YouTube video transcription."""
     audio_file = None
