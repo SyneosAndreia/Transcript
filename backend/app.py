@@ -95,8 +95,10 @@ def save_to_firebase(file_data, folder, filename):
     return blob.public_url
 
 def delete_from_firebase(file_path):
-    """delete files from firebase"""
     try:
+        # Add FIREBASE_AUDIO_FOLDER if not already included
+        if not file_path.startswith(FIREBASE_AUDIO_FOLDER):
+            file_path = f"{FIREBASE_AUDIO_FOLDER}/{file_path}"
         blob = bucket.blob(file_path)
         blob.delete()
     except Exception as e:
@@ -109,13 +111,23 @@ def download_from_firebase(firebase_path, local_path):
         logger.info(f"Firebase path: {firebase_path}")
         logger.info(f"Local destination: {local_path}")
         
-        # Ensure the destination directory exists
-        os.makedirs(os.path.dirname(local_path), exist_ok=True)
+        # Create TEMP_FOLDER if it doesn't exist
+        os.makedirs(TEMP_FOLDER, exist_ok=True)
+        
+        # Ensure we're looking in the audio folder in Firebase
+        if not firebase_path.startswith(FIREBASE_AUDIO_FOLDER):
+            firebase_path = f"{FIREBASE_AUDIO_FOLDER}/{firebase_path}"
+        
+        logger.info(f"Complete Firebase path: {firebase_path}")
         
         blob = bucket.blob(firebase_path)
         
         # Log blob details
         logger.info(f"Blob exists: {blob.exists()}")
+        if not blob.exists():
+            logger.error(f"Blob not found in Firebase: {firebase_path}")
+            return False
+            
         logger.info(f"Blob public URL: {blob.public_url}")
         
         blob.download_to_filename(local_path)
@@ -129,7 +141,7 @@ def download_from_firebase(firebase_path, local_path):
         logger.error(f"Error downloading from Firebase: {e}")
         logger.error(traceback.format_exc())
         return False
-    
+     
 def delete_file(file_path, use_firebase=USE_FIREBASE):
     """Delete file from either Firebase or local storage"""
     if use_firebase:
