@@ -1,9 +1,9 @@
 name: transcript-app
 services:
-  - name: backend
-    git:
-      branch: main
-      repo_clone_url: https://github.com/SyneosAndreia/Transcript.git
-    source_dir: backend
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+- environment_slug: python
+  github:
+    branch: main
+    repo: SyneosAndreia/Transcript
+  source_dir: backend
+  run_command: gunicorn app:app
+  build_command: pip install -r requirements.txt
