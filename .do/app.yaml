@@ -5,8 +5,5 @@ services:
       branch: main
       repo_clone_url: https://github.com/SyneosAndreia/Transcript.git
     source_dir: backend
-    envs:
-      - key: FLASK_ENV
-        value: production
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
