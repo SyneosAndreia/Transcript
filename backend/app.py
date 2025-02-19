@@ -182,6 +182,10 @@ def download_file(source_path, local_path, use_firebase=USE_FIREBASE):
 # 2. Configuration and Setup
 app = Flask(__name__)
 
+@app.route('/health')
+def health_check():
+    return jsonify({"status": "healthy"}), 200
+
 # CORS(app, resources={
 #     r"/api/*": {
 #         "origins": ["http://localhost:5173", "https://transcript-delta.vercel.app/"],
@@ -1056,5 +1060,9 @@ def cancel_transcription():
 
 
 
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)

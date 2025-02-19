@@ -5,5 +5,9 @@ services:
     branch: main
     repo: SyneosAndreia/Transcript
   source_dir: backend
-  run_command: gunicorn app:app
+  run_command: gunicorn --bind 0.0.0.0:$PORT --workers 3 app:app
   build_command: pip install -r requirements.txt
+  envs:
+    - key: FLASK_ENV
+      value: production
+      type: SHARED
