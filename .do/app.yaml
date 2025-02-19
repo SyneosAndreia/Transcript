@@ -11,3 +11,6 @@ services:
     - key: FLASK_ENV
       value: production
       type: SHARED
+  resources:
+    cpu: 1
+    memory: 1GB
