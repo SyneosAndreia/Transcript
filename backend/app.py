@@ -183,8 +183,14 @@ def download_file(source_path, local_path, use_firebase=USE_FIREBASE):
 app = Flask(__name__)
 
 @app.route('/health')
+@app.route('/api/health')
 def health_check():
-    return jsonify({"status": "healthy"}), 200
+    return jsonify({
+        'status': 'healthy',
+        'cors_config': {
+            'allowed_origins': ALLOWED_ORIGINS
+        }
+    }), 200
 
 # CORS(app, resources={
 #     r"/api/*": {
@@ -212,15 +218,6 @@ CORS(app, resources={
 })
 
 
-
-@app.route('/api/health')
-def health_check():
-    return {
-        'status': 'healthy',
-        'cors_config': {
-            'allowed_origins': ALLOWED_ORIGINS
-        }
-    }
 
 # Add more detailed CORS error handling
 @app.errorhandler(403)
