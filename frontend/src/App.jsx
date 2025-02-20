@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import {
     Container,
     Box,
@@ -19,16 +18,11 @@ import {
 } from '@mui/material';
 import { UploadFile, Close } from '@mui/icons-material';
 import { transcriptionService } from './services/api';
-import { API_URL } from './services/api';
 import TranscriptResults from './components/TranscriptResults';
 
 function App() {
-    console.log('API URL:', import.meta.env.VITE_API_URL);
-
-
     const [sourceType, setSourceType] = useState('');
     const [url, setUrl] = useState('');
-    const [file, setFile] = useState(null);
     const [files, setFiles] = useState([])
     const [isProcessing, setIsProcessing] = useState(false);
     const [progress, setProgress] = useState({
@@ -45,14 +39,12 @@ function App() {
     const handleSourceChange = (e) => {
         setSourceType(e.target.value);
         setUrl('');
-        setFile(null);
         setFiles([])
         setError('');
     };
 
     // Handle file selection
     const handleFileChange = (e) => {
-        // Filelist is an object
         const selectedFiles = Array.from(e.target.files)
         setFiles(prev => [...prev, ...selectedFiles])
     };
@@ -88,20 +80,11 @@ function App() {
                 segments: []
             });
 
-            console.log('Source Type: ', sourceType)
-
             let response;
             if (sourceType === 'file') {
-                console.log('Uploading files:', files);
                 const formData = new FormData();
                 formData.append('type', sourceType)
-
-
-                files.forEach(file => {
-                    console.log('Appending file:', file.name);
-                    formData.append('files[]', file)
-                });
-
+                files.forEach(file => formData.append('files[]', file));
                 response = await transcriptionService.processMedia(sourceType, formData);
             } else {
                 response = await transcriptionService.processMedia(sourceType, url);
@@ -110,8 +93,6 @@ function App() {
             console.log('Response from server:', response);
 
             if (response.status === 'success') {
-                setIsProcessing(false)
-
                 if (response.transcripts) {
                     setTranscript({
                         status: 'success',
@@ -127,8 +108,6 @@ function App() {
 
                 }
             }
-
-
         } catch (err) {
             console.error('Error in submission:', err);
             setError(err.message || 'An error occurred');
@@ -137,12 +116,10 @@ function App() {
     }
 
     const handleCancel = async () => {
-
         try {
             await transcriptionService.cancelTransCript();
             setSourceType('')
             setUrl('');
-            setFile(null);
             setFiles([])
             setError('');
             setTranscript(null);
@@ -161,27 +138,30 @@ function App() {
     useEffect(() => {
         let interval;
 
-        if (isProcessing) {
-            // console.log("Starting progress polling");
-            interval = setInterval(async () => {
-                try {
-                    const progressData = await transcriptionService.getProgress();
-                    // console.log("Progress data:", progressData);
+        const checkProgress = async () => {
+            try {
+                const progressData = await transcriptionService.getProgress();
+                setProgress(progressData);
 
-                    setProgress(progressData);
-
-                    if (progressData.status === 'complete' || progressData.status === 'error') {
-                        // console.log("Stopping polling - status:", progressData.status);
-                        setIsProcessing(false);
-                        clearInterval(interval);
-                    }
-                } catch (err) {
-                    console.error("Error in polling:", err);
-                    setError(err.message || 'Error checking progress');
-                    setIsProcessing(false);
+                if (progressData.status === 'complete' || progressData.status === 'error') {
+                    // console.log("Stopping polling - status:", progressData.status);
                     clearInterval(interval);
-                }
-            }, 1000);
+                    setIsProcessing(false);
+                } else if (progressData.status === 'error') {
+                    clearInterval(interval);
+                    setIsProcessing(false);
+                    setError('Transcription failed');
+                } 
+            } catch (err) {
+                setError(err.message || 'Error checking progress');
+                setIsProcessing(false);
+                clearInterval(interval);
+            }
+        }
+
+        if (isProcessing) {
+            checkProgress(); // Initial check
+            interval = setInterval(checkProgress, 2000); // Poll every 2 seconds
         }
 
         return () => {
@@ -211,30 +191,6 @@ function App() {
         } catch (error) {
             console.error('Download error:', error);
         }
-    };
-
-    // Poll progress
-    const pollProgress = () => {
-        const interval = setInterval(async () => {
-            try {
-                // console.log("Polling for progress..."); // Debug log
-                const progressData = await transcriptionService.getProgress();
-                // console.log("Received progress data:", progressData); // Debug log
-                // console.log("Segments:", progressData.segments); // Debug log
-
-                setProgress(progressData);
-
-                if (progressData.status === 'complete' || progressData.status === 'error') {
-                    clearInterval(interval);
-                    setIsProcessing(false);
-                }
-            } catch (err) {
-                console.error("Error in polling:", err);
-                clearInterval(interval);
-                setError(err.message || 'Error checking progress');
-                setIsProcessing(false);
-            }
-        }, 1000);
     };
 
     return (

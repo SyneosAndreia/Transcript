@@ -12,42 +12,6 @@ const api = axios.create({
 });
 
 export const transcriptionService = {
-    // processMedia: async (type, data) => {
-    //     if (!['video', 'playlist', 'file'].includes(type)) {
-    //         throw new Error('Invalid media type')
-    //     }
-
-    //     try {
-    //         if (type === 'file' && data instanceof FormData) {
-    //             console.log('Sending file FormData:', data);
-    //             for (let pair of data.entries()) {
-    //                 console.log(pair[0], pair[1]);
-    //             }
-                
-    //             const response = await api.post('/process', data, {
-    //                 headers: {
-    //                     'Content-Type': 'multipart/form-data'
-    //                 }
-    //             });
-    //             return response.data;
-    //         }
-
-    //         const formData = new FormData();
-    //         formData.append('type', type);
-    //         formData.append('source', data);
-
-    //         const response = await api.post('/process', formData, {
-    //             headers: {
-    //                 'Content-Type': 'multipart/form-data'
-    //             }
-    //         });
-    //         return response.data;
-    //     } catch (error) {
-    //         console.log('Error details:', error.response?.data);
-    //         throw error.response?.data || error.message
-    //     }
-    // },
-
     processMedia: async (type, data) => {
         if (!['video', 'playlist', 'file'].includes(type)) {
             throw new Error('Invalid media type')
@@ -66,7 +30,6 @@ export const transcriptionService = {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         },
-                        timeout: 30000 // 30 seconds timeout
                     });
                     return response.data;
                 }
@@ -79,7 +42,7 @@ export const transcriptionService = {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     },
-                    timeout: 30000
+                    timeout: 300000
                 });
                 return response.data;
             } catch (error) {
@@ -102,9 +65,16 @@ export const transcriptionService = {
         console.log('Error details:', lastError.response?.data);
         throw lastError.response?.data || lastError.message;
     },
+
     getProgress: async () => {
         try {
             const response = await api.get('/progress');
+            const data = response.data
+
+            if(data.satus === 'complete' || data.progress === 100) {
+                return {...data, isComplete: true}
+            }
+
             return response.data;
         } catch (error) {
             throw error.response?.data || error.message;
