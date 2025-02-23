@@ -9,6 +9,44 @@ class AudioProcessor:
         self.config = config
         self.progress = progress_tracker
 
+    def get_playlist_videos(self, url):
+        """Extract video URLs from a YouTube playlist."""
+        try:
+            logger.info(f"Extracting videos from playlist: {url}")
+            self.progress.update("Analyzing playlist...", 0)
+        
+            ydl_opts = {
+                'quiet': False,  # Changed to False for more debugging
+                'extract_flat': 'in_playlist',
+                'force_generic_extractor': True
+            }
+        
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                playlist_info = ydl.extract_info(url, download=False)
+                
+                # Changed to return list of dictionaries instead of just URLs
+                if 'entries' in playlist_info:
+                    videos = [
+                        {
+                            'url': entry.get('url', ''),
+                            'title': entry.get('title', f'Video {idx+1}')
+                        } 
+                        for idx, entry in enumerate(playlist_info['entries'])
+                    ]
+                    logger.info(f"Found {len(videos)} videos in playlist") 
+                    return videos
+                else:
+                    logger.info("No playlist entries found, treating as single video")
+                    return [{
+                        'url': playlist_info.get('webpage_url', url),
+                        'title': playlist_info.get('title', 'Unknown Video')
+                    }]
+    
+        except Exception as e:
+            logger.error(f"Error extracting playlist info: {str(e)}")
+            self.progress.update(f"Error getting playlist: {str(e)}")
+            return []
+
     def download_audio(self, url ):
         try: 
             logger.info(f"Starting download from URL: {url}")

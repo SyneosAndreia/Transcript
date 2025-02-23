@@ -93,6 +93,7 @@ function App() {
             console.log('Response from server:', response);
 
             if (response.status === 'success') {
+                setIsProcessing(false)
                 if (response.transcripts) {
                     setTranscript({
                         status: 'success',
@@ -105,8 +106,12 @@ function App() {
                         filename: response.filename,
                         transcript_path: response.transcript_path
                     });
-
                 }
+
+                // Clear form data
+                setSourceType('');
+                setUrl('');
+                setFiles([]);
             }
         } catch (err) {
             console.error('Error in submission:', err);
@@ -145,8 +150,8 @@ function App() {
 
                 if (progressData.status === 'complete' || progressData.status === 'error') {
                     // console.log("Stopping polling - status:", progressData.status);
-                    clearInterval(interval);
                     setIsProcessing(false);
+                    clearInterval(interval);
                 } else if (progressData.status === 'error') {
                     clearInterval(interval);
                     setIsProcessing(false);

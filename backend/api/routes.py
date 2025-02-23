@@ -204,7 +204,7 @@ def handle_file_uploads():
             except Exception as e:
                 logger.error(f"Error deleting temp file {temp_file}: {e}")
 
-def handle_single_video():
+def handle_single_video(source_url):
     """Handle single video URL processing"""
     audio_file = None
     transcript_file = None
@@ -212,14 +212,13 @@ def handle_single_video():
     progress_tracker = current_app.progress_tracker
 
     try: 
-        source_url = request.form.get('source')
         logger.info(f"Processing URL: {source_url}")
 
         if not source_url:
             return jsonify({'error': 'No URL provided' }), 400
         
         #Download using audio processor
-        audio_processor = AudioProcessor(current_app.config, current_app.progress_tracker )
+        audio_processor = AudioProcessor(current_app.config, current_app.progress_tracker)
         audio_file, title = audio_processor.download_audio(source_url)
         logger.info(f"Download completed - Audio file: {audio_file}, Title: {title}")
         
@@ -337,14 +336,162 @@ def handle_single_video():
                 except Exception as e:
                     logger.error(f"Error deleting transcript file: {e}")
 
-def handle_playlist():
-    """Handle playlist URL processing"""
-    url = request.form.get('url')
-    logger.info(f"Processing playlist: {url}")
-    # Implement playlist handling logic here
-    return jsonify({'error': 'Playlist processing not implemented yet'}), 501
+def handle_playlist(source_url): 
+    """Handle YouTube playlist transcription."""
+    temp_files = []
+    progress_tracker = current_app.progress_tracker
+    
+    try:
+        logger.info(f"Processing playlist URL: {source_url}")
+        
+        if not source_url:
+            return jsonify({'error': 'No URL provided'}), 400
 
+        # Get config values
+        USE_FIREBASE = current_app.config['USE_FIREBASE']
+        TEMP_FOLDER = current_app.config['TEMP_FOLDER']
+        FIREBASE_AUDIO_FOLDER = current_app.config['FIREBASE_AUDIO_FOLDER']
+        FIREBASE_TRANSCRIPT_FOLDER = current_app.config['FIREBASE_TRANSCRIPT_FOLDER']
+        TRANSCRIPTS_FOLDER = current_app.config['TRANSCRIPTS_FOLDER']
+        
+        # Initialize processors
+        audio_processor = AudioProcessor(current_app.config, progress_tracker)
+        transcriber = Transcriber(current_app.config, progress_tracker)
+        
+        # Get videos from playlist using passed source_url
+        videos = audio_processor.get_playlist_videos(source_url)
+        if not videos:
+            return jsonify({'error': 'No videos found in playlist'}), 400
 
+        progress_tracker.update(f"Found {len(videos)} videos in playlist", 10)
+        
+        all_transcripts = []
+        skipped_videos = []
+        
+        for idx, video_info in enumerate(videos, 1):
+            audio_file = None
+            transcript_file = None
+            
+            try:
+                progress_tracker.update(f"Processing video {idx}/{len(videos)}: {video_info['title']}")
+                
+                # Download audio using AudioProcessor
+                audio_file, title = audio_processor.download_audio(video_info['url'])
+                logger.info(f"Downloaded audio for video {idx}: {title}")
+                
+                if not audio_file:
+                    raise Exception("Audio download failed")
+
+                # Save audio file to storage
+                with open(audio_file, 'rb') as f:
+                    audio_content = f.read()
+                    
+                audio_filename = os.path.basename(audio_file)
+                stored_audio_path = current_app.storage.save_file(
+                    audio_content,
+                    FIREBASE_AUDIO_FOLDER if USE_FIREBASE else TEMP_FOLDER,
+                    audio_filename
+                )
+                logger.info(f"Audio saved to storage at: {stored_audio_path}")
+
+                # Transcribe using Transcriber
+                transcript_file, text = transcriber.transcribe_audio(
+                    audio_file,
+                    f"Video {idx}: {title}\nURL: {video_info['url']}"
+                )
+                
+                if not transcript_file:
+                    raise Exception("Transcription failed")
+
+                logger.info(f"Transcription successful, file at: {transcript_file}")
+
+                # Save transcript
+                with open(transcript_file, 'r', encoding='utf-8') as f:
+                    transcript_content = f.read()
+                    
+                transcript_filename = os.path.basename(transcript_file)
+                
+                if not USE_FIREBASE:
+                    # For local development, save to transcripts folder
+                    stored_transcript_path = os.path.join(TRANSCRIPTS_FOLDER, transcript_filename)
+                    logger.info(f"Saving transcript to final location: {stored_transcript_path}")
+                    with open(stored_transcript_path, 'w', encoding='utf-8') as f:
+                        f.write(transcript_content)
+                else:
+                    stored_transcript_path = current_app.storage.save_file(
+                        transcript_content,
+                        FIREBASE_TRANSCRIPT_FOLDER,
+                        transcript_filename
+                    )
+                
+                all_transcripts.append({
+                    'title': title,
+                    'text': text,
+                    'path': stored_transcript_path,
+                    'filename': transcript_filename
+                })
+                
+                # Track temp files for cleanup
+                if audio_file:
+                    temp_files.append(audio_file)
+                if transcript_file and transcript_file.startswith(TEMP_FOLDER):
+                    temp_files.append(transcript_file)
+
+            except Exception as e:
+                logger.error(f"Error processing video {idx}: {e}")
+                skipped_videos.append({
+                    'url': video_info['url'],
+                    'title': video_info['title'],
+                    'reason': str(e)
+                })
+                continue
+
+        if not all_transcripts:
+            message = "No videos were successfully transcribed"
+            if skipped_videos:
+                message += f". {len(skipped_videos)} videos were skipped."
+            raise Exception(message)
+
+        logger.info("Playlist processing completed successfully")
+        progress_tracker.update(
+            message="Processing complete!",
+            progress=100,
+            status='complete'
+        )
+
+        response_data = {
+            'status': 'success',
+            'message': 'Playlist processing complete',
+            'transcripts': all_transcripts
+        }
+
+        if skipped_videos:
+            response_data['skipped_videos'] = skipped_videos
+
+        return jsonify(response_data)
+
+    except Exception as e:
+        logger.error(f"Error in handle_playlist: {str(e)}")
+        logger.error(traceback.format_exc())
+        progress_tracker.update(
+            message=f"Error: {str(e)}",
+            status='error'
+        )
+        return jsonify({'error': str(e)}), 500
+
+    finally:
+        # Add a small delay to ensure files are not in use
+        time.sleep(0.1)
+        
+        # Clean up temp files
+        for temp_file in temp_files:
+            if temp_file and os.path.exists(temp_file):
+                try:
+                    if temp_file.startswith(TEMP_FOLDER):
+                        logger.info(f"Cleaning up temp file: {temp_file}")
+                        current_app.storage.delete_file(temp_file)
+                except Exception as e:
+                    logger.error(f"Error deleting temp file {temp_file}: {e}")
 
 @api.route('/health')
 def health_check():
@@ -364,8 +511,13 @@ def process_media():
             logger.error("No type in request.form")
             return jsonify({'error': 'Source type not specified'}), 400
 
+        # Get form data first
         source_type = request.form.get('type')
+        source_url = request.form.get('source')
+        
+        # Then log it
         logger.info(f"Source type: {source_type}")
+        logger.info(f"Source URL: {source_url}")
         
         if source_type == 'file':
             logger.info("Processing file upload...")
@@ -403,13 +555,17 @@ def process_media():
 
         elif source_type == 'video':
             logger.info("Processing video...")
-            response = handle_single_video()
+            if not source_url:
+                return jsonify({'error': 'No URL provided'}), 400
+            response = handle_single_video(source_url)  # Pass the URL here
             logger.info("Video processing completed")
             return response
 
         elif source_type == 'playlist':
             logger.info("Processing playlist...")
-            response = handle_playlist()
+            if not source_url:
+                return jsonify({'error': 'No URL provided'}), 400
+            response = handle_playlist(source_url)  # Passing the URL is correct
             logger.info("Playlist processing completed")
             return response
 
@@ -422,6 +578,8 @@ def process_media():
         logger.error(str(e))
         logger.error(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
+
+
 @api.route('/progress')
 def get_progress():
     """Get current progress status"""
