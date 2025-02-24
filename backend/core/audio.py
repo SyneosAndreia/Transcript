@@ -14,16 +14,16 @@ class AudioProcessor:
         try:
             logger.info(f"Extracting videos from playlist: {url}")
             self.progress.update("Analyzing playlist...", 0)
-        
+
             ydl_opts = {
                 'quiet': False,  # Changed to False for more debugging
                 'extract_flat': 'in_playlist',
                 'force_generic_extractor': True
             }
-        
+
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 playlist_info = ydl.extract_info(url, download=False)
-                
+
                 # Changed to return list of dictionaries instead of just URLs
                 if 'entries' in playlist_info:
                     videos = [
@@ -41,7 +41,7 @@ class AudioProcessor:
                         'url': playlist_info.get('webpage_url', url),
                         'title': playlist_info.get('title', 'Unknown Video')
                     }]
-    
+
         except Exception as e:
             logger.error(f"Error extracting playlist info: {str(e)}")
             self.progress.update(f"Error getting playlist: {str(e)}")

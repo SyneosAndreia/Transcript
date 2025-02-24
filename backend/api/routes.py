@@ -28,25 +28,26 @@ def handle_file_uploads():
     FIREBASE_TRANSCRIPT_FOLDER = current_app.config['FIREBASE_TRANSCRIPT_FOLDER'] 
     TRANSCRIPTS_FOLDER = current_app.config['TRANSCRIPTS_FOLDER']
 
+    # Ensure temp folder exists
+    os.makedirs(TEMP_FOLDER, exist_ok=True)
+
     storage = current_app.storage
     transcriber = Transcriber(current_app.config, current_app.progress_tracker)
     progress_tracker = current_app.progress_tracker
 
-    """Handle file upload processing"""
-
     temp_files = []
     try:
         if 'files[]' not in request.files:
-           logger.error("No files[] in request.files")
-           logger.error(f"Request files: {request.files}")
-           return jsonify({'error': 'No files selected'}), 400
+            logger.error("No files[] in request.files")
+            logger.error(f"Request files: {request.files}")
+            return jsonify({'error': 'No files selected'}), 400
         
         files = request.files.getlist('files[]')
         logger.info(f"Received {len(files)} files")
 
         if not files or all(file.filename == '' for file in files):
-           logger.error("No files detected or empty filenames")
-           return jsonify({'error': 'No files detected'}), 400 
+            logger.error("No files detected or empty filenames")
+            return jsonify({'error': 'No files detected'}), 400 
 
         all_transcripts = []
         skipped_files = []
@@ -61,15 +62,15 @@ def handle_file_uploads():
             if not allowed_file(file.filename):
                 logger.error(f"File type not allowed: {file.filename}")
                 skipped_files.append({
-                   'name': file.filename,
-                   'reason': 'Unsupported file type'
+                    'name': file.filename,
+                    'reason': 'Unsupported file type'
                 })
                 continue
 
             try:
                 progress_tracker.update(
-                   f"Processing file {idx}/{total_files}: {file.filename}", 
-                   (processed_count * 100) // total_files
+                    f"Processing file {idx}/{total_files}: {file.filename}", 
+                    (processed_count * 100) // total_files
                 )
 
                 # Save uploaded file
@@ -78,40 +79,40 @@ def handle_file_uploads():
                
                 file_content = file.read()
                 logger.info(f"File content read, size: {len(file_content)} bytes")
-               
-                # Log before Firebase save
-                logger.info(f"Attempting to save to {'Firebase' if USE_FIREBASE else 'local'} storage")
-                logger.info(f"Target folder: {FIREBASE_AUDIO_FOLDER if USE_FIREBASE else TEMP_FOLDER}")
 
-                stored_audio_path = storage.save_file(
-                   file_content,
-                   FIREBASE_AUDIO_FOLDER if USE_FIREBASE else TEMP_FOLDER,
-                   filename
-                )
-                logger.info(f"File saved to: {stored_audio_path}")
-
-                # Track temp files for cleanup
-                if stored_audio_path.startswith(TEMP_FOLDER):
-                   logger.info(f"Adding to temp files for cleanup: {stored_audio_path}")
-                   temp_files.append(stored_audio_path)
-
-                # Prepare for processing
-                process_path = stored_audio_path
                 if USE_FIREBASE:
-                   temp_path = os.path.join(TEMP_FOLDER, filename)
-                   logger.info(f"Firebase mode: Downloading to temp path: {temp_path}")
-                   success = storage.download_file(stored_audio_path, temp_path)
-                   if not success:
-                       raise Exception(f"Failed to download file from Firebase to temp location: {temp_path}")
-                   process_path = temp_path
-                   logger.info(f"Using temp path for processing: {process_path}")
-                   temp_files.append(temp_path)
+                    # Save to Firebase
+                    logger.info(f"Saving to Firebase audio folder: {FIREBASE_AUDIO_FOLDER}")
+                    stored_audio_path = storage.save_file(
+                        file_content,
+                        FIREBASE_AUDIO_FOLDER,
+                        filename
+                    )
+                    logger.info(f"File saved to Firebase, URL: {stored_audio_path}")
+                    
+                    # Download for processing using correct path format
+                    firebase_path = f"{FIREBASE_AUDIO_FOLDER}/{filename}"
+                    temp_path = os.path.join(TEMP_FOLDER, filename)
+                    logger.info(f"Downloading from Firebase path: {firebase_path} to temp path: {temp_path}")
+                    
+                    success = storage.download_file(firebase_path, temp_path)
+                    if not success:
+                        raise Exception(f"Failed to download from Firebase path: {firebase_path}")
+                    
+                    process_path = temp_path
+                    temp_files.append(temp_path)
+                else:
+                    # Local storage
+                    process_path = os.path.join(TEMP_FOLDER, filename)
+                    with open(process_path, 'wb') as f:
+                        f.write(file_content)
+                    temp_files.append(process_path)
 
                 # Transcribe
                 logger.info(f"Starting transcription for: {process_path}")
                 transcript_file, text = transcriber.transcribe_audio(
-                   process_path,
-                   f"Uploaded file: {filename}"
+                    process_path,
+                    f"Uploaded file: {filename}"
                 )
                
                 if transcript_file:
@@ -119,14 +120,14 @@ def handle_file_uploads():
                     logger.info(f"Reading transcript from: {transcript_file}")
                     
                     with open(transcript_file, 'r', encoding='utf-8') as f:
-                       transcript_content = f.read()
+                        transcript_content = f.read()
 
                     transcript_filename = os.path.basename(transcript_file)
                     logger.info(f"Transcript filename: {transcript_filename}")
 
                     # Save the transcript
                     if USE_FIREBASE: 
-                        logger.info(f"Saving transcript to Firebase in folder: {FIREBASE_TRANSCRIPT_FOLDER}")
+                        logger.info(f"Saving transcript to Firebase folder: {FIREBASE_TRANSCRIPT_FOLDER}")
                         stored_transcript_path = storage.save_file(
                             transcript_content,
                             FIREBASE_TRANSCRIPT_FOLDER,
@@ -141,50 +142,50 @@ def handle_file_uploads():
                    
                     # Add to successful transcripts
                     all_transcripts.append({
-                       'title': filename,
-                       'text': text,
-                       'path': stored_transcript_path,
-                       'filename': transcript_filename
+                        'title': filename,
+                        'text': text,
+                        'path': stored_transcript_path,
+                        'filename': transcript_filename
                     })
                    
                     # Increment counter
                     processed_count += 1
                     logger.info(f"Successfully processed file {idx}/{total_files}")
                 else:
-                   raise Exception("Transcription failed - no transcript file produced")
+                    raise Exception("Transcription failed - no transcript file produced")
 
             except Exception as e:
                 logger.error(f"Error processing file {file.filename}: {str(e)}")
                 logger.error(traceback.format_exc())
                 skipped_files.append({
-                   'name': file.filename,
-                   'reason': str(e)
+                    'name': file.filename,
+                    'reason': str(e)
                 })
                 continue
 
         if not all_transcripts:
-           logger.error(f"No files were successfully transcribed")
-           logger.error(f"Processed count: {processed_count}")
-           logger.error(f"Files attempted: {[f.filename for f in files]}")
-           message = "No files were successfully transcribed"
-           if skipped_files:
-               message += f". {len(skipped_files)} files were skipped."
-           logger.error(message)
-           logger.error(f"Skipped files: {skipped_files}")
-           raise Exception(message)
+            logger.error(f"No files were successfully transcribed")
+            logger.error(f"Processed count: {processed_count}")
+            logger.error(f"Files attempted: {[f.filename for f in files]}")
+            message = "No files were successfully transcribed"
+            if skipped_files:
+                message += f". {len(skipped_files)} files were skipped."
+            logger.error(message)
+            logger.error(f"Skipped files: {skipped_files}")
+            raise Exception(message)
 
         progress_tracker.update(
             message="Processing complete!",
             progress=100
         )
 
-        # Optionally, manually set the status if needed
+        # Set completion status
         progress_tracker.current_progress['status'] = 'complete'
 
         response_data = {
-           'status': 'success',
-           'message': 'Processing complete',
-           'transcripts': all_transcripts
+            'status': 'success',
+            'message': 'Processing complete',
+            'transcripts': all_transcripts
         }
 
         if skipped_files:
@@ -198,9 +199,8 @@ def handle_file_uploads():
         for temp_file in temp_files:
             try:
                 if temp_file and os.path.exists(temp_file):
-                    if temp_file.startswith(TEMP_FOLDER):
-                        logger.info(f"Deleting temp file: {temp_file}")
-                        storage.delete_file(temp_file)
+                    logger.info(f"Deleting temp file: {temp_file}")
+                    os.remove(temp_file)
             except Exception as e:
                 logger.error(f"Error deleting temp file {temp_file}: {e}")
 
