@@ -2,6 +2,7 @@ import whisper
 from datetime import datetime
 import os
 from utils.logger import logger
+import traceback
 
 class Transcriber:
     def __init__(self, config, progress_tracker):
