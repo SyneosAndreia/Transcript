@@ -9,7 +9,7 @@ services:
   source_dir: backend
   http_port: 8080
   instance_count: 1
-  instance_size_slug: basic-xxs
+  instance_size_slug: basic-xs
   run_command: gunicorn app:app
   envs:
   - key: FLASK_ENV
@@ -18,10 +18,9 @@ services:
   - key: FIREBASE_CREDENTIALS
     scope: RUN_AND_BUILD_TIME
     type: SECRET
-    value: your-firebase-credentials
-  - key: datavendor-prod.firebasestorage.app
+  - key: FIREBASE_STORAGE_BUCKET
     scope: RUN_AND_BUILD_TIME
-    value: your-firebase-bucket
+    value: datavendor-prod.firebasestorage.app
   - key: ALLOWED_ORIGINS
     scope: RUN_AND_BUILD_TIME
     value: https://transcript-delta.vercel.app
