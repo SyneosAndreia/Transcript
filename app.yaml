@@ -1,0 +1,27 @@
+name: transcript-app
+services:
+- name: transcript-backend
+  environment_slug: python
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: SyneosAndreia/Transcript
+  source_dir: backend
+  http_port: 8080
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  run_command: gunicorn app:app
+  envs:
+  - key: FLASK_ENV
+    scope: RUN_AND_BUILD_TIME
+    value: production
+  - key: FIREBASE_CREDENTIALS
+    scope: RUN_AND_BUILD_TIME
+    type: SECRET
+    value: your-firebase-credentials
+  - key: datavendor-prod.firebasestorage.app
+    scope: RUN_AND_BUILD_TIME
+    value: your-firebase-bucket
+  - key: ALLOWED_ORIGINS
+    scope: RUN_AND_BUILD_TIME
+    value: https://transcript-delta.vercel.app
