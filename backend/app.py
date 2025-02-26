@@ -12,8 +12,12 @@ from storage.local import LocalStorage
 import subprocess
 import sys
 
+import logging
+logger = logging.getLogger(__name__)
+
 # Set up ffmpeg if needed
 def setup_ffmpeg():
+    logger.info("Setting up ffmpeg...")
     # Create bin directory
     os.makedirs("bin", exist_ok=True)
     
@@ -30,6 +34,8 @@ def setup_ffmpeg():
     # Add to PATH
     os.environ["PATH"] = os.environ["PATH"] + ":" + os.path.join(os.getcwd(), "bin")
     print(f"Updated PATH: {os.environ['PATH']}")
+    
+    logger.info(f"ffmpeg setup complete, PATH updated: {os.environ['PATH']}")
 
 setup_ffmpeg()
 
