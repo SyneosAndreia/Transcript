@@ -8,6 +8,32 @@ from core.progress import ProgressTracker
 from storage.firebase import FirebaseStorage
 from storage.local import LocalStorage
 
+
+import subprocess
+import sys
+
+# Set up ffmpeg if needed
+def setup_ffmpeg():
+    # Create bin directory
+    os.makedirs("bin", exist_ok=True)
+    
+    # Download ffmpeg if not exists
+    if not os.path.exists("bin/ffmpeg"):
+        print("Downloading ffmpeg...")
+        subprocess.run([
+            "curl", "-L", 
+            "https://github.com/eugeneware/ffmpeg-static/releases/download/b4.4.0/linux-x64",
+            "-o", "bin/ffmpeg"
+        ])
+        subprocess.run(["chmod", "+x", "bin/ffmpeg"])
+    
+    # Add to PATH
+    os.environ["PATH"] = os.environ["PATH"] + ":" + os.path.join(os.getcwd(), "bin")
+    print(f"Updated PATH: {os.environ['PATH']}")
+
+setup_ffmpeg()
+
+
 def create_app(config=Config):
     app = Flask(__name__)
     app.config.from_object(config)
