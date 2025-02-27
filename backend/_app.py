@@ -89,8 +89,16 @@ except Exception as e:
 #Firebase Helpers ===========================================================================
 def save_to_firebase(file_data, folder, filename):
     """save files to firebase"""
+    # Determine correct MIME type based on file extension
+    mime_type = "video/mp4"
+    if filename.lower().endswith('.mp4'):
+        mime_type = "video/mp4"
+    elif filename.lower().endswith('.mp3'):
+        mime_type = "audio/mpeg"
+
+    
     blob = bucket.blob(f"{folder}/{filename}")
-    blob.upload_from_string(file_data)
+    blob.upload_from_string(file_data, content_type=mime_type)
     blob.make_public()
     return blob.public_url
 
