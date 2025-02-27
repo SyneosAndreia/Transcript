@@ -11,6 +11,7 @@ from storage.local import LocalStorage
 
 import subprocess
 import sys
+import shutil
 
 import logging
 logger = logging.getLogger(__name__)
@@ -24,17 +25,36 @@ def setup_ffmpeg():
     # Download ffmpeg if not exists
     if not os.path.exists("bin/ffmpeg"):
         print("Downloading ffmpeg...")
-        subprocess.run([
-            "curl", "-L", 
-            "https://github.com/eugeneware/ffmpeg-static/releases/download/b4.4.0/linux-x64",
-            "-o", "bin/ffmpeg"
-        ])
-        subprocess.run(["chmod", "+x", "bin/ffmpeg"])
+        
+        if os.name == 'nt':  # Windows
+            # Windows download
+            subprocess.run([
+                "curl", "-L", 
+                "https://github.com/GyanD/codexffmpeg/releases/download/5.1.2/ffmpeg-5.1.2-essentials_build.zip",
+                "-o", "ffmpeg.zip"
+            ])
+            import zipfile
+            with zipfile.ZipFile("ffmpeg.zip", 'r') as zip_ref:
+                zip_ref.extractall(".")
+            # Copy the ffmpeg.exe to bin folder
+            shutil.copy("ffmpeg-5.1.2-essentials_build/bin/ffmpeg.exe", "bin/ffmpeg.exe")
+            os.remove("ffmpeg.zip")
+        else:  # Linux/Mac
+            subprocess.run([
+                "curl", "-L", 
+                "https://github.com/eugeneware/ffmpeg-static/releases/download/b4.4.0/linux-x64",
+                "-o", "bin/ffmpeg"
+            ])
+            # Make executable on Unix systems
+            subprocess.run(["chmod", "+x", "bin/ffmpeg"])
     
     # Add to PATH
-    os.environ["PATH"] = os.environ["PATH"] + ":" + os.path.join(os.getcwd(), "bin")
-    print(f"Updated PATH: {os.environ['PATH']}")
+    if os.name == 'nt':  # Windows
+        ffmpeg_path = os.path.join(os.getcwd(), "bin")
+    else:  # Linux/Mac
+        ffmpeg_path = os.path.join(os.getcwd(), "bin")
     
+    os.environ["PATH"] = os.environ["PATH"] + os.pathsep + ffmpeg_path
     logger.info(f"ffmpeg setup complete, PATH updated: {os.environ['PATH']}")
 
 setup_ffmpeg()
