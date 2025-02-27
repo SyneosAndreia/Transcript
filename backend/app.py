@@ -22,41 +22,46 @@ def setup_ffmpeg():
     # Create bin directory
     os.makedirs("bin", exist_ok=True)
     
-    # Download ffmpeg if not exists
-    if not os.path.exists("bin/ffmpeg"):
-        print("Downloading ffmpeg...")
+    try:
+        # Install ffmpeg with all necessary dependencies
+        subprocess.run(["apt-get", "update"], check=True)
+        subprocess.run(["apt-get", "install", "-y", "ffmpeg", "libvpx7"], check=True)
+        logger.info("Successfully installed ffmpeg and dependencies")
+    except Exception as e:
+        logger.error(f"Failed to install ffmpeg: {str(e)}")
         
-        if os.name == 'nt':  # Windows
-            # Windows download
-            subprocess.run([
-                "curl", "-L", 
-                "https://github.com/GyanD/codexffmpeg/releases/download/5.1.2/ffmpeg-5.1.2-essentials_build.zip",
-                "-o", "ffmpeg.zip"
-            ])
-            import zipfile
-            with zipfile.ZipFile("ffmpeg.zip", 'r') as zip_ref:
-                zip_ref.extractall(".")
-            # Copy the ffmpeg.exe to bin folder
-            shutil.copy("ffmpeg-5.1.2-essentials_build/bin/ffmpeg.exe", "bin/ffmpeg.exe")
-            os.remove("ffmpeg.zip")
-        else:  # Linux/Mac
-            subprocess.run([
-                "curl", "-L", 
-                "https://github.com/eugeneware/ffmpeg-static/releases/download/b4.4.0/linux-x64",
-                "-o", "bin/ffmpeg"
-            ])
-            # Make executable on Unix systems
-            subprocess.run(["chmod", "+x", "bin/ffmpeg"])
+        # Fallback to downloading pre-compiled binaries
+        try:
+            logger.info("Trying fallback method...")
+            # Download ffmpeg if not exists
+            if not os.path.exists("bin/ffmpeg"):
+                logger.info("Downloading ffmpeg...")
+                subprocess.run([
+                    "curl", "-L", 
+                    "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz",
+                    "-o", "ffmpeg.tar.xz"
+                ])
+                
+                # Extract
+                subprocess.run(["tar", "-xf", "ffmpeg.tar.xz"])
+                
+                # Find the extracted directory
+                dirs = [d for d in os.listdir() if os.path.isdir(d) and d.startswith("ffmpeg")]
+                if dirs:
+                    # Copy ffmpeg to bin directory
+                    shutil.copy(f"{dirs[0]}/ffmpeg", "bin/ffmpeg")
+                    subprocess.run(["chmod", "+x", "bin/ffmpeg"])
+                    
+                # Cleanup
+                os.remove("ffmpeg.tar.xz")
+                logger.info("Fallback method successful")
+        except Exception as e:
+            logger.error(f"Fallback method failed: {str(e)}")
     
     # Add to PATH
-    if os.name == 'nt':  # Windows
-        ffmpeg_path = os.path.join(os.getcwd(), "bin")
-    else:  # Linux/Mac
-        ffmpeg_path = os.path.join(os.getcwd(), "bin")
-    
-    os.environ["PATH"] = os.environ["PATH"] + os.pathsep + ffmpeg_path
+    os.environ["PATH"] = os.environ["PATH"] + ":" + os.path.join(os.getcwd(), "bin")
     logger.info(f"ffmpeg setup complete, PATH updated: {os.environ['PATH']}")
-
+    
 setup_ffmpeg()
 
 
