@@ -22,46 +22,56 @@ def setup_ffmpeg():
     # Create bin directory
     os.makedirs("bin", exist_ok=True)
     
+    # Skip apt-get and go straight to downloading static build
     try:
-        # Install ffmpeg with all necessary dependencies
-        subprocess.run(["apt-get", "update"], check=True)
-        subprocess.run(["apt-get", "install", "-y", "ffmpeg", "libvpx7"], check=True)
-        logger.info("Successfully installed ffmpeg and dependencies")
-    except Exception as e:
-        logger.error(f"Failed to install ffmpeg: {str(e)}")
+        logger.info("Downloading static ffmpeg build...")
+        # Use a fully static build with all dependencies included
+        subprocess.run([
+            "curl", "-L", 
+            "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz",
+            "-o", "ffmpeg.tar.xz"
+        ], check=True)
         
-        # Fallback to downloading pre-compiled binaries
-        try:
-            logger.info("Trying fallback method...")
-            # Download ffmpeg if not exists
-            if not os.path.exists("bin/ffmpeg"):
-                logger.info("Downloading ffmpeg...")
-                subprocess.run([
-                    "curl", "-L", 
-                    "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz",
-                    "-o", "ffmpeg.tar.xz"
-                ])
-                
-                # Extract
-                subprocess.run(["tar", "-xf", "ffmpeg.tar.xz"])
-                
-                # Find the extracted directory
-                dirs = [d for d in os.listdir() if os.path.isdir(d) and d.startswith("ffmpeg")]
-                if dirs:
-                    # Copy ffmpeg to bin directory
-                    shutil.copy(f"{dirs[0]}/ffmpeg", "bin/ffmpeg")
-                    subprocess.run(["chmod", "+x", "bin/ffmpeg"])
-                    
-                # Cleanup
-                os.remove("ffmpeg.tar.xz")
-                logger.info("Fallback method successful")
-        except Exception as e:
-            logger.error(f"Fallback method failed: {str(e)}")
+        # Extract
+        logger.info("Extracting ffmpeg...")
+        subprocess.run(["tar", "-xf", "ffmpeg.tar.xz"], check=True)
+        
+        # Find the extracted directory
+        dirs = [d for d in os.listdir() if os.path.isdir(d) and d.startswith("ffmpeg")]
+        if dirs:
+            logger.info(f"Found ffmpeg directory: {dirs[0]}")
+            # Copy ffmpeg to bin directory
+            shutil.copy(f"{dirs[0]}/ffmpeg", "bin/ffmpeg")
+            subprocess.run(["chmod", "+x", "bin/ffmpeg"], check=True)
+            logger.info("Copied ffmpeg to bin directory")
+        else:
+            logger.error("No ffmpeg directory found after extraction")
+            
+        # Cleanup
+        os.remove("ffmpeg.tar.xz")
+        
+        # Verify installation
+        if os.path.exists("bin/ffmpeg"):
+            logger.info("Static ffmpeg installed successfully")
+        else:
+            logger.error("bin/ffmpeg does not exist after installation")
+    except Exception as e:
+        logger.error(f"Static ffmpeg installation failed: {str(e)}")
+        import traceback
+        logger.error(traceback.format_exc())
     
-    # Add to PATH
-    os.environ["PATH"] = os.environ["PATH"] + ":" + os.path.join(os.getcwd(), "bin")
+    # Add bin to PATH but prioritize it FIRST
+    bin_path = os.path.join(os.getcwd(), "bin")
+    os.environ["PATH"] = f"{bin_path}:{os.environ['PATH']}"
     logger.info(f"ffmpeg setup complete, PATH updated: {os.environ['PATH']}")
     
+    # Test ffmpeg
+    try:
+        test_cmd = ["which", "ffmpeg"]
+        result = subprocess.run(test_cmd, capture_output=True, text=True)
+        logger.info(f"ffmpeg location: {result.stdout.strip()}")
+    except Exception as e:
+        logger.error(f"Failed to locate ffmpeg: {str(e)}")
 setup_ffmpeg()
 
 
