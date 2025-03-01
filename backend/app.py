@@ -16,7 +16,7 @@ import shutil
 import logging
 logger = logging.getLogger(__name__)
 
-# Set up ffmpeg if needed
+# Set up ffmpeg
 def setup_ffmpeg():
     logger.info("Setting up ffmpeg...")
     # Create bin directory
@@ -75,6 +75,7 @@ def setup_ffmpeg():
 setup_ffmpeg()
 
 
+
 def create_app(config=Config):
     app = Flask(__name__)
     app.config.from_object(config)
@@ -103,8 +104,27 @@ def create_app(config=Config):
     # Register blueprints
     app.register_blueprint(api, url_prefix='/api')
     app.register_blueprint(errors)
+
+
+    # In your app configuration
+    app.config['YOUTUBE_COOKIES_PATH'] = os.environ.get('YOUTUBE_COOKIES_PATH')
+    app.config['YOUTUBE_COOKIES_BROWSER'] = os.environ.get('YOUTUBE_COOKIES_BROWSER', 'chrome')
+
+    # If using environment variable to store cookies content
+    if 'YOUTUBE_COOKIES_CONTENT' in os.environ:
+        cookies_content = os.environ.get('YOUTUBE_COOKIES_CONTENT')
+        cookies_path = os.path.join(app.config['TEMP_FOLDER'], 'youtube_cookies.txt')
+    
+        # Make sure TEMP_FOLDER exists
+        os.makedirs(app.config['TEMP_FOLDER'], exist_ok=True)
+    
+        with open(cookies_path, 'w') as f:
+            f.write(cookies_content)
+    
+        app.config['YOUTUBE_COOKIES_PATH'] = cookies_path       
     
     return app
+
 
 if __name__ == '__main__':
     app = create_app()
